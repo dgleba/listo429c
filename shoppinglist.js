@@ -3,11 +3,13 @@
 var db = new PouchDB('shopping');
 
 // template shopping list object
+// Added title_description field here and on form. David Gleba 2018-12-04a
 const sampleShoppingList = {
   "_id": "",
   "type": "list",
   "version": 1,
   "title": "",
+  "title_description": "",
   "checked": false,
   "place": {
     "title": "",

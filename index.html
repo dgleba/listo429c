@@ -71,6 +71,13 @@
             <md-input placeholder="e.g. Food" v-model="singleList.title"></md-input>
           </md-input-container>   
           
+          <!-- shopping list description - // Added title_description field here and on 'template shopping list object' in shoppinglist.js. David Gleba 2018-12-04a -->
+          <md-input-container>
+          <label>List Description</label>
+            <md-input placeholder="Description of the list" v-model="singleList.title_description"></md-input>
+          </md-input-container>   
+     
+
           <!-- shopping place name -->
           <md-input-container>
             <label>Place name</label>
