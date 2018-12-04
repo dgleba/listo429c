@@ -1,0 +1,17 @@
+.git
+.bundle
+.gitignore
+test
+tmp
+log
+
+doc
+tutorial
+img
+tutorial.md
+.env
+node_modules
+package-lock.json
+
+docker/couchdb
+docker.ini
