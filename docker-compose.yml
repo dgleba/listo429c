@@ -11,6 +11,7 @@ services:
         - .:/usr/share/nginx/html
         # - ./docker/nginx/site.conf:/etc/nginx/conf.d/default.conf
     ports:
+        # -   "82:80"
         -   "6211:80"
     # links:
         # - "couchdb:couchdb"
@@ -24,5 +25,15 @@ services:
     ports:
         -   "6212:5984" # no ssl
     environment:
-        COUCHDB_USER: usera
-        COUCHDB_PASSWORD: admin429c
+      COUCHDB_USER: usera
+      COUCHDB_PASSWORD: admin429c
+
+  proxy:
+      image: nginx:1.14   # -alpine
+      ports:
+        - "82:80"
+      volumes:
+        # - ./app:/usr/share/nginx/html
+        - ./docker/nginxproxy/main.conf:/etc/nginx/nginx.conf
+        # - ./docker/nginxproxy/site.conf:/etc/nginx/conf.d/default.conf
+      

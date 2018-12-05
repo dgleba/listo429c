@@ -1,6 +1,6 @@
 .DS_Store
 node_modules
-start.sh
-#local.ini
+# start.sh
+# local.ini
 docker.ini
 .env

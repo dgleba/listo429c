@@ -90,6 +90,13 @@ Vue.material.registerTheme('default', {
   background: 'grey'
 });
 
+
+// ===================================================
+
+
+// Main app
+
+
 // this is the Vue.js app. It contains
 // el - the HTML element where the app is rendered
 // data - the data the app needs to be rendered
@@ -153,6 +160,11 @@ var app = new Vue({
       return this.shoppingListItems.sort(newestFirst);
     }
   },
+
+  // ===================================================
+  
+  //   find list
+
   /**
    * Called once when the app is first loaded
    */
@@ -181,7 +193,7 @@ var app = new Vue({
       };
       return db.find(q);
     }).then((data) => {
-      // write the shopping list items to the Vue model
+      // write the shopping list items to the Vue model  ---- List saved to model
       app.shoppingListItems = data.docs;
 
       // load settings (Cloudant sync URL)
@@ -193,6 +205,10 @@ var app = new Vue({
     }).catch((e) => {})
 
   },
+  
+  // ===================================================
+  
+  
   methods: {
     /**
      * Called when the settings button is pressed. Sets the mode
@@ -223,8 +239,15 @@ var app = new Vue({
         return db.put(doc);
       });
     },
+    
+    
+    // ===================================================
+    
+    // Sync:
+
+    
     /**
-     * Called when save button on the settings panel is clicked. The
+     * Called when sync button on the settings panel is clicked. The
      * Cloudant sync URL is saved in PouchDB and the sync process starts.
      */
     onClickStartSync: function() {
@@ -305,6 +328,12 @@ var app = new Vue({
       });;
     },
 
+    
+    // ===================================================
+    
+    // find:
+    
+    
     /**
      * Given a list of docs and an id, find the doc in the list that has
      * an '_id' (key) that matches the incoming id. Returns an object 
@@ -364,6 +393,11 @@ var app = new Vue({
       }
     },
 
+    
+    // ===================================================
+    
+    // add list
+    
     /**
      * Called when the user clicks the Add Shopping List button. Sets
      * the mode to 'addlist' to reveal the add shopping list form and
@@ -415,6 +449,11 @@ var app = new Vue({
       this.pagetitle='Shopping Lists';
     },
 
+    
+    // ===================================================
+    
+    //  Edit
+    
     /**
      * Called when the Edit button is pressed next to a shopping list.
      * We locate the list document by id and change mode to "addlist",
@@ -429,6 +468,10 @@ var app = new Vue({
       this.selectedPlace = null;
       this.mode='addlist';
     },
+    
+    // ===================================================
+    
+    //  Delete    
 
     /**
      * Called when the delete button is pressed next to a shopping list.
@@ -443,6 +486,12 @@ var app = new Vue({
       });
     },
 
+    
+    // ===================================================
+    
+    // 
+
+    
     // the user wants to see the contents of a shopping list
     // we load it and switch views
     /**
@@ -478,6 +527,8 @@ var app = new Vue({
       });
     },
 
+    
+    
     /**
      * Called when an item is checked or unchecked from a shopping list.
      * The item is located and written to PouchDB
@@ -487,6 +538,12 @@ var app = new Vue({
       this.findUpdateDoc(this.shoppingListItems, id);
     },
 
+    
+    // ===================================================
+    
+    //  lookup location
+
+    
     /**
      * Called when the Lookup button is pressed. We make an API call to 
      * OpenStreetMap passing in the user-supplied name of the place. If
