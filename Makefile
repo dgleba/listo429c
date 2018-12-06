@@ -3,6 +3,9 @@
 # run scripts from project folder like this --  sc/cl
 
 
+shprox:
+	docker-compose  -f docker-compose.yml exec proxy /bin/bash
+
   
 sh:
 	docker-compose  -f docker-compose.yml exec listo429c /bin/sh
