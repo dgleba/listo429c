@@ -17,8 +17,8 @@ services:
     environment:
       - VIRTUAL_HOST=couch429c.david462.tk      
       - VIRTUAL_PORT=5984      
-    depends_on:
-      - proxy
+    # depends_on:
+      # - proxy-upstream
 
   listo429c:
     # https://github.com/mikechernev/dockerised-php/blob/master/docker-compose.yml
@@ -33,27 +33,41 @@ services:
         # - ./docker/listo/site.conf:/etc/nginx/conf.d/default.conf
     ports:
         # -   "82:80"
-        -   "6211:80"
+        - 80
     # links:
         # - "couchdb:couchdb"
     networks:
       - sister
     environment:
       - VIRTUAL_HOST=listo429c.david462.tk      
-    depends_on:
-      - proxy
       
-  proxy:
+  # proxy:
+    # image: nginx:1.14   
+    # ports:
+      # - "83:83"
+    # volumes:
+      # # - ./app:/usr/share/nginx/html
+      # - ./docker/nginxproxy/main.conf:/etc/nginx/nginx.conf
+      # # - ./docker/nginxproxy/site.conf:/etc/nginx/conf.d/default.conf
+    # networks:
+      # - sister
+
+  proxy-upstream:
     image: nginx:1.14   
     ports:
-      - "83:83"
       - "84:84"
+      - "85:85"
+      # - "86:86"
     volumes:
       # - ./app:/usr/share/nginx/html
-      - ./docker/nginxproxy/main.conf:/etc/nginx/nginx.conf
+      - ./docker/nginxproxy/upstream.conf:/etc/nginx/nginx.conf
       # - ./docker/nginxproxy/site.conf:/etc/nginx/conf.d/default.conf
     networks:
       - sister
+    depends_on:
+      - listo429c
+      - couchdb
+
       
   nginx-proxy:
     image: jwilder/nginx-proxy
