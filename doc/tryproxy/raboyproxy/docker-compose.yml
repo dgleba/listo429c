@@ -1,5 +1,6 @@
 # https://www.thepolyglotdeveloper.com/2017/03/nginx-reverse-proxy-containerized-docker-applications/
 
+
 version: '3.6'
 services:
 
@@ -17,20 +18,23 @@ services:
             - apache
 
             
-    # # error  reverseproxy1port_1  | 2018/12/07 17:20:56 [warn] 1#1: conflicting server name "" on 0.0.0.0:3081, ignored
-    # #
-    # reverseproxy1port:
-        # image: nginx:alpine
-        # ports:
-            # - 3081:3081
-        # restart: always
-        # volumes:
-          # - ./oneport.conf:/etc/nginx/nginx.conf
-
-          # # needed to avoid error - [emerg] 1#1: host not found in upstream "nginx:80" in /etc/nginx/nginx.conf:12
-        # depends_on: 
-            # - nginx
-            # - apache
+    # error  reverseproxy1port_1  | 2018/12/07 17:20:56 [warn] 1#1: conflicting server name "" on 0.0.0.0:3081, ignored 
+    #  fixed by using one server block in nginx.conf
+    #  http://192.168.88.42:3081/a/ works.
+    #
+    reverseproxy1port:
+        image: nginx:alpine
+        ports:
+            - 3081:3081
+        restart: always
+        volumes:
+          - ./oneport.conf:/etc/nginx/nginx.conf
+        #
+        # needed to avoid error - [emerg] 1#1: host not found in upstream "nginx:80" in /etc/nginx/nginx.conf:12
+        #
+        depends_on: 
+            - nginx
+            - apache
 
     nginx:
         # depends_on:
@@ -43,7 +47,7 @@ services:
     apache:
         # depends_on:
             # - reverseproxy
-        image: httpd:alpine
+        image: php:7.2-apache
         restart: always
         volumes:
              - ./aindex.html:/var/www/html/a/index.html
