@@ -5,19 +5,24 @@ Title:  .
 
 error:
 
-  reverseproxy_1  | 2018/12/07 16:38:34 [emerg] 1#1: host not found in upstream "nginx:80" in /etc/nginx/nginx.conf:12
+```  
+reverseproxy_1  | 2018/12/07 16:38:34 [emerg] 1#1: host not found in upstream "nginx:80" in /etc/nginx/nginx.conf:12
+```
 
 https://stackoverflow.com/questions/33639138/docker-networking-nginx-emerg-host-not-found-in-upstream/33954445#33954445
 
 says..
 
+```
   upstream phpupstream {
      waapi_php_1:9000 fail_timeout=5s max_fails=5;
   }
+```
 
 
 i did this..
 
+```
   services:
       reverseproxy:
           volumes:
@@ -31,25 +36,28 @@ i did this..
       apache:
           # depends_on:
               # - reverseproxy
-        
+```        
 
 _____________
 
 
 more error info.
 
+```
   reverseproxy_1  | 2018/12/07 16:38:34 [emerg] 1#1: host not found in upstream "nginx:80" in /etc/nginx/nginx.conf:12
   reverseproxy_1  | nginx: [emerg] host not found in upstream "nginx:80" in /etc/nginx/nginx.conf:12
-
+```
 
 
 ----------------------------------------------------
 
 ### orig..
 
+
  https://www.thepolyglotdeveloper.com/2017/03/nginx-reverse-proxy-containerized-docker-applications/
 
-  version: '2'
+```
+ version: '2'
 
   services:
       reverseproxy:
@@ -72,4 +80,4 @@ more error info.
               - reverseproxy
           image: httpd:alpine
           restart: always
-          
+```          

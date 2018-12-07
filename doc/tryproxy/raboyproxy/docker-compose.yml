@@ -16,15 +16,18 @@ services:
             - nginx
             - apache
 
+            
+    # # error  reverseproxy1port_1  | 2018/12/07 17:20:56 [warn] 1#1: conflicting server name "" on 0.0.0.0:3081, ignored
+    # #
     # reverseproxy1port:
         # image: nginx:alpine
         # ports:
             # - 3081:3081
         # restart: always
         # volumes:
-        # # error  reverseproxy1port_1  | 2018/12/07 17:20:56 [warn] 1#1: conflicting server name "" on 0.0.0.0:3081, ignored
           # - ./oneport.conf:/etc/nginx/nginx.conf
-        # # needed to avoid error - [emerg] 1#1: host not found in upstream "nginx:80" in /etc/nginx/nginx.conf:12
+
+          # # needed to avoid error - [emerg] 1#1: host not found in upstream "nginx:80" in /etc/nginx/nginx.conf:12
         # depends_on: 
             # - nginx
             # - apache
