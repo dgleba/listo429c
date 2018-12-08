@@ -2,6 +2,8 @@
 # One liners and simple stuff may be here in this makefile. See sc folder for scripts.
 # run scripts from project folder like this --  sc/cl
 
+upsf:
+	docker-compose  -f docker-compose-sf.yml up --build  --force-recreate 
 
 shprox:
 	docker-compose  -f docker-compose.yml exec proxy /bin/bash
@@ -10,7 +12,7 @@ shprox:
 sh:
 	docker-compose  -f docker-compose.yml exec listo429c /bin/sh
 
-mydump:
+ mydump:
 	docker-compose  -f mysql/docker-compose.yml exec dbm /bin/bash /root/all-individual-mysqldump.sh
  
 mycrd:
