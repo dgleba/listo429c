@@ -1,6 +1,10 @@
 version: '3.6'
 services:
 
+  # http://couch429c.davidg.ml:46272/_utils/
+  # http://couch429c.david462.tk:46272/_utils/
+  # http://listo429c.david462.tk:46272/
+  
   couchdb:
     image: couchdb
     volumes:
@@ -12,11 +16,12 @@ services:
     environment:
       COUCHDB_USER: usera
       COUCHDB_PASSWORD: admin429c
+      # VIRTUAL_HOST: listo429c.david462.tk      
+      VIRTUAL_HOST: couch429c.david462.tk      
+      # VIRTUAL_HOST: couch429c.davidg.ml      
+      VIRTUAL_PORT: 5984      
     networks:
       - sister
-    environment:
-      - VIRTUAL_HOST=couch429c.david462.tk      
-      - VIRTUAL_PORT=5984      
     # depends_on:
       # - proxy-upstream
 
@@ -27,20 +32,35 @@ services:
       # context: ./
       # dockerfile: Dockerfile
     volumes:
-         - .:/usr/share/nginx/html
-        # - .:/usr/share/nginx/html/listo
-        # - .:/etc/nginx/html/listo
+        # - .:/usr/share/nginx/html
+        - .:/usr/share/nginx/html
         # - ./docker/listo/site.conf:/etc/nginx/conf.d/default.conf
     ports:
         # -   "82:80"
-        - 80
+        -   "6211:80"
     # links:
         # - "couchdb:couchdb"
     networks:
       - sister
     environment:
-      - VIRTUAL_HOST=listo429c.david462.tk      
+      VIRTUAL_HOST: listo429c.david462.tk      
+      # VIRTUAL_HOST: couch429c.david462.tk      
+      VIRTUAL_PORT: 80      
+
+
+  # proxy1port:
+    # image: nginx:1.14   
+    # ports:
+      # - "82:82"
+    # volumes:
+      # - ./docker/nginxproxy/upstream1port.conf:/etc/nginx/nginx.conf
+    # networks:
+      # - sister
+    # depends_on:
+      # - listo429c
+      # - couchdb
       
+
   # proxy:
     # image: nginx:1.14   
     # ports:
@@ -51,24 +71,26 @@ services:
       # # - ./docker/nginxproxy/site.conf:/etc/nginx/conf.d/default.conf
     # networks:
       # - sister
+    # depends_on:
+      # - listo429c
+      # - couchdb
 
-  proxy-upstream:
-    image: nginx:1.14   
-    ports:
-      - "84:84"
-      - "85:85"
-      # - "86:86"
-    volumes:
-      # - ./app:/usr/share/nginx/html
-      - ./docker/nginxproxy/upstream.conf:/etc/nginx/nginx.conf
-      # - ./docker/nginxproxy/site.conf:/etc/nginx/conf.d/default.conf
-    networks:
-      - sister
-    depends_on:
-      - listo429c
-      - couchdb
+  # # works.
+  # proxy-upstream:
+    # image: nginx:1.14   
+    # ports:
+      # - "84:84"
+      # - "85:85"
+    # volumes:
+      # - ./docker/nginxproxy/upstream.conf:/etc/nginx/nginx.conf
+    # networks:
+      # - sister
+    # depends_on:
+      # - listo429c
+      # - couchdb
 
-      
+  # works ok.   #  listo429c.david462.tk:46272  #  couchdb.david462.tk:46272
+  #
   nginx-proxy:
     image: jwilder/nginx-proxy
     ports:
