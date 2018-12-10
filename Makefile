@@ -10,7 +10,7 @@ shprox:
 
   
 sh:
-	docker-compose  -f docker-compose.yml exec listo429c /bin/sh
+	docker-compose  -f docker-compose.yml exec listo429c /bin/bash
 
  mydump:
 	docker-compose  -f mysql/docker-compose.yml exec dbm /bin/bash /root/all-individual-mysqldump.sh

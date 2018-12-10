@@ -17,7 +17,7 @@ services:
     environment:
       COUCHDB_USER: usera
       COUCHDB_PASSWORD: admin429c
-      VIRTUAL_HOST: couch429c.david462.tk      
+      # VIRTUAL_HOST: couch429c.david462.tk      
       VIRTUAL_HOST: c.davidg.ml      
       VIRTUAL_PORT: 5984      
     networks:
@@ -43,7 +43,7 @@ services:
     networks:
       - sister
     environment:
-      VIRTUAL_HOST: listo429c.david462.tk      
+      # VIRTUAL_HOST: listo429c.david462.tk      
       VIRTUAL_HOST: a.davidg.ml      
       VIRTUAL_PORT: 80      
 
