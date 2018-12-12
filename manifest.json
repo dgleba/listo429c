@@ -1,6 +1,6 @@
 {  
-  "short_name": "Shopper",
-  "name": "Shopping List",
+  "short_name": "Listo429c",
+  "name": "List-o-lists",
   "start_url": "index.html",
   "background_color": "#F5F5F5",
   "theme_color": "#448AFF",
@@ -9,7 +9,7 @@
   "icons": [
     {
       "src": "icon128x128.png",  
-      "sizes": "128x128",  
+      "sizes": "96x96",  
       "type": "image/png"  
     },
     {

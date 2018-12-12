@@ -19,9 +19,9 @@ services:
           - ./docker/couchdb/:/opt/couchdb/etc/local.d             
     ports:
         -   "6212:5984" # no ssl
+    env_file:
+      - .env        
     environment:
-      COUCHDB_USER: usera
-      COUCHDB_PASSWORD: admin429c
       VIRTUAL_HOST: couch429c.david462.tk      
       VIRTUAL_PORT: 5984      
     networks:

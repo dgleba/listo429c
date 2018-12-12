@@ -106,7 +106,7 @@ var app = new Vue({
   el: '#app',
   data: {
     mode: 'showlist',
-    pagetitle: 'Shopping Lists',
+    pagetitle: 'Note Lists',
     shoppingLists: [],
     shoppingListItems: [],
     singleList: null,
@@ -409,7 +409,7 @@ var app = new Vue({
       this.singleList = JSON.parse(JSON.stringify(sampleShoppingList));
       this.singleList._id = 'list:' + cuid();
       this.singleList.createdAt = new Date().toISOString();
-      this.pagetitle = 'New Shopping List';
+      this.pagetitle = 'New Note List';
       this.places = [];
       this.selectedPlace = null;
       this.mode='addlist';
@@ -446,7 +446,7 @@ var app = new Vue({
      */
     onBack: function() {
       this.mode='showlist';
-      this.pagetitle='Shopping Lists';
+      this.pagetitle='Note Lists';
     },
 
     

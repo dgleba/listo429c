@@ -1,7 +1,7 @@
 /* global self, caches, fetch */
 'use strict'
 
-var cachename = 'shopping-list-vuejs-pouchdb-0.0.1'
+var cachename = 'listo429'
 var urlstocache = [
   'index.html',
   'shoppinglist.js',

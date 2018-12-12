@@ -3,14 +3,14 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>Shopping List</title>
+  <title>Listo-429c</title>
 
   <!-- mobile styling -->
   <meta name="theme-color" content="#448AFF">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="#448AFF">
-  <meta name="apple-mobile-web-app-title" content="Shopping List">
+  <meta name="apple-mobile-web-app-title" content="Note List">
 
   <!-- Material Design icons and fonts  -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
@@ -63,7 +63,7 @@
 
       <!-- add new shopping list form-->
       <md-card v-if="mode == 'addlist'">
-        <md-card-header>Add Shopping List</md-card-header>
+        <md-card-header>Add List</md-card-header>
         <md-card-content>
           <!-- shopping list name -->
           <md-input-container>
@@ -231,7 +231,7 @@
       <md-card v-if="mode == 'settings'">
           <md-card-header>Settings</md-card-header>
           <md-card-content>
-            You can sync your shopping lists to a remote Apache CouchDB, IBM Cloudant or PouchDB server. Supply the URL, including
+            You can sync your lists to a remote Apache CouchDB, IBM Cloudant or PouchDB server. Supply the URL, including
             credentials and database name and hit "Start Sync".
 
             <!-- Cloudant URL -->
@@ -260,7 +260,7 @@
       <md-card v-if="mode == 'about'">
           <md-card-header>About</md-card-header>
           <md-card-content>
-            <a href="https://github.com/ibm-watson-data-lab/shopping-list">Shopping List is a series of Offline First demo apps, each built using a different stack.</a> These demo apps cover Progressive Web Apps, hybrid mobile apps, native mobile apps, and desktop apps. This particular demo app is a <b>Progressive Web App</b> built using <b>Vue.js and PouchDB</b>. <a href="https://github.com/ibm-watson-data-lab/shopping-list-vuejs-pouchdb">Get the source code.</a>
+            <a href="https://github.com/dgleba/list429...">List is a Offline First app.</a> This particular app is a <b>Progressive Web App</b> built using <b>Vue.js and PouchDB</b>.
           </md-card-content>
 
           <md-card-actions>

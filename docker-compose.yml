@@ -23,12 +23,14 @@ services:
         -   "6212:5984" # no ssl
     env_file:
       - .env      
+    restart: always
     networks:
       - sister
     labels:
       - "virtual.host=couch.davidg.ml"
       - "virtual.port=5984"
       - "virtual.tls-email=dgleba@gmail.com" # set to valid email to activate SSL
+      - "virtual.websockets" # enable websocket passthrough
 
   listo429c:
     # https://github.com/mikechernev/dockerised-php/blob/master/docker-compose.yml
@@ -45,6 +47,7 @@ services:
         -   "6211:80"
     # links:
         # - "couchdb:couchdb"
+    restart: always
     networks:
       - sister
     # environment:
@@ -55,6 +58,7 @@ services:
       - "virtual.host=l.davidg.ml"
       - "virtual.port=80"
       - "virtual.tls-email=dgleba@gmail.com" # set to valid email to activate SSL
+      - "virtual.websockets" # enable websocket passthrough
 
   caddy-gen:
     container_name: caddy-gen
@@ -127,6 +131,7 @@ services:
   #   image: jwilder/nginx-proxy
   #   ports:
   #     - "82:80"
+  #   restart: always
   #   volumes:
   #     - /var/run/docker.sock:/tmp/docker.sock:ro
   #   networks:
