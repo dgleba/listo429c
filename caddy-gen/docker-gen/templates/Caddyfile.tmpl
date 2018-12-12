@@ -1,0 +1,49 @@
+{{ $hosts := groupByLabel $ "virtual.host" }}
+
+{{ if not $hosts }}
+
+127.0.0.1:2015
+log stdout
+errors stderr
+
+{{ else }}
+
+{{ range $h, $containers := $hosts }}
+{{ $c := first $containers }}
+{{ $allhosts := trim (index $c.Labels "virtual.host") }}
+{{ range $t, $host := split $allhosts " " }}
+{{ $tlsEnv := trim (index $c.Labels "virtual.tls-email") }}
+{{ $tlsOff := eq $tlsEnv "" }}
+{{ $alias := trim (index $c.Labels "virtual.alias") }}
+{{ $aliasPresent := ne $alias "" }}
+
+{{ if $aliasPresent  }}
+{{ if $tlsOff }}http://{{ end }}{{ $alias }} {
+  redir {{ if $tlsOff }}http://{{ else }}https://{{ end }}{{ $host }}
+}
+{{ end }}
+
+{{ if $tlsOff }}http://{{ end }}{{ $host }} {
+  tls {{ if $tlsOff }}off{{ else }}{{ $tlsEnv }}{{ end }}
+
+  proxy / {
+    policy round_robin
+    transparent
+    {{ if contains $c.Labels "virtual.websockets" }}websocket{{ end }}
+    
+    {{ range $i, $container := $containers }}
+    {{ range $j, $net := $container.Networks }}
+    {{ $port := index $container.Labels "virtual.port" }}
+    upstream {{ $net.IP }}:{{ if $port }}{{ trim $port }}{{ else }}80{{ end }}
+    {{ end }}
+    {{ end }}
+  }
+
+  gzip
+  log stdout
+  errors stderr
+}
+{{ end }}
+{{ end }}
+
+{{ end }}

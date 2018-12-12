@@ -1,0 +1,32 @@
+version: "3"
+services:
+  caddy-gen:
+    container_name: caddy-gen
+    build: .
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./certs/acme:/etc/caddy/acme  # to save acme
+      - ./certs/ocsp:/etc/caddy/ocsp  # to save certificates
+      - ./backup:/root/.caddy
+      - .:/crib
+      # - ./backup:/root/.caddy
+      
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - whoami
+      - whoami2
+
+  whoami:
+    image: "katacoda/docker-http-server:v1"
+    labels:
+      - "virtual.host=127.0.0.1"
+
+  whoami2:
+    image: "katacoda/docker-http-server:v2"
+    labels:
+      - "virtual.host=davidg.ml"
+      - "virtual.port=80"
+      - "virtual.tls-email=dgleba@gmail.com" # set to valid email to activate SSL

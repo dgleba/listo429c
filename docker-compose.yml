@@ -1,11 +1,18 @@
 version: '3.6'
-services:
 
   # http://a.davidg.ml:46272
   # http://c.davidg.ml:46272/_utils/
   # http://couch429c.david462.tk:46272/_utils/
   # http://listo429c.david462.tk:46272/
   
+# https://docs.docker.com/compose/compose-file/#external-1   
+networks:
+  sister:
+    name: sister
+      external:true      
+
+services:
+
   couchdb:
     image: couchdb
     volumes:
@@ -14,16 +21,14 @@ services:
           - ./docker/couchdb/:/opt/couchdb/etc/local.d             
     ports:
         -   "6212:5984" # no ssl
-    environment:
-      COUCHDB_USER: usera
-      COUCHDB_PASSWORD: admin429c
-      # VIRTUAL_HOST: couch429c.david462.tk      
-      VIRTUAL_HOST: c.davidg.ml      
-      VIRTUAL_PORT: 5984      
+    env_file:
+      - .env      
     networks:
       - sister
-    # depends_on:
-      # - proxy-upstream
+    labels:
+      - "virtual.host=couch.davidg.ml"
+      - "virtual.port=5984"
+      - "virtual.tls-email=dgleba@gmail.com" # set to valid email to activate SSL
 
   listo429c:
     # https://github.com/mikechernev/dockerised-php/blob/master/docker-compose.yml
@@ -42,11 +47,38 @@ services:
         # - "couchdb:couchdb"
     networks:
       - sister
-    environment:
+    # environment:
       # VIRTUAL_HOST: listo429c.david462.tk      
-      VIRTUAL_HOST: a.davidg.ml      
-      VIRTUAL_PORT: 80      
+      # VIRTUAL_HOST: a.davidg.ml      
+      # VIRTUAL_PORT: 80      
+    labels:
+      - "virtual.host=l.davidg.ml"
+      - "virtual.port=80"
+      - "virtual.tls-email=dgleba@gmail.com" # set to valid email to activate SSL
 
+  caddy-gen:
+    container_name: caddy-gen
+    # build: .
+    build:
+      context: ./caddy-gen
+      dockerfile: Dockerfile
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./caddy-gen/certs/acme:/etc/caddy/acme  # to save acme
+      - ./caddy-gen/certs/ocsp:/etc/caddy/ocsp  # to save certificates
+      - ./caddy-gen/backup:/root/.caddy
+      - ./caddy-gen:/crib
+      - ./caddy-gen/backup:/root/.caddy
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      # - whoami
+      - listo429c
+      - couchdb
+    networks:
+      - sister
 
   # proxy1port:
     # image: nginx:1.14   
@@ -91,17 +123,13 @@ services:
 
   # works ok.   #  listo429c.david462.tk:46272  #  couchdb.david462.tk:46272
   #
-  nginx-proxy:
-    image: jwilder/nginx-proxy
-    ports:
-      - "82:80"
-    volumes:
-      - /var/run/docker.sock:/tmp/docker.sock:ro
-    networks:
-      - sister
+  # nginx-proxy:
+  #   image: jwilder/nginx-proxy
+  #   ports:
+  #     - "82:80"
+  #   volumes:
+  #     - /var/run/docker.sock:/tmp/docker.sock:ro
+  #   networks:
+  #     - sister
 
-# https://docs.docker.com/compose/compose-file/#external-1   
-networks:
-  sister:
-    name: sister
-      external:true      
+

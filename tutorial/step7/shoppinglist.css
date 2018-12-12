@@ -1,3 +1,18 @@
+
+.md-list {
+    width: 320px;
+    max-width: 100%;
+    display: inline-block;
+    vertical-align: top;
+    border: 3px solid rgba(#000, .12);
+    background-color: white
+  }
+
+
+
+
+/* from shopping lists */
+
 body {
   background-color: #9e9e9e
 }

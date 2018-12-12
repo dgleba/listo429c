@@ -4,3 +4,7 @@ node_modules
 # local.ini
 docker.ini
 .env
+/x/
+backup/
+certs/
+copyof/
