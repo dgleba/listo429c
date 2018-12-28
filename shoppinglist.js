@@ -481,9 +481,14 @@ var app = new Vue({
      */
     onClickDelete: function(id) {
       var match = this.findDoc(this.shoppingLists, id);
-      db.remove(match.doc).then(() => {
-        this.shoppingLists.splice(match.i, 1);
-      });
+      let delconfm = confirm("Are you sure you want to delete?");
+      if (delconfm == true)
+      {
+        // delete the record if confirmed 
+        db.remove(match.doc).then(() => {
+          this.shoppingLists.splice(match.i, 1);
+        });
+      }  
     },
 
     
