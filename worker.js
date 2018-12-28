@@ -1,7 +1,7 @@
 /* global self, caches, fetch */
 'use strict'
 
-var cachename = 'listo429-v2'
+var cachename = 'listo429-cache-v3'
 var urlstocache = [
   'index.html',
   'shoppinglist.js',

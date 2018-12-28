@@ -223,7 +223,14 @@ var app = new Vue({
      */
     onClickAbout: function() {
       this.mode = 'about';
-    },    
+    }, 
+    
+    // some js to check if the js part of the app updated...
+    onClickjsinfo: function() {
+      alert("JS version is v 4");
+    },
+    
+
     /**
      * Saves 'doc' to PouchDB. It first checks whether that doc
      * exists in the database. If it does, it overwrites it - if
