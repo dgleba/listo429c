@@ -158,6 +158,9 @@ services:
       - ./couch-to-postgres/:/app
     # expose:
     #   - "8081"
+    depends_on:
+      - couchdb
+      - postgres429    
     #command: sh .env &&  ./bin/index.js     
     command:  ./bin/index.js     
 
