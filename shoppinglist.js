@@ -1,4 +1,5 @@
 
+    
 // this will be the PouchDB database
 var db = new PouchDB('shopping');
 
@@ -94,7 +95,7 @@ Vue.material.registerTheme('default', {
 // ===================================================
 
 
-// Main app
+// Main vue app
 
 
 // this is the Vue.js app. It contains
@@ -117,6 +118,14 @@ var app = new Vue({
     syncURL:'',
     syncStatus: 'notsyncing'
   },
+
+
+  // ===================================================
+  
+  //   Computed..
+
+
+
   // computed functions return data derived from the core data.
   // if the core data changes, then this function will be called too.
   computed: {
@@ -161,9 +170,11 @@ var app = new Vue({
     }
   },
 
+
   // ===================================================
   
-  //   find list
+  //   find list  -  default initial code to run.
+
 
   /**
    * Called once when the app is first loaded
@@ -206,8 +217,11 @@ var app = new Vue({
 
   },
   
+
   // ===================================================
   
+  // methods.
+
   
   methods: {
     /**
@@ -225,11 +239,11 @@ var app = new Vue({
       this.mode = 'about';
     }, 
     
+
     // some js to check if the js part of the app updated...
     onClickjsinfo: function() {
-      alert("JS version is v 4");
+      alert("JS version is v 7");
     },
-    
 
     /**
      * Saves 'doc' to PouchDB. It first checks whether that doc
@@ -403,7 +417,9 @@ var app = new Vue({
     
     // ===================================================
     
-    // add list
+
+    // add main list
+
     
     /**
      * Called when the user clicks the Add Shopping List button. Sets
@@ -459,8 +475,10 @@ var app = new Vue({
     
     // ===================================================
     
-    //  Edit
+
+    //  Edit main list
     
+
     /**
      * Called when the Edit button is pressed next to a shopping list.
      * We locate the list document by id and change mode to "addlist",
@@ -478,7 +496,9 @@ var app = new Vue({
     
     // ===================================================
     
-    //  Delete    
+
+    //  Delete main list
+
 
     /**
      * Called when the delete button is pressed next to a shopping list.
@@ -501,7 +521,8 @@ var app = new Vue({
     
     // ===================================================
     
-    // 
+
+    //  list items
 
     
     // the user wants to see the contents of a shopping list
@@ -539,8 +560,7 @@ var app = new Vue({
       });
     },
 
-    
-    
+        
     /**
      * Called when an item is checked or unchecked from a shopping list.
      * The item is located and written to PouchDB
@@ -550,10 +570,24 @@ var app = new Vue({
       this.findUpdateDoc(this.shoppingListItems, id);
     },
 
-    
+    /**
+     * Called when an item is deleted from a shopping list. We locate the item
+     * in the list, delete it from PouchDB and remove it from the shoppingListItems
+     * Vue array.
+     * @param {String} id
+     */
+    onDeleteItem: function(id) {
+      var match = this.findDoc(this.shoppingListItems, id);
+      db.remove(match.doc).then((data) => {
+        this.shoppingListItems.splice(match.i, 1);
+      });
+    },
+
+
     // ===================================================
     
-    //  lookup location
+
+    //  lookup place location
 
     
     /**
@@ -600,19 +634,8 @@ var app = new Vue({
       this.singleList.place.lon = doc.lon;
       this.singleList.place.license = doc.licence;
       this.singleList.place.address = doc.address;
-     },
-
-    /**
-     * Called when an item is deleted from a shopping list. We locate the item
-     * in the list, delete it from PouchDB and remove it from the shoppingListItems
-     * Vue array.
-     * @param {String} id
-     */
-     onDeleteItem: function(id) {
-       var match = this.findDoc(this.shoppingListItems, id);
-       db.remove(match.doc).then((data) => {
-         this.shoppingListItems.splice(match.i, 1);
-       });
      }
+
+
   }
 })
