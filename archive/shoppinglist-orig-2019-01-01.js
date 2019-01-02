@@ -635,6 +635,7 @@ var app = new Vue({
       this.singleList.place.address = doc.address;
     }
 
-
+  // end methods.
   }
+// end vue app
 })

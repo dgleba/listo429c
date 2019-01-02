@@ -2,6 +2,14 @@
 # One liners and simple stuff may be here in this makefile. See sc folder for scripts.
 # run scripts from project folder like this --  sc/cl
 
+
+
+# assemble js into one file.
+b:
+	chmod +x build.sh
+	bash build.sh
+
+
 upsf:
 	docker-compose  -f docker-compose-sf.yml up --build  --force-recreate 
 
@@ -12,14 +20,6 @@ shprox:
 sh:
 	docker-compose  -f docker-compose.yml exec listo429c /bin/bash
 
- mydump:
-	docker-compose  -f mysql/docker-compose.yml exec dbm /bin/bash /root/all-individual-mysqldump.sh
- 
-mycrd:
-	docker-compose exec dbm /bin/bash /root/dbcr.sh
-
-myimpa:
-	docker-compose  -f mysql/docker-compose.yml exec dbm /bin/bash /root/sh21.sh
 
 	
 	
@@ -30,6 +30,15 @@ myimpa:
  
 #  other/`less common` stuff...
 
+
+ mydump:
+	docker-compose  -f mysql/docker-compose.yml exec dbm /bin/bash /root/all-individual-mysqldump.sh
+ 
+mycrd:
+	docker-compose exec dbm /bin/bash /root/dbcr.sh
+
+myimpa:
+	docker-compose  -f mysql/docker-compose.yml exec dbm /bin/bash /root/sh21.sh
 
 
 mydumpb:
