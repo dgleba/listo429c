@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<!--  Version: index v 14... , see approx line 279  -->
+<!--  Version: index v 14... , see approx line 299  -->
 
 <html lang="en">
 
@@ -38,10 +38,13 @@
   <link rel="manifest" href="manifest.json">
 </head>
 
+
 <body>
 
   <!-- Vue app -->
   <div id="app" class="app-viewport" v-cloak>
+
+
 
     <!-- top bar -->
     <md-whiteframe md-elevation="3" class="main-toolbar">
@@ -71,12 +74,16 @@
       </md-toolbar>
     </md-whiteframe> <!-- top bar -->
 
+
+
     <!-- main content -->
     <main class="main-content">
 
+
+
       <!-- add new shopping list form-->
       <md-card v-if="mode == 'addlist'">
-        <md-card-header>Add List</md-card-header>
+        <!-- <md-card-header>Add List</md-card-header> -->
         <md-card-content>
           <!-- shopping list name -->
           <md-input-container>
@@ -158,6 +165,9 @@
         </md-card-content>
       </md-card> <!-- add new shopping list form -->
 
+
+
+
       <!-- shopping list item editor -->
       <md-list class="itemedit" v-if="mode == 'itemedit'">
 
@@ -195,6 +205,9 @@
           <md-divider></md-divider>
         </md-list-item>
       </md-list> <!-- shopping list item editor -->
+
+
+
 
       <!-- list of shopping lists -->
       <md-list v-if="mode == 'showlist'">
@@ -241,6 +254,10 @@
         </md-card>
       </md-list> <!-- list of shopping list -->
 
+
+
+
+
       <!-- settings -->
       <md-card v-if="mode == 'settings'">
         <md-card-header>Settings</md-card-header>
@@ -270,6 +287,9 @@
         </md-card-actions>
       </md-card> <!-- settings -->
 
+
+
+
       <!-- about -->
       <md-card v-if="mode == 'about'">
         <md-card-header>About</md-card-header>
@@ -277,7 +297,7 @@
           <a href="https://github.com/dgleba/listo429c"> https://github.com/dgleba/listo429c (or similar)</a> <u>Listolists
             is a Offline First app.
           </u> This particular app is a <b>Progressive Web App</b> built using <b>Vue.js and PouchDB</b>.
-          <p> Index Version 14 </p>
+          <p> Index Version 20 </p>
         </md-card-content>
 
         <md-card-content>
@@ -294,6 +314,9 @@
         </md-card-actions>
       </md-card> <!-- about -->
 
+
+
+
       <!-- floating 'add shopping list' button -->
       <div class="floatingbutton" v-if="mode == 'showlist'">
         <md-button class="md-fab md-primary md-raised" v-on:click="onClickAddShoppingList">
@@ -309,7 +332,7 @@
 
   <!--  JavaScript Scripts-->
 
-  <script src="worker-include.js"></script>
+  <!-- <script src="worker-include.js"></script> -->
 
   <!-- cuid - unique id generator -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/cuid/1.3.8/browser-cuid.min.js"></script>
