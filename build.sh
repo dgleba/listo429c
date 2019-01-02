@@ -3,11 +3,13 @@
 
 # assemble files. cat many files together sorted by filename numerically..
 
-# the folder containing the code.
+# the folder containing the js code.
 d=js
 #
 cd $d
 find ./*   | sort -V | xargs cat  > ../shoppinglist.js
+cd ..
+
 
 
 

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<!--  Version: index v 7 , see approx line 279  -->
+<!--  Version: index v 14... , see approx line 279  -->
 
 <html lang="en">
 
@@ -277,7 +277,7 @@
           <a href="https://github.com/dgleba/listo429c"> https://github.com/dgleba/listo429c (or similar)</a> <u>Listolists
             is a Offline First app.
           </u> This particular app is a <b>Progressive Web App</b> built using <b>Vue.js and PouchDB</b>.
-          <p> Index Version 7 </p>
+          <p> Index Version 14 </p>
         </md-card-content>
 
         <md-card-content>
@@ -305,20 +305,11 @@
 
   </div> <!-- app -->
 
-  <!-- service worker -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function () {
-        navigator.serviceWorker.register('worker.js').then(function (registration) {
-          console.log('ServiceWorker registration successful with scope: ', registration.scope);
-        }, function (err) {
-          console.log('ServiceWorker registration failed: ', err);
-        });
-      });
-    }
-  </script>
+
 
   <!--  JavaScript Scripts-->
+
+  <script src="worker-include.js"></script>
 
   <!-- cuid - unique id generator -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/cuid/1.3.8/browser-cuid.min.js"></script>

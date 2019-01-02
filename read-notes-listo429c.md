@@ -107,3 +107,21 @@ docker logs -f  listo429c_listo429c_1
 ----------------------------------------------------
 
 
+
+----------------------------------------------------
+Title:  .
+-----------------------2019-01-01[Jan-Tue]21-57PM
+
+changes:
+
+- add js confirm to delete to avoid data loss.
+
+Click on a list menu and then click on another list. sometimes it deleted the second list.
+
+- change sync retry to true.
+
+
+- add code to update js files in 10top.js
+
+
+----------------------------------------------------

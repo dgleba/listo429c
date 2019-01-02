@@ -91,6 +91,22 @@ Vue.material.registerTheme('default', {
 });
 
 
+// update js files ...
+// https://stackoverflow.com/questions/1011605/clear-the-cache-in-javascript
+// https://stackoverflow.com/a/5497508/2744870
+// https://stackoverflow.com/a/10956125/2744870
+
+var scripts =  document.getElementsByTagName('script');
+var torefreshs = ['shoppinglist.js', 'shoppinglist.css'] ; // list of js to be refresh
+var key = 1; // change this key every time you want force a refresh
+for(var i=0;i<scripts.length;i++){ 
+   for(var j=0;j<torefreshs;j++){ 
+      if(scripts[i].src && (scripts[i].src.indexOf(torefreshs[j]) > -1)){
+        new_src = scripts[i].src.replace(torefreshs[j],torefreshs[j] + 'k=' + key );
+        scripts[i].src = new_src; // change src in order to refresh js
+      } 
+   }
+}
 
 // ===================================================
 
@@ -225,7 +241,7 @@ var app = new Vue({
 
     // some js to check if the js part of the app updated...
     onClickjsinfo: function () {
-      alert("JS version is v 11");
+      alert("JS version is v 14");
     },    
 
     /**
