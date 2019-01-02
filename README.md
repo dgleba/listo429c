@@ -1,6 +1,6 @@
 # See
 
-Other readme docs in the doc folder
+Other readme docs here and in the doc folder
 
 David Gleba
 
