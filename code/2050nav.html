@@ -1,0 +1,35 @@
+
+
+  <!-- Vue app -->
+  <div id="app" class="app-viewport" v-cloak>
+
+
+
+    <!-- top bar -->
+    <md-whiteframe md-elevation="3" class="main-toolbar">
+      <md-toolbar>
+        <!-- back button -->
+        <md-button class="md-icon-button" v-if="mode != 'showlist'" v-on:click="onBack">
+          <md-icon>arrow_back</md-icon>
+        </md-button>
+
+        <!-- page title -->
+        <h2 class="md-title" style="flex: 1">{{ pagetitle }}</h2>
+
+        <!-- save new shopping list button -->
+        <md-button class="md-icon-button" v-if="mode == 'addlist'" v-on:click="onClickSaveShoppingList" v-bind:disabled="singleList.title.length == 0">
+          <md-icon>check</md-icon>
+        </md-button>
+
+        <!-- settings -->
+        <md-button class="md-icon-button" v-if="mode == 'showlist'" v-on:click="onClickSettings">
+          <md-icon>settings</md-icon>
+        </md-button>
+        <!-- about -->
+        <md-button class="md-icon-button" v-if="mode == 'showlist'" v-on:click="onClickAbout">
+          <md-icon>info_outline</md-icon>
+        </md-button>
+
+      </md-toolbar>
+    </md-whiteframe> <!-- top bar -->
+

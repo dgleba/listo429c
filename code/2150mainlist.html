@@ -1,0 +1,47 @@
+
+
+      <!-- list of shopping lists -->
+      <md-list v-if="mode == 'showlist'">
+        <md-card v-for="list in sortedShoppingLists" :key="list._id" :data-id="list._id">
+          <md-card-header>
+            <!-- shopping list title -->
+            <div class="md-title" v-bind:class="{ cardchecked: list.checked}">{{ list.title }}</div>
+
+            <!-- shopping place title -->
+            <div class="md-subhead">{{ list.place.title }}</div>
+
+            <!-- 'speed dial' buttons -->
+            <md-speed-dial md-open="hover" md-direction="left" class="md-fab-top-right">
+
+              <!-- more ... button -->
+              <md-button class="md-fab" md-fab-trigger>
+                <md-icon md-icon-morph>more_vert</md-icon>
+                <md-icon>more_horiz</md-icon>
+              </md-button>
+
+              <!-- edit button -->
+              <md-button class="md-fab md-primary md-mini md-clean" v-on:click="onClickEdit(list._id, list.title)">
+                <md-icon>edit</md-icon>
+              </md-button>
+
+              <!-- delete button -->
+              <md-button class="md-fab md-primary md-mini md-clean" v-on:click="onClickDelete(list._id)">
+                <md-icon>delete</md-icon>
+              </md-button>
+            </md-speed-dial>
+          </md-card-header>
+
+          <!-- counts of numbers of items in the list and numbers checked e.g 4/10 -->
+          <md-card-content v-if="counts[list._id]">
+            {{ counts[list._id].checked }} / {{ counts[list._id].total }}
+          </md-card-content>
+
+          <md-card-actions>
+            <!-- button to edit the list items -->
+            <md-button v-on:click="onClickList(list._id, list.title)">
+              <md-icon>chevron_right</md-icon>
+            </md-button>
+          </md-card-actions>
+        </md-card>
+      </md-list> <!-- list of shopping list -->
+

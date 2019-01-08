@@ -1,0 +1,29 @@
+version: '3.6'
+services:
+  site:
+    image: evns/grav
+    #restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - backup:/var/www/grav-admin/
+      - ./backups:/var/www/grav-admin/backup
+      - ./gravuserpages:/var/www/grav-admin/user/pages
+      - .:/crib
+      # - gravuserpages:/var/www/grav-admin/user/pages
+
+      # This overwrites the container files.
+      #- ./gravuserpages:/var/www/grav-admin/user/pages
+      # This overwrites the container files.
+      # - type: bind
+        # source: ./gravuserpages
+        # target: /var/www/grav-admin/user/pages
+
+    env_file:
+      - .env
+volumes:
+  backup:
+  gravuserpages:
+    #external: false
+    

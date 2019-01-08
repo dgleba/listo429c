@@ -1,0 +1,30 @@
+
+      <!-- settings -->
+      <md-card v-if="mode == 'settings'">
+        <md-card-header>Settings</md-card-header>
+        <md-card-content>
+          You can sync your lists to a remote Apache CouchDB, IBM Cloudant or PouchDB server. Supply the URL, including
+          credentials and database name and hit "Start Sync".
+
+          <!-- Cloudant URL -->
+          <md-input-container>
+            <label>Sync URL</label>
+            <md-input placeholder="e.g http://localhost:5984/list" type="url" v-model="syncURL"></md-input>
+          </md-input-container>
+
+          <h4>Sync Status</h4>
+
+          <!-- visualisation of sync status -->
+          <md-chip v-if="syncStatus == 'notsyncing'">Not Syncing</md-chip>
+          <md-chip v-if="syncStatus == 'syncing'" class="md-primary">Syncing</md-chip>
+          <md-chip v-if="syncStatus == 'syncerror'" class="md-warn">Sync Error</md-chip>
+        </md-card-content>
+
+        <md-card-actions>
+          <!-- submit button that saves the Cloudant URL -->
+          <md-button v-on:click="onClickStartSync">
+            Start Sync
+          </md-button>
+        </md-card-actions>
+      </md-card> <!-- settings -->
+

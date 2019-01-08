@@ -2,38 +2,35 @@
 # One liners and simple stuff may be here in this makefile. See sc folder for scripts.
 # run scripts from project folder like this --  sc/cl
 
+cpa:
+	docker cp egrav_site_1:/var/www/grav-admin/user/pages ./mypages
 
-
-# assemble js into one file.
-b:
-	chmod +x build.sh
-	bash build.sh
-
-bh:
-	chmod +x buildh.sh
-	bash buildh.sh
-
-  
-upsf:
-	docker-compose  -f docker-compose-sf.yml up --build  --force-recreate 
-
-shprox:
-	docker-compose  -f docker-compose.yml exec proxy /bin/bash
-
-  
 sh:
-	docker-compose  -f docker-compose.yml exec listo429c /bin/bash
+	docker-compose  -f docker-compose.yml exec site  /bin/bash
+
+bkup:
+	docker-compose  -f docker-compose.yml exec site  /var/www/grav-admin/bin/grav backup
+
+perm:
+# fix permissions. make them group writable so www-data group can manage the files. move, delete, etc..  
+	docker run  egrav_site_1   sh /cribfixperm.sh
 
 
-	
-	
- 
+  
+  
+  
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  
+ 
+ 
+
 #  other/`less common` stuff...
 
+
+upsf:
+	docker-compose  -f docker-compose-sf.yml up --build  --force-recreate 
 
  mydump:
 	docker-compose  -f mysql/docker-compose.yml exec dbm /bin/bash /root/all-individual-mysqldump.sh
@@ -43,7 +40,6 @@ mycrd:
 
 myimpa:
 	docker-compose  -f mysql/docker-compose.yml exec dbm /bin/bash /root/sh21.sh
-
 
 mydumpb:
 	docker-compose  -f mysql/docker-compose.yml exec dbm sh -c 'exec mysqldump  --force --opt --user=root -p"$$MYSQL_ROOT_PASSWORD" --databases dkrdbm dgnote130  \
@@ -130,9 +126,6 @@ dkv:
 	docker-compose -version
 
   
-perm:
-# fix permissions. make them group writable so www-data group can manage the files. move, delete, etc..  
-	docker-compose run djangodev sh sc/fixpermsh
 
     
 # having trouble setting env variable, but do I need it?  

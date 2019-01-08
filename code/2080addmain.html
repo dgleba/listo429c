@@ -1,0 +1,92 @@
+
+    <!-- main content -->
+    <main class="main-content">
+
+
+
+        <!-- add new shopping list form-->
+        <md-card v-if="mode == 'addlist'">
+          <!-- <md-card-header>Add List</md-card-header> -->
+          <md-card-content>
+            <!-- shopping list name -->
+            <md-input-container>
+              <label>List name</label>
+              <md-input placeholder="e.g. Food" v-model="singleList.title"></md-input>
+            </md-input-container>
+  
+            <!-- shopping list description - // Added title_description field here and on 'template shopping list object' in shoppinglist.js. David Gleba 2018-12-04a -->
+            <md-input-container>
+              <label>List Description</label>
+              <md-input placeholder="Description of the list" v-model="singleList.title_description"></md-input>
+            </md-input-container>
+  
+  
+            <!-- shopping place name -->
+            <md-input-container>
+              <label>Place name</label>
+              <md-input placeholder="e.g. Whole Foods, Reno" v-model="singleList.place.title"></md-input>
+              <md-button class="md-raised" v-bind:disabled="singleList.place.title.length==0" v-on:click="onClickLookup">Lookup</md-button>
+            </md-input-container>
+  
+            <!-- shopping place pull-down list -->
+            <md-input-container v-if="places.length > 1">
+              <label for="movie">Choose address</label>
+              <md-select v-bind="selectedPlace" v-on:change="onChangePlace" v-bind:disabled="places.length == 0">
+                <md-option v-for="place in places" :key="place.place_id" v-bind:value="place.place_id">{{
+                  place.display_name }}</md-option>
+              </md-select>
+            </md-input-container>
+  
+            <!-- shopping place road -->
+            <md-input-container v-if="singleList.place.address.road">
+              <label>Road</label>
+              <md-input readonly v-model="singleList.place.address.road"></md-input>
+            </md-input-container>
+  
+            <!-- shopping place town -->
+            <md-input-container v-if="singleList.place.address.town">
+              <label>Town</label>
+              <md-input readonly v-model="singleList.place.address.town"></md-input>
+            </md-input-container>
+  
+            <!-- shopping place city -->
+            <md-input-container v-if="singleList.place.address.city">
+              <label>City</label>
+              <md-input readonly v-model="singleList.place.address.city"></md-input>
+            </md-input-container>
+  
+            <!-- shopping place state -->
+            <md-input-container v-if="singleList.place.address.state">
+              <label>State</label>
+              <md-input readonly v-model="singleList.place.address.state"></md-input>
+            </md-input-container>
+  
+            <!-- shopping place address -->
+            <md-input-container v-if="singleList.place.address.postcode">
+              <label>Postcode</label>
+              <md-input readonly v-model="singleList.place.address.postcode"></md-input>
+            </md-input-container>
+  
+            <!-- shopping place latitude -->
+            <md-input-container v-if="singleList.place.lat != null">
+              <label>Latitude</label>
+              <md-input readonly v-model="singleList.place.lat"></md-input>
+            </md-input-container>
+  
+            <!-- shopping place longitude -->
+            <md-input-container v-if="singleList.place.lon != null">
+              <label>Longitude</label>
+              <md-input readonly v-model="singleList.place.lon"></md-input>
+            </md-input-container>
+  
+            <!-- shopping place licence -->
+            <md-input-container v-if="singleList.place.license">
+              <label>Licence</label>
+              <md-input readonly v-model="singleList.place.license"></md-input>
+            </md-input-container>
+  
+          </md-card-content>
+        </md-card> <!-- add new shopping list form -->
+  
+  
+  

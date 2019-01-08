@@ -2,7 +2,8 @@
 
 ## build.sh
 
-Use `make b` to assemble the js files into the main shopping list js file.
+Use `make b` to assemble the js files into the main shopping list js file. The files will be concatenated sorted by the numerical value in the name.
+
 
 ## Docker-compose
 
