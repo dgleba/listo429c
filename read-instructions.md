@@ -15,4 +15,16 @@ There are some things that are not automatically done on startup.
     - I need to add more to this list.
 
     
+# Issues
+
+ - difficult to update js and css in android.
+ - possibly look for better way to split up the js and html file into smaller files.
+
+# Todo
+
+ - documentation
+ - add autocomplete from data table
+ - add search
+ - address the need of knowing who edited what piece of info. login? authentication? require name with pin?
+ - is role based access needed?
 
