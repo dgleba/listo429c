@@ -9,6 +9,7 @@ d=code
 #
 cd $d
 find ./*   | sort -V | xargs cat  > ../index.html
+find ./*   | sort -V  > ../codelist.txt
 cd ..
 
 
