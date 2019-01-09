@@ -1,5 +1,5 @@
-// <!-- service worker -->
-// <script>
+<!-- service worker -->
+<script>
 
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
@@ -11,4 +11,4 @@
     });
 }
 
-// </script>
+</script>
