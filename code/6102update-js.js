@@ -7,6 +7,7 @@
 // var torefreshs = ['shoppinglist.js', 'shoppinglist.css'] ; // list of js to be refresh
 
 
+/* 
 var scripts =  document.getElementsByTagName('script');
 // var torefreshs = ['shoppinglist.js'] ; // list of js to be refresh
 var torefreshs = ['shoppinglist.js', 'shoppinglist.css'] ; // list of js to be refresh
@@ -19,8 +20,10 @@ for(var i=0;i<scripts.length;i++){
       } 
    }
 }
+*/
 
 
+/* 
 var scripts =  document.getElementsByTagName('link');
 var torefreshs = ['shoppinglist.js', 'shoppinglist.css'] ; // list of js to be refresh
 var key = 20; // change this key every time you want force a refresh
@@ -32,7 +35,10 @@ for(var i=0;i<scripts.length;i++){
       } 
    }
 }
+ */
 
+
+ 
 
 /* 
 function reloadScripts(toRefreshList['shoppinglist.js', 'shoppinglist.css'] , 16 ) {
