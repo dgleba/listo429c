@@ -35,7 +35,7 @@ sh:
 #  other/`less common` stuff...
 
 
- mydump:
+mydump:
 	docker-compose  -f mysql/docker-compose.yml exec dbm /bin/bash /root/all-individual-mysqldump.sh
  
 mycrd:

@@ -1,8 +1,10 @@
 .DS_Store
 node_modules
 # start.sh
-# local.ini
+
+local.ini
 docker.ini
+
 .env
 /x/
 backup/
