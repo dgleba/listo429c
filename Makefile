@@ -26,7 +26,10 @@ csh:
 sh:
 	docker-compose  -f docker-compose.yml exec listo429c /bin/bash
 	
-	
+pcup:
+	docker-compose  up pgcouch429
+
+
  
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

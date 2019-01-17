@@ -18,6 +18,10 @@ https://usera:admin429c@couch.davidg.ml/listo429c2db
 Title:  .
 -----------------------2018-12-03[Dec-Mon]23-04PM
 
+couchdb password reset..
+
+another way is putting plain text in .ini file and it hashes it on startup.
+
 create user: create doc in _users db
 
 {
@@ -84,7 +88,7 @@ http://192.168.88.42:8089/?server=my429&username=muser
 http://192.168.88.42:8089/?server=my429&username=muser
 
 mb:
-pw my429adm
+pw x
 
 
 ----------------------------------------------------
@@ -132,6 +136,15 @@ Title:  .
 -----------------------2019-01-12[Jan-Sat]23-07PM
 
 http://192.168.88.42:6211/tutorial/step1-compo/
+
+
+
+----------------------------------------------------
+
+
+----------------------------------------------------
+Title:  .
+-----------------------2019-01-17[Jan-Thu]06-58AM
 
 
 

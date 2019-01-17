@@ -2,8 +2,10 @@
 
 ## build.sh
 
-Use `make b` to assemble the js files into the main shopping list js file. The files will be concatenated sorted by the numerical value in the name.
+Use `make bh` to assemble the html/css/js files into index.html file. The files will be concatenated sorted by the numerical value in the name.
 
+old:
+  Use `make b` to assemble the js files into the main shopping list js file. The files will be concatenated sorted by the numerical value in the name.
 
 ## Docker-compose
 
@@ -11,8 +13,14 @@ Docker compose file will run the project.
 
 There are some things that are not automatically done on startup.
 
-    - postgres tables for the couch to postgres replication
-    - I need to add more to this list.
+  - copy .env.example and edit the settings, passwords, etc.
+  - postgres tables for the couch to postgres replication
+  - I need to add more to this list.
+    
+    
+## Couchdb setup
+
+  - copy docker.ini.example.in
 
     
 # Issues

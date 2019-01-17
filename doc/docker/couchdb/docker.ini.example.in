@@ -1,0 +1,24 @@
+
+
+[couch_httpd_auth]
+require_valid_user = true
+
+[couchdb]
+uuid = 0c28913b7bc1d2216be81d7bc04a41b6
+
+[chttpd]
+bind_address = 0.0.0.0
+port = 5984
+require_valid_user = true
+
+[cluster]
+n = 1
+
+[httpd]
+enable_cors = true
+
+[cors]
+origins = *
+credentials = true
+headers = accept, authorization, content-type, origin, referer
+methods = GET, PUT, POST, HEAD, DELETE
