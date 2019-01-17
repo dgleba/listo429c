@@ -2,8 +2,6 @@
 # One liners and simple stuff may be here in this makefile. See sc folder for scripts.
 # run scripts from project folder like this --  sc/cl
 
-
-
 # assemble js into one file.
 b:
 	chmod +x build.sh
@@ -13,18 +11,20 @@ bh:
 	chmod +x buildh.sh
 	bash buildh.sh
 
-  
-upsf:
-	docker-compose  -f docker-compose-sf.yml up --build  --force-recreate 
+rebuildcouch:
+	- docker rm -f $$(docker ps -a |    grep  listo429c_couchdb_1    | awk '{print $$1}')
+	- docker rmi $$(docker images --filter=reference="*couchdb*" -q)
+	docker-compose  up --build --force-recreate couchdb
 
-shprox:
-	docker-compose  -f docker-compose.yml exec proxy /bin/bash
 
-  
+cup:
+	docker-compose  up couchdb 
+
+csh:
+	docker-compose  exec couchdb /bin/bash
+
 sh:
 	docker-compose  -f docker-compose.yml exec listo429c /bin/bash
-
-
 	
 	
  
@@ -33,6 +33,12 @@ sh:
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  
 #  other/`less common` stuff...
+
+shprox:
+	docker-compose  -f docker-compose.yml exec proxy /bin/bash
+
+upsf:
+	docker-compose  -f docker-compose-sf.yml up --build  --force-recreate 
 
 
 mydump:
