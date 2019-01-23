@@ -113,6 +113,17 @@ services:
     networks:
       - sister 
       
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    ports:
+      - 8090:80
+    networks:
+      - sister
+    env_file:
+      - .env
+
+      
   mb429:
     image: metabase/metabase:v0.30.0
     # image: metabase/metabase:v0.25.2

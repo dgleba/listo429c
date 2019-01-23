@@ -25,7 +25,7 @@
       onAddListItem: function () {
         if (!this.newItemTitle) return;
         var obj = JSON.parse(JSON.stringify(sampleListItem));
-        obj._id = 'item:' + cuid();
+        obj._id = 'item:' + tsuid();
         obj.title = this.newItemTitle;
         obj.list = this.currentListId;
         obj.createdAt = new Date().toISOString();

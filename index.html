@@ -392,6 +392,9 @@
 
 <!-- vue-material - Material Design for Vue.js -->
 <script src="https://unpkg.com/vue-material@0.7.4/dist/vue-material.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/dayjs@1.7.8/dayjs.min.js"></script>
+
 <!-- service worker -->
 <script>
 
@@ -556,7 +559,17 @@ function reloadScripts(toRefreshList['shoppinglist.js', 'shoppinglist.css'] , 16
     }
   }
 }
-*/// ===================================================
+*/
+
+// David Gleba tsuid ...
+
+function tsuid() {
+  // I generate the UID 
+
+  var uid = dayjs().format('YYMMDD_HHmm.ss.SSSZZ-').concat( parseInt( Math.random()*100000 ) )
+
+  return uid;
+}// ===================================================
 
 
 // Main vue app
@@ -690,7 +703,7 @@ var app = new Vue({
 
     // some js to check if the js part of the app updated...
     onClickjsinfo: function () {
-      alert("JS version is v 23");
+      alert("JS version is v 24");
     },    
 
     /**
@@ -890,7 +903,7 @@ var app = new Vue({
 
         // open shopping list form
         this.singleList = JSON.parse(JSON.stringify(sampleShoppingList));
-        this.singleList._id = 'list:' + cuid();
+        this.singleList._id = 'list:' + tsuid();
         this.singleList.createdAt = new Date().toISOString();
         this.pagetitle = 'New Note List';
         this.places = [];
@@ -1006,7 +1019,7 @@ var app = new Vue({
       onAddListItem: function () {
         if (!this.newItemTitle) return;
         var obj = JSON.parse(JSON.stringify(sampleListItem));
-        obj._id = 'item:' + cuid();
+        obj._id = 'item:' + tsuid();
         obj.title = this.newItemTitle;
         obj.list = this.currentListId;
         obj.createdAt = new Date().toISOString();

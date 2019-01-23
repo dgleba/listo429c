@@ -1,4 +1,14 @@
-couch-to-postgres  /  pgcouch / couchpg / couchgres / postcouch
+# couch-to-postgres 
+
+Replication one way from couchdb to postgresql
+
+# The following is from 
+
+  https://github.com/sysadminmike/couch-to-postgres 
+
+
+
+## couch-to-postgres  /  pgcouch / couchpg / couchgres / postcouch
 =================
 
 Node libary to stream CouchDB changes into PostgreSQL with a simple client example.  Based on https://github.com/orchestrate-io/orchestrate-couchdb.

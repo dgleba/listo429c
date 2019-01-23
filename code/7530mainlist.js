@@ -14,7 +14,7 @@
 
         // open shopping list form
         this.singleList = JSON.parse(JSON.stringify(sampleShoppingList));
-        this.singleList._id = 'list:' + cuid();
+        this.singleList._id = 'list:' + tsuid();
         this.singleList.createdAt = new Date().toISOString();
         this.pagetitle = 'New Note List';
         this.places = [];

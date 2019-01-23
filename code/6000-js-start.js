@@ -14,3 +14,6 @@
 
 <!-- vue-material - Material Design for Vue.js -->
 <script src="https://unpkg.com/vue-material@0.7.4/dist/vue-material.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/dayjs@1.7.8/dayjs.min.js"></script>
+

@@ -21,6 +21,17 @@ There are some things that are not automatically done on startup.
 ## Couchdb setup
 
   - copy docker.ini.example.in
+  - start couchdb using `make cup`
+  - visit `http://192.168.88.42:6212/_utils/#/setup`
+  - Click the wrench icon. Setup single node.
+  - see pic  setupsinglenode,couchdb.jpg
+  - It should now be ready to sync from the listo app.
+
+## Couchdb to Postgresql replication
+
+  - Using this tool, data is replicated to postgres so it can be queried using many common tools. 
+  - start postgres `make pup`
+  -
 
     
 # Issues

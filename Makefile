@@ -29,6 +29,8 @@ sh:
 pcup:
 	docker-compose  up pgcouch429
 
+pgaup:
+	docker-compose  up pgadmin
 
  
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-// https://github.com/motdotla/dotenv
+// https://github.com/motdotla/dotenv  David Gleba
 require('dotenv').config()
 
 
@@ -11,7 +11,7 @@ var PostgresCouchDB = require('../lib');
 //Note there is an error in the simple example which i have not tracked down/fixed
 //yet  -- it will not restart the stream from where it left off if the feeder is stopped
 //
-//I am working on the daemon.js in same direcory as this which restarts happily.
+//Mike Said.. I am working on the daemon.js in same direcory as this which restarts happily.
 //
 
 
@@ -19,9 +19,13 @@ var PostgresCouchDB = require('../lib');
 //   Start settings..
 //
 
-// secrets from from .env file ,  bash source .env
+// secrets from from .env file 
 var jev_couchurl = process.env.ev_couchurl;
+var jev_couchdb = process.env.ev_couchdb;
+
 var jev_pgurl = process.env.ev_pgurl;
+var jev_pgtable = process.env.ev_pgtable;
+
 
 var settings = 
       {
@@ -29,9 +33,9 @@ var settings =
          // example  - url: 'https://usera:pasw@couch.dg.jgleba.com/',
          url: jev_couchurl,
          // couch database
-         database: 'listo429c2db',
+         database: jev_couchdb,
          // pgtable
-         pgtable:  'listotbl'
+         pgtable:  jev_pgtable
        }
       };
 
