@@ -5,3 +5,12 @@
 <!-- Material Design styles for Vue.js  -->
 <link rel="stylesheet" href="https://unpkg.com/vue-material@0.7.4/dist/vue-material.css">
 
+
+
+<!-- our styles -->
+<link href="shoppinglist.css" type="text/css" rel="stylesheet" media="screen,projection" />
+
+
+
+<!-- PWA manifest -->
+<link rel="manifest" href="manifest.json">

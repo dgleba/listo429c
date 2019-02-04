@@ -1,5 +1,3 @@
 
 // end vue app
 })
-
-</script>

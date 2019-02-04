@@ -1,15 +1,23 @@
-
+#
 # One liners and simple stuff may be here in this makefile. See sc folder for scripts.
 # run scripts from project folder like this --  sc/cl
 
+
+# still working out build. There are several ideas here. 
+
+
 # assemble js into one file.
 b:
-	chmod +x build.sh
-	bash build.sh
+	- chmod +x buildj.sh
+	- bash buildj.sh
 
+# concatenate all html css js into one file  
 bh:
-	chmod +x buildh.sh
-	bash buildh.sh
+	- chmod +x buildh.sh
+	- bash buildh.sh
+
+# end. > still working out build. There are several ideas here.
+  
 
 rebuildcouch:
 	- docker rm -f $$(docker ps -a |    grep  listo429c_couchdb_1    | awk '{print $$1}')
@@ -168,6 +176,8 @@ up:
  
   
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# Notes
 
 # https://github.com/docker/compose/issues/2033 docker compose command line run sh multiple commands in one line
 # $ requires escaping with $, so, $$
