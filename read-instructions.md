@@ -33,6 +33,11 @@ There are some things that are not automatically done on startup.
   - start postgres `make pup`
   -
 
+## to Update js and css that a users browser has cached.
+
+  To update js file in client browsers, change the name in the `dist` folder by incrementing the number and edit the index.html to use that file.
+  
+  
     
 # Issues
 

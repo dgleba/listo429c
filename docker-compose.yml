@@ -124,38 +124,38 @@ services:
       - .env
 
       
-  mb429:
-    image: metabase/metabase:v0.30.0
-    # image: metabase/metabase:v0.25.2
-    ports:
-      - "6151:3000"
-    volumes:
-      - ../datasys/metabasedata:/metabase-data
-    env_file:
-      - .env
-    depends_on:
-      - my429
-    networks:
-      - sister      
+  # mb429:
+  #   image: metabase/metabase:v0.30.0
+  #   # image: metabase/metabase:v0.25.2
+  #   ports:
+  #     - "6151:3000"
+  #   volumes:
+  #     - ../datasys/metabasedata:/metabase-data
+  #   env_file:
+  #     - .env
+  #   depends_on:
+  #     - my429
+  #   networks:
+  #     - sister      
 
-  my429:
-    image: mysql:5.7
-    #container_name: mysqlm
-    # build: .
-    restart: always
-    env_file:
-      - .env
-    # environment:
-      # MYSQL_ROOT_PASSWORD: root
-      # MYSQL_DATABASE: test
-    ports:
-      - "6112:3306"
-    volumes:
-      - ../datasys/mysql429/:/var/lib/mysql/   # folder for mysql's internal data files.
-      - .:/root                                   # folder for scripts, etc.
-      - ../data/data429/:/home                   # folder for exported data, etc.
-    networks:
-      - sister 
+  # my429:
+  #   image: mysql:5.7
+  #   #container_name: mysqlm
+  #   # build: .
+  #   restart: always
+  #   env_file:
+  #     - .env
+  #   # environment:
+  #     # MYSQL_ROOT_PASSWORD: root
+  #     # MYSQL_DATABASE: test
+  #   ports:
+  #     - "6112:3306"
+  #   volumes:
+  #     - ../datasys/mysql429/:/var/lib/mysql/   # folder for mysql's internal data files.
+  #     - .:/root                                   # folder for scripts, etc.
+  #     - ../data/data429/:/home                   # folder for exported data, etc.
+  #   networks:
+  #     - sister 
      
   pgcouch429:
   # couch to pg job
@@ -175,3 +175,15 @@ services:
     #command: sh .env &&  ./bin/index.js     
     command:  ./bin/index.js     
 
+  sqlpad:
+    image: sqlpad/sqlpad
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "6152:3000"
+    volumes:
+      - ../datasys/sqlpad429/:/var/lib/sqlpad   # folder for mysql's internal data files.
+    # docker-compose up sqlpad
+
+    

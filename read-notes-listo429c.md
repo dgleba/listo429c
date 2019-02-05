@@ -147,5 +147,8 @@ Title:  .
 -----------------------2019-01-17[Jan-Thu]06-58AM
 
 
+2019-02-04_Mon_13.51-PM
+
+to update js file in client browsers, change the name in the `dist` folder by incrementing the number and edit the index.html to use that file.
 
 ----------------------------------------------------
