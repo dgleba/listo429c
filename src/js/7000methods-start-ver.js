@@ -6,7 +6,7 @@
 
     // some js to check if the js part of the app updated...
     onClickjsinfo: function () {
-      alert("JS version is v 24");
+      alert("JS version is v 26");
     },    
 
     /**
