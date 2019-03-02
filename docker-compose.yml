@@ -38,7 +38,7 @@ services:
       # dockerfile: Dockerfile
     volumes:
         # - .:/usr/share/nginx/html
-        - .:/usr/share/nginx/html
+        - ./listo429:/usr/share/nginx/html
     ports:
         # -  "82:80"
         -  "6211:80"

@@ -1,4 +1,19 @@
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+to move project to other server.
+
+ - check .env files in each folder as needed.
+ - npm install in in each folder as needed.
+ - setup couch as needed.
+ - setup postgres as needed. 
+
+2019-03-02
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
 
 no need to create db..
 

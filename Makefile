@@ -13,8 +13,8 @@ b:
 
 # concatenate all html css js into one file  
 bh:
-	- chmod +x buildh.sh
-	- bash buildh.sh
+	- chmod +x listo429/buildh.sh
+	- bash listo429/buildh.sh
 
 # end. > still working out build. There are several ideas here.
   
