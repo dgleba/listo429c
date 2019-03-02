@@ -1,0 +1,241 @@
+
+_____________
+
+
+_____________
+
+_____________
+
+
+_____________
+
+2019-03-02_Sat_11.30-AM
+
+_____________
+
+  created() {
+    console.log(this.atable);
+    console.log(this.arow.synca);
+    // Send all documents to the remote database, and stream changes in real-time. Note if you use filters you need to set them correctly for pouchdb and couchdb. You can set them for each direction separatly: options.push/options.pull. PouchDB might not need the same filter to push documents as couchdb to send the filtered requested documents.
+    // this.$pouch.sync('maindb', 'http://a:a@192.168.88.58:5984/maindb');
+    var syncurl = this.$pouch.get('_local/aapp', '1')
+    this.$pouch.sync('maindb', this.syncurl.synca).on('complete', function (ascomplete) {
+        // yay, we're in sync!
+        console.log('yay, we are in sync!');
+      }).on('change', function (aschange) {
+        // yo, something changed!
+      }).on('paused', function () {
+        // replication was paused, usually because of a lost connection
+      }).on('active', function (asinfo) {
+        // replication was resumed
+      }).on('error', function (aserr) {
+        // totally unhandled error (shouldn't happen)
+      });
+  },
+  
+_____________
+
+
+import statusCreateComp from "./components/statusCreateComp.vue";
+
+{
+  name: "statuscreate",
+    path: "/statuscreate",
+      component: statusCreateComp
+},
+_____________
+
+
+route
+
+// { title: "Status", link: "/statuscreate" },
+
+_____________
+
+
+from vuetify theme generator 
+
+
+import colors from 'vuetify/es5/util/colors'
+{
+  primary: colors.teal.base,
+    secondary: colors.indigo.base,
+      accent: colors.blue - grey.base,
+        error: colors.deep - orange.base,
+          warning: colors.amber.base,
+            info: colors.lime.base,
+              success: colors.green.base
+}
+
+_____________
+
+
+
+
+delete button
+
+       <button
+          class="btn btn-danger float-right"
+          @click.prevent="delete_mrow(mrow._id);"
+        >
+          Delete
+        </button>
+
+
+
+<v-spacer></v-spacer>
+
+
+
+bootstrap nav Bar
+
+<nav
+  class="navbar navbar-expand-sm navbar-light"
+  style="background-color: #cceeff ;"
+>
+  <a class="navbar-brand" href="#">App</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#collapsibleNavbar"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse-offline-dg-placeholder">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <router-link to="/" class="nav-link">Home</router-link>
+      </li>
+      <li class="nav-item">
+        <router-link to="/posts" class="nav-link">Posts</router-link>
+      </li>
+      <li class="nav-item">
+        <router-link to="/statuscreate" class="nav-link"
+        >Status</router-link
+        >
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+
+
+<div class="row">
+  <div class="col-md-11">
+    <div class="form-group "></div>
+    <label>statusfield - ( type a letter for list ) </label>
+    <v-card>
+      <v-autocomplete
+        v-model="mrow.statusfld"
+              : items="statusflds"
+      :label="vstatuslabel"
+      persistent-hint
+    >
+            </v-autocomplete>
+          </v-card>
+</div>
+      </div >
+      
+
+<label>statusf - ( type a letter for list ) </label>
+  <hr />
+
+
+
+https://github.com/QurateInc/vue-pouch-db
+
+
+"Todo", "Closed", "Complete", "A"
+
+
+<label>Statusfld:</label>
+  <input type="text" class="form-control" v-model="mrow.statusfld" />
+
+
+class="collapse navbar-collapse" id = "collapsibleNavbar"
+
+
+<nav class="navbar navbar-expand-sm navbar-light bg-blue">
+  <div class="tbd--collapse">
+    <ul class="navbar-nav ">
+      <li class="nav-item">
+        <router-link to="/" class="nav-link">Home</router-link>
+      </li>
+      <li class="nav-item">
+        <router-link to="/posts" class="nav-link">Posts</router-link>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+<li class="nav-item">
+  <router-link to="/create" class="nav-link">Create Post</router-link>
+</li>
+
+
+<div class="row">
+  <td class="float-right">
+
+  </td>
+</div>
+
+
+
+<td>
+<button class="btn btn-danger"
+    @click.prevent="deletePost(post._id);"> Delete   </button>
+</td >
+
+
+<br />
+
+.fade - enter - active,
+.fade - leave - active {
+  transition: opacity 0.5s;
+}
+.fade - enter,
+.fade - leave - active {
+  opacity: 0;
+}
+
+</div>
+
+navbar-collapse bg-dark navbar-dark
+
+class="container"
+
+
+    < !--
+      < transition name = "fade" >
+      </transition >
+  -->
+
+  < !-- < h1 > Posts</h1 > -->
+
+  post: {
+  title: "",
+    body: "",
+      rtype: "",
+        _id: "",
+          id: ""
+},
+
+
+[vue - router] missing param for named route "edit": Expected "id" to be defined
+Download the Vue Devtools extension for a better development experience:
+  https://github.com/vuejs/vue-devtools   
+
+  post: {
+    id: "",
+      _id: ""
+  },
+
+mainlists: {
+  title: "",
+    body: "",
+      rtype: "",
+        _id: ""
+},

@@ -82,6 +82,24 @@ services:
     networks:
       - sister
 
+  pgcouch429:
+  # couch to pg job
+    image: "node:10-slim"
+    restart: always
+    # user: "node"
+    # environment:
+    #   - NODE_ENV=production
+    working_dir: /app
+    volumes:
+      - ./couch-to-postgres/:/app
+    # expose:
+    #   - "8081"
+    depends_on:
+      - couchdb
+      - postgres429    
+    #command: sh .env &&  ./bin/index.js     
+    command:  ./bin/index.js     
+      
   postgres429:
     # https://hub.docker.com/_/postgres/
     image: postgres:11
@@ -105,6 +123,18 @@ services:
     networks:
       - sister
       
+  sqlpad:
+    image: sqlpad/sqlpad
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "6152:3000"
+    volumes:
+      - ../datasys/sqlpad429/:/var/lib/sqlpad   # folder for mysql's internal data files.
+    # docker-compose up sqlpad
+
+      
   adminer429:
     image: adminer:4.6
     restart: always
@@ -122,6 +152,8 @@ services:
       - sister
     env_file:
       - .env
+
+
 
       
   # mb429:
@@ -157,33 +189,4 @@ services:
   #   networks:
   #     - sister 
      
-  pgcouch429:
-  # couch to pg job
-    image: "node:10-slim"
-    restart: always
-    # user: "node"
-    # environment:
-    #   - NODE_ENV=production
-    working_dir: /app
-    volumes:
-      - ./couch-to-postgres/:/app
-    # expose:
-    #   - "8081"
-    depends_on:
-      - couchdb
-      - postgres429    
-    #command: sh .env &&  ./bin/index.js     
-    command:  ./bin/index.js     
-
-  sqlpad:
-    image: sqlpad/sqlpad
-    restart: always
-    env_file:
-      - .env
-    ports:
-      - "6152:3000"
-    volumes:
-      - ../datasys/sqlpad429/:/var/lib/sqlpad   # folder for mysql's internal data files.
-    # docker-compose up sqlpad
-
     
