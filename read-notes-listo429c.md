@@ -3,14 +3,14 @@
 no need to create db..
 
 
-https://usera:userap@couch.dg.jgleba.com/opennote
+https://user:p@couch.dg.jgleba.com/opennote
 
-http://usera:userap@192.168.88.42:6212/listo429c2db
+http://user:p@192.168.88.42:6212/listo429c2db
 
-http://usera:admin429c@192.168.88.42:6212/listo429cdb
+http://user:c@192.168.88.42:6212/listo429cdb
 
 
-https://usera:admin429c@couch.davidg.ml/listo429c2db
+https://user:c@couch.davidg.ml/listo429c2db
 
 
 

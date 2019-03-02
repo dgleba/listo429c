@@ -6,8 +6,6 @@ local.ini
 docker.ini
 
 .env
-.env.local
-
 /x/
 backup/
 certs/
