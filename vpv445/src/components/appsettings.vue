@@ -22,6 +22,9 @@
       {{ arow._id }}, {{ arow.updatedat }},
     </div>
 
+    <div>- </div>
+    <div> {{ couchurl }} ,  {{ couchurl2 }}  </div>
+
     <v-snackbar v-model="snksnackbar" :timeout="snktimeout">
       {{ snktext }}
       <v-btn color="pink" flat @click="snksnackbar = false;"> Close </v-btn>
@@ -32,68 +35,76 @@
 <script>
 var dghelper = require(".././helper.js");
 import PouchDB from "pouchdb-browser";
+// require('dotenv').config();
 
 export default {
-  data: () => ({
-    arow: {},
-    syncurl: {},
-    resultsPerPage: 125,
-    currentPage: 1,
-    qsearch: "",
-    delconfm: null,
-    updatedat: null,
-    snksnackbar: false,
-    snktimeout: 4200,
-    snktext: "Couchdb sync info"
-  }),
+
+  data: function() {
+      return {
+      arow: {},
+      // syncurl: {},
+      resultsPerPage: 125,
+      currentPage: 1,
+      qsearch: "",
+      delconfm: null,
+      updatedat: null,
+      snksnackbar: false,
+      snktimeout: 4200,
+      snktext: "Couchdb sync info",
+      couchurl: process.env.VUE_APP_synccouchurl,
+      couchurl2: process.env.VUE_APP_synccouchurl_2
+    };
+  },
   created() {
-    console.log(this.atable);
-    console.log(this.arow.synca);
+    // console.log(this.arow.synca);
+    // works console.log(process.env.VUE_APP_synccouchurl);
+    // works console.log(this.couchurl);
+    // console.log(couchurl);
     // Send all documents to the remote database, and stream changes in real-time. Note if you use filters you need to set them correctly for pouchdb and couchdb. You can set them for each direction separatly: options.push/options.pull. PouchDB might not need the same filter to push documents as couchdb to send the filtered requested documents.
     // this.$pouch.sync('maindb', 'http://a:x@192.168.88.58:5984/maindb');
-    var syncurl = this.$pouch.get("_local/aapp", "1");
+    // var syncurl = 
+    this.$pouch.get("_local/aapp", "1");
 
     // this.$pouch.sync('maindb', syncurl.synca)
 
     // var sync = PouchDB.sync("maindb", "http://a:x@192.168.88.58:5984/maindb", {
-    var sync = PouchDB.sync("maindb", process.env.synccouchurl, {
+     PouchDB.sync("maindb", this.couchurl , {
       live: true,
       retry: true
     })
-      .on("change", function(info) {
+      .on("change", function() {
         // handle change
-        snksnackbar = true;
-        qsearch = "hi";
+        this.snksnackbar = true;
+        
       })
-      .on("paused", function(err) {
+      .on("paused", function() {
         // replication paused (e.g. replication up to date, user went offline)
+        this.snksnackbar = true;
       })
       .on("active", function() {
         // replicate resumed (e.g. new changes replicating, user went back online)
+        this.snksnackbar = true;
       })
-      .on("denied", function(err) {
+      .on("denied", function() {
         // a document failed to replicate (e.g. due to permissions)
+        this.snksnackbar = true;
       })
-      .on("complete", function(info) {
+      .on("complete", function() {
         // handle complete
+        this.snksnackbar = true;
       })
-      .on("error", function(err) {
+      .on("error", function() {
         // handle error
-        snksnackbar = true;
+        this.snksnackbar = true;
+        
       });
   },
   methods: {
     ascomplete: function() {
-      snksnackbar = true;
-    },
-    asinfo: function() {
-      snksnackbar = true;
-    },
-    aschange: function() {
-      snksnackbar = true;
+      // snksnackbar = true;
     },
     aserr: function() {
-      snksnackbar = true;
+      // snksnackbar = true;
     },
     addrow: function() {
       this.$pouch.post("_local/aapp", {
@@ -101,7 +112,7 @@ export default {
         updatedat: dghelper.updatedat(),
         _id: "1"
       });
-      snksnackbar = true;
+      this.snksnackbar = true;
     },
     //
     // see above <template> for edit and delete calls. I couldnt get it to work here in this editrow function.

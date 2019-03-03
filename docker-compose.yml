@@ -59,10 +59,9 @@ services:
       - "virtual.websockets" # enable websocket passthrough
 
   post429445:
-    # https://github.com/mikechernev/dockerised-php/blob/master/docker-compose.yml
     image:  nginx:1.14 
     volumes:
-        - ./vpv445:/usr/share/nginx/html
+        - ./vpv445/dist:/usr/share/nginx/html
     ports:
         -  "6214:80"
     restart: always

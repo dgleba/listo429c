@@ -43,12 +43,24 @@ pgaup:
 mbup:
 	docker-compose  up mb429
 
+postd:
+	docker-compose  stop post429445
  
+
+
+
+
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  
+
+
 #  other/`less common` stuff...
+
+
+
+
 
 shprox:
 	docker-compose  -f docker-compose.yml exec proxy /bin/bash
