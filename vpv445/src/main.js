@@ -1,7 +1,14 @@
+//  
+//  dg-version-vpv445_v01
+//  2019-03-04_Mon_08.12-AM
+// 
+
 // typeof module.exports !== 'undefined'
 import Vue from "vue";
 import App from "./App.vue";
+
 import "bootstrap/dist/css/bootstrap.min.css";
+
 require('dotenv').config();
 
 
