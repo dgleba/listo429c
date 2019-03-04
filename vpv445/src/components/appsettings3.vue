@@ -1,7 +1,6 @@
 <template>
   <div class="localaapp">
-  <v-app id="inspire">
-    <v-container   id="input-usage"   grid-list-xl   fluid>
+
       <!-- settings -->
       <v-card v-if="mode == 'settings'">
           <v-card-title>Settings</v-card-title>
@@ -11,11 +10,10 @@
 
             <!-- Cloudant URL -->
             <v-card>
-              <v-text-field   label="Sync URL .."  v-model="syncURL"   
-              ></v-text-field>
+              <label>Sync URL .. </label>
+              <input  id="dginput" placeholder="e.g http://localhost:5984/list" type="url" v-model="syncURL"></input>
             </v-card>  
-            "e.g http://user:pass@localhost:5984/list"
-            <div>&nbsp;</div>
+
             <h4>Sync Status</h4>
 
             <!-- visualisation of sync status -->
@@ -26,40 +24,46 @@
 
           <v-card-actions>
             <!-- submit btn that saves the Cloudant URL -->
-            <v-btn v-on:click="onClickStartSync">  Start Sync
+            <v-btn v-on:click="onClickStartSync">
+                Start Sync
             </v-btn>
           </v-card-actions> 
-        </v-card> 
-        <!-- settings -->
+        </v-card> <!-- settings -->
 
-    </v-container>
-  </v-app>
+
   </div>
 </template>
 
 <script>
-//var dghelper = require(".././helper.js");
-import Vue from "vue";
+var dghelper = require(".././helper.js");
 import PouchDB from "pouchdb-browser";
 // require('dotenv').config();
 
 // this will be the PouchDB settings database
-var db = new PouchDB('maindb');
+var db = new PouchDB('pouchdb');
 
 export default {
 
   data: function() {
       return {
-      e: null,
+      
       arow: {},
       syncurl: {},
-      resultsPerPage: 99,
+      resultsPerPage: 125,
       snksnackbar: false,
       snktimeout: 4200,
       snktext: "Couchdb sync info",
       couchurl: process.env.VUE_APP_synccouchurl,
       couchurl2: process.env.VUE_APP_synccouchurl_2,
       mode: 'settings',
+      pagetitle: 'Shopping Lists',
+      shoppingLists: [],
+      shoppingListItems: [],
+      singleList: null,
+      currentListId: null,
+      newItemTitle:'',
+      places: [],
+      selectedPlace: null,
       syncURL:'',
       syncStatus: 'notsyncing'
     };
@@ -172,7 +176,7 @@ export default {
         if (e) {
           this.syncStatus = 'syncerror';
         }
-      });
+      });;
     },
   },
 
@@ -184,7 +188,7 @@ export default {
       return {
         //database: this.selectedDatabase, // you can pass a database string or a pouchdb instance
         database: "maindb",
-        selector: {},              
+        selector: { _id:  '_local/syncu'},              
         first: true
       };
     }
@@ -201,7 +205,7 @@ export default {
 #dginput {
   color: black;
   background-color: hsl(80, 12%, 91%);
-  margin: 2px;   width: 70%;
+  margin: 2px;   width: 60%;
 }
 #dgbutton {
   background-color: hsl(190, 26%, 91%);

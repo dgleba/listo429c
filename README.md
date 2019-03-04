@@ -1,9 +1,10 @@
 # See
 
-Other readme docs here and in the doc folder
+Other readme docs here and in the docs folder and other folders
 
 
-read-instructions.md should have consise instructions.
+
+README-instructions*.md should have consise instructions.
 
 *notes*.md files are just many jotted notes - less organized.
 
