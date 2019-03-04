@@ -45,7 +45,10 @@ mbup:
 
 postd:
 	docker-compose  stop post429445
- 
+
+postup:
+	docker-compose  up post429445
+  
 
 
 
