@@ -3,6 +3,9 @@
   <v-app id="inspire">
     <v-container   id="input-usage"   grid-list-xl   fluid>
       <!-- settings -->
+
+      <div id="dgdivright" align="right">03-04_08.40 dg-version-vpv445_v03 </div> 
+
       <v-card v-if="mode == 'settings'">
           <v-card-title>Settings</v-card-title>
           <v-card-text>
@@ -31,6 +34,7 @@
           </v-card-actions> 
         </v-card> 
         <!-- settings -->
+
 
     </v-container>
   </v-app>

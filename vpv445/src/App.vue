@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <v-app id="inspire">
       <v-toolbar>
-        <v-toolbar-title>A_App.&nbsp </v-toolbar-title>
+        <v-toolbar-title>AnApp.&nbsp </v-toolbar-title>
 
         <v-menu class="hidden-md-and-up">
           <v-toolbar-side-icon slot="activator"></v-toolbar-side-icon>
