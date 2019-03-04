@@ -191,6 +191,9 @@ up:
 # dev recreate build force
 	docker-compose  up 
 
+rst:  
+# dev recreate build force
+	docker-compose  restart 
  
   
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
