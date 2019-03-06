@@ -49,6 +49,8 @@ postd:
 postup:
 	docker-compose  up post429445
   
+cdysh:
+	docker-compose  exec caddy-gen /bin/bash
 
 
 

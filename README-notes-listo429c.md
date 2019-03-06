@@ -4,9 +4,21 @@
 to move project to other server.
 
  - check .env files in each folder as needed.
+ - setup postgres as needed.  follow couch2postgres instructions.
+ - check couchdb docker.ini file. copy .../docs/docker/couchdb/docker.ini.example.in2 in as starter.
  - npm install in in each folder as needed.
  - setup couch as needed.
- - setup postgres as needed. 
+
+
+curl -X PUT http://127.0.0.1:6212/_users
+curl -X PUT http://127.0.0.1:6212/_replicator
+curl -X PUT http://127.0.0.1:6212/_global_changes
+
+curl -X PUT http://user:pass@127.0.0.1:6212/_users
+curl -X PUT http://user:pass@127.0.0.1:6212/_replicator
+curl -X PUT http://user:pass@127.0.0.1:6212/_global_changes
+
+
 
 2019-03-02
 
