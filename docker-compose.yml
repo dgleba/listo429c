@@ -11,6 +11,7 @@ networks:
 
 services:
 
+  #1
   couchdb:
     image: couchdb
     volumes:
@@ -30,6 +31,7 @@ services:
       - "virtual.tls-email=dgleba@gmail.com" # set to valid email to activate SSL
       - "virtual.websockets" # enable websocket passthrough
 
+  #2
   listo429c:
     # https://github.com/mikechernev/dockerised-php/blob/master/docker-compose.yml
     image:  nginx:1.14 
@@ -58,6 +60,7 @@ services:
       - "virtual.tls-email=dgleba@gmail.com" # set to valid email to activate SSL
       - "virtual.websockets" # enable websocket passthrough
 
+  #3
   post429445:
     image: nginx:1.14-alpine
     ports:
@@ -76,7 +79,7 @@ services:
       - "virtual.tls-email=dgleba@gmail.com" # set to valid email to activate SSL
       - "virtual.websockets" # enable websocket passthrough
 
-
+  #4
   caddy-gen:
     container_name: caddy-gen
     # build: .
@@ -104,8 +107,8 @@ services:
     # ACME_AGREE: "true" may not be needed as i have -agree in caddy-gen/Procfile 2019-03-06
     environment:
       ACME_AGREE: "true"
-           
 
+  #5
   pgcouch429:
   # couch to pg job
     image: "node:10-slim"
@@ -123,7 +126,8 @@ services:
       - postgres429    
     #command: sh .env &&  ./bin/index.js     
     command:  ./bin/index.js     
-      
+
+  #6
   postgres429:
     # https://hub.docker.com/_/postgres/
     image: postgres:11
@@ -147,7 +151,9 @@ services:
     networks:
       - sister
       
+  #7
   sqlpad:
+    # 192.168.88.60:6152
     image: sqlpad/sqlpad
     restart: always
     env_file:
@@ -158,8 +164,9 @@ services:
       - ../datasys/sqlpad429/:/var/lib/sqlpad   # folder for mysql's internal data files.
     # docker-compose up sqlpad
 
-      
+  #9
   adminer429:
+    # 192.168.88.60:8089
     image: adminer:4.6
     restart: always
     ports:
@@ -167,6 +174,7 @@ services:
     networks:
       - sister 
       
+  #10
   pgadmin:
     image: dpage/pgadmin4
     restart: always

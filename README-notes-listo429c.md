@@ -3,12 +3,21 @@
 
 to move project to other server.
 
- - check .env files in each folder as needed.
- - setup postgres as needed.  follow couch2postgres instructions.
+ - check .env files in each folder as needed. root and couch-to-postgres
+ - setup postgres as needed.  follow couch2postgres instructions. see docker/postgres/init/pginit.sh
  - check couchdb docker.ini file. copy .../docs/docker/couchdb/docker.ini.example.in2 in as starter.
- - npm install in in each folder as needed.
- - setup couch as needed.
+ - npm install in in each folder as needed.  couch-to-postgres
+ - setup couch as needed. curl system tables like _user. 
 
+Postgres:
+
+line 244 in: C:\n\Dropbox\csd\0-csd\vuepouch\listo429notes\couchtopostgres\read-notes-couchdb-to-postgres,know.txt
+C:\n\Dropbox\csd\0-csd\vuepouch\listo429notes\couchtopostgres\couchtopostgres,pgcouch,setupdb-2019-03-06-listotbl-192.168.88.60_5433-Adminer.jpg
+NOT - listo db .  Use notice  DB: postgres Schema: public 
+I used adminer, go to postgres public and past table creation sql from pginit.sh.
+
+
+Couch:
 
 curl -X PUT http://127.0.0.1:6212/_users
 curl -X PUT http://127.0.0.1:6212/_replicator
@@ -177,5 +186,18 @@ Title:  .
 2019-02-04_Mon_13.51-PM
 
 to update js file in client browsers, change the name in the `dist` folder by incrementing the number and edit the index.html to use that file.
+
+----------------------------------------------------
+
+
+----------------------------------------------------
+Title:  .
+-----------------------2019-03-06[Mar-Wed]13-27PM
+
+sqlpad query
+
+see this file and others in the folder.
+
+C:\n\Dropbox\csd\0-csd\vuepouch\listo429notes\couchtopostgres\sqlpad,postgres,query-SQLPad - Connections.jpg
 
 ----------------------------------------------------
