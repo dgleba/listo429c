@@ -98,8 +98,13 @@ services:
       # - whoami
       - listo429c
       - couchdb
+      - post429445
     networks:
       - sister
+    # ACME_AGREE: "true" may not be needed as i have -agree in caddy-gen/Procfile 2019-03-06
+    environment:
+      ACME_AGREE: "true"
+           
 
   pgcouch429:
   # couch to pg job

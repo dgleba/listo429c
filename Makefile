@@ -37,13 +37,16 @@ sh:
 pcup:
 	docker-compose  up pgcouch429
 
+pcst:
+	docker-compose  stop pgcouch429
+
 pgaup:
 	docker-compose  up pgadmin
 
 mbup:
 	docker-compose  up mb429
 
-postd:
+postst:
 	docker-compose  stop post429445
 
 postup:
@@ -52,6 +55,8 @@ postup:
 cdysh:
 	docker-compose  exec caddy-gen /bin/bash
 
+cdyup:
+	docker-compose  up caddy-gen
 
 
 

@@ -11,6 +11,12 @@ ARG DOCKER_GEN_VERSION="0.7.4"
 ENV CADDYPATH="/etc/caddy"
 ENV DOCKER_HOST unix:///tmp/docker.sock
 
+#
+# ACME_AGREE: "true" (not sure if quotes are needed) may not be needed as i have -agree in caddy-gen/Procfile 2019-03-06
+#
+# https://github.com/abiosoft/caddy-docker/issues/102
+# DOCKER ERROR: caddy user must agree to CA terms
+# ENV ACME_AGREE="true"
 
 # Install wget and install/updates certificates
 
