@@ -54,9 +54,10 @@ export default {
 
 <style>
 /* <!--  // small height div to create a small vertical spacing --> */
-.svdiv {
+.svdiv, .sm-vert-div {
   height: 7px;
   width: 50%;
   /* background-color: powderblue; */
 }
+
 </style>

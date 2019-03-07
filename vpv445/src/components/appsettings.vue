@@ -18,9 +18,11 @@
               <div>
               <input id="dginput" type="url"  v-model="syncpartA" >
               </div>
+              <div class="sm-vert-div"></div>
               <div>Password</div>
               <div>
-              <input id="dginput" type="password"  v-model="syncpass" >
+              <input id="dginput" :type="passwordFieldType"   v-model="syncpass" >
+              <button type="password" @click="switchVisibility" id="dgbutton">Show/hide</button>
               </div>  
               <div>URL last part</div>
               <div>
@@ -66,6 +68,7 @@ export default {
   data: function() {
       return {
       e: null,
+      passwordFieldType: 'password',
       arow: {},
       syncurla: {},
       resultsPerPage: 99,
@@ -98,6 +101,10 @@ export default {
   },
 
   methods: {
+
+    switchVisibility() {
+      this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password'
+    },
 
     /**
      * Saves 'doc' to PouchDB. It first checks whether that doc
@@ -229,6 +236,6 @@ export default {
 }
 #dgbutton {
   background-color: hsl(190, 26%, 91%);
-  padding: 6px;   margin: 5px;
+  padding: 4px;   margin: 4px;
 }
 </style>
