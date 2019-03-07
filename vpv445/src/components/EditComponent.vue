@@ -74,7 +74,7 @@ export default {
     },
 
     update_mrow: function() {
-      console.log(this.atable);
+      //console.log(this.atable);
       this.$pouch
         .put(
           "maindb",
@@ -92,14 +92,14 @@ export default {
           this.$router.push({ name: "posts" });
         });
     },
-    deletePost_api(id) {
+    // deletePost_api(id) {
       // let uri = `http://localhost:4000/posts/delete/${id}`;
       // this.axios.delete(uri).then(response => {
       //   this.posts.splice(this.posts.indexOf(id), 1);
       // });
-    },
-    delete_mrow(id) {
-      console.log("to delete.. ", this.atable);
+    // },
+    delete_mrow() {
+      //console.log("to delete.. ", this.atable);
       let delconfm = confirm("Are you sure you want to delete?");
       if (delconfm == true) {
         // delete the record if confirmed
@@ -114,7 +114,7 @@ export default {
           });
       }
     },
-    confirm_x() {
+    confirm() {
       this.$refs.confirm
         .open("Delete", "Are you sure?", { color: "red" })
         .then(confirm => {});
@@ -131,8 +131,9 @@ export default {
         selector: { _id: this.$route.params.id },
         first: true
       };
-      console.log(this.atable);
+      // console.log(this.atable);
     }
   }
 };
 </script>
+

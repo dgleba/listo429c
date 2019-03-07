@@ -4,7 +4,7 @@
     <v-container   id="input-usage"   grid-list-xl   fluid>
       <!-- settings -->
 
-      <div id="dgdivright" align="right">03-06_08.40 dg-version-vpv445_v04 </div> 
+      <div id="dgdivright" align="right">03-04_08.40 dg-version-vpv445_v03 </div> 
 
       <v-card v-if="mode == 'settings'">
           <v-card-title>Settings</v-card-title>
@@ -13,31 +13,20 @@
             credentials and database name and click "Start Sync".
 
             <!-- Cloudant URL -->
-              <div>&nbsp;</div>
-              <div>URL first part</div>
-              <div>
-              <input id="dginput" type="url"  v-model="syncpartA" >
-              </div>
-              <div>Password</div>
-              <div>
-              <input id="dginput" type="password"  v-model="syncpass" >
-              </div>  
-              <div>URL last part</div>
-              <div>
-              <input id="dginput" type="text"  v-model="syncpartC" >
-              </div>                          
-            <div>&nbsp;</div>
-            example...   http://user:pass@localhost:5984/list
+            <v-card>
+              <v-text-field   label="Sync URL .."  v-model="syncURL"   
+              ></v-text-field>
+            </v-card>  
+            "e.g http://user:pass@localhost:5984/list"
             <div>&nbsp;</div>
             <h4>Sync Status</h4>
-            
+
             <!-- visualisation of sync status -->
             <v-chip v-if="syncStatus == 'notsyncing'">Not Syncing</v-chip>
             <v-chip v-if="syncStatus == 'syncing'" color="info">Syncing</v-chip>
             <v-chip v-if="syncStatus == 'syncerror'" color="error">Sync Error</v-chip>
-             {{ syncURL }} _ {{ syncpasszz }} , {{ syncpartA }} _***_ {{ syncpartC }}
           </v-card-text>
-          
+
           <v-card-actions>
             <!-- submit btn that saves the Cloudant URL -->
             <v-btn v-on:click="onClickStartSync">  Start Sync
@@ -67,7 +56,7 @@ export default {
       return {
       e: null,
       arow: {},
-      syncurla: {},
+      syncurl: {},
       resultsPerPage: 99,
       snksnackbar: false,
       snktimeout: 4200,
@@ -76,22 +65,16 @@ export default {
       couchurl2: process.env.VUE_APP_synccouchurl_2,
       mode: 'settings',
       syncURL:'',
-      syncpartA:'',
-      syncpass:'',
-      syncpartC:'',
       syncStatus: 'notsyncing'
     };
   },
 
   created: function() {
 
-    //this.syncURL = (this.syncpartA).concat(this.syncpass).concat(this.syncpartC);
     // load settings (Cloudant sync URL)
     ( db.get('_local/user') ).then((data) => {
         // if we have settings, start syncing
-        this.syncpartA  = data.syncpartA; 
-        this.syncpass   = data.syncpass;
-        this.syncpartC = data.syncpartC;
+        this.syncURL = data.syncURL;
         this.startSync();
       }).catch((e) => {})
 
@@ -119,12 +102,9 @@ export default {
      * Cloudant sync URL is saved in PouchDB and the sync process starts.
      */
     onClickStartSync: function() {
-      //this.syncURL = (this.syncpartA).concat(this.syncpass).concat(this.syncpartC);
       var obj = {
         '_id': '_local/user',
-        'syncpartA': this.syncpartA,
-        'syncpass':  this.syncpass,
-        'syncpartC': this.syncpartC
+        'syncURL': this.syncURL
       };
       this.saveLocalDoc(obj).then( () => {
         this.startSync();
@@ -144,9 +124,9 @@ export default {
         this.sync.cancel();
         this.sync = null;
       }
-      if ( !((this.syncpartA).concat(this.syncpass).concat(this.syncpartC))   ) { return; }
+      if (!this.syncURL) { return; }
       this.syncStatus = 'syncing';
-      this.sync = db.sync( (this.syncpartA).concat(this.syncpass).concat(this.syncpartC) , {
+      this.sync = db.sync(this.syncURL, {
         live: true,
         retry: true
       }).on('change', (info) => {
