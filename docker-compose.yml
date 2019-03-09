@@ -79,6 +79,26 @@ services:
       - "virtual.tls-email=dgleba@gmail.com" # set to valid email to activate SSL
       - "virtual.websockets" # enable websocket passthrough
 
+  #3b
+  vpv445gb:
+    # 192.168.88.60:6216
+    image: nginx:1.14-alpine
+    ports:
+        -  "6216:8083"
+    volumes:
+      - ./docker/nginx_vpv445g/nginxmain.conf:/etc/nginx/nginx.conf
+      - ./docker/nginx_vpv445g/default.conf:/etc/nginx/conf.d/default.conf
+      - ./vpv445g/dist:/usr/share/nginx/html
+    restart: always
+    networks:
+      - sister     
+    labels:
+      # caddy-gen info..  t.dg24.tk t.david23.tk
+      - "virtual.host=t.david462.tk t.davidg.ml t.dg24.tk"
+      - "virtual.port=8083"
+      - "virtual.tls-email=dgleba@gmail.com" # set to valid email to activate SSL
+      - "virtual.websockets" # enable websocket passthrough
+
   #4
   caddy-gen:
     container_name: caddy-gen
@@ -102,6 +122,7 @@ services:
       - listo429c
       - couchdb
       - post429445
+      - vpv445gb
     networks:
       - sister
     # ACME_AGREE: "true" may not be needed as i have -agree in caddy-gen/Procfile 2019-03-06

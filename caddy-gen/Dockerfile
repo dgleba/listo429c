@@ -21,7 +21,7 @@ ENV DOCKER_HOST unix:///tmp/docker.sock
 # Install wget and install/updates certificates
 
 RUN apk update && apk upgrade \
-  && apk add --no-cache bash openssh-client git \
+  && apk add --no-cache bash openssh-client git mc \
   && apk add --no-cache --virtual .build-dependencies curl wget tar
 
 

@@ -102,6 +102,7 @@ export default {
 
   methods: {
 
+    // https://simedia.tech/blog/show-hide-password-input-values-with-vue-js/
     switchVisibility() {
       this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password'
     },
