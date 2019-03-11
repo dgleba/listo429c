@@ -4,7 +4,7 @@
     <v-container   id="input-usage"   grid-list-xl   fluid>
       <!-- settings -->
 
-      <div id="dgdivright" align="right">03-06_08.40 dg-version-vpv445_v04 </div> 
+      <div id="dgdivright" align="right"> dg-v06 </div> 
 
       <v-card v-if="mode == 'settings'">
           <v-card-title>Settings</v-card-title>

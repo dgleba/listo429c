@@ -26,7 +26,7 @@ services:
     networks:
       - sister
     labels:
-      - "virtual.host=couch.davidg.ml"
+      - "virtual.host=couch.davidg.ml couch.dg24.tk"
       - "virtual.port=5984"
       - "virtual.tls-email=dgleba@gmail.com" # set to valid email to activate SSL
       - "virtual.websockets" # enable websocket passthrough

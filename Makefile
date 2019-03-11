@@ -58,6 +58,12 @@ cdysh:
 cdyup:
 	docker-compose  up caddy-gen
 
+gst:
+	docker-compose  stop vpv445gb
+
+gup:
+	docker-compose  up vpv445gb
+
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
