@@ -1,6 +1,6 @@
 # See
 
-Other readme docs here and in the docs folder and other folders
+Other readme docs here, in the docs folder, and other folders.
 
 
 

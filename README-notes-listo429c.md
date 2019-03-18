@@ -1,20 +1,23 @@
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-to move project to other server.
+# Setup, or To move this project to other server.
 
- - check .env files in each folder as needed. root and couch-to-postgres
+ - check .env files in each folder as needed. eg: root and couch-to-postgres
  - setup postgres as needed.  follow couch2postgres instructions. see docker/postgres/init/pginit.sh
- - check couchdb docker.ini file. copy .../docs/docker/couchdb/docker.ini.example.in2 in as starter.
- - npm install in in each folder as needed.  couch-to-postgres
+ - check couchdb docker.ini file. copy .../docs/docker/couchdb/docker.ini.example.in2 in as starter ini file.
+ - npm install in in each folder as needed. eg: couch-to-postgres, vpv445g
  - setup couch as needed. curl system tables like _user. 
 
 Postgres:
 
-line 244 in: C:\n\Dropbox\csd\0-csd\vuepouch\listo429notes\couchtopostgres\read-notes-couchdb-to-postgres,know.txt
-C:\n\Dropbox\csd\0-csd\vuepouch\listo429notes\couchtopostgres\couchtopostgres,pgcouch,setupdb-2019-03-06-listotbl-192.168.88.60_5433-Adminer.jpg
-NOT - listo db .  Use notice  DB: postgres Schema: public 
-I used adminer, go to postgres public and past table creation sql from pginit.sh.
+
+NOT - listodb.  
+Use:  DB: postgres Schema: public 
+I used adminer, go to postgres public and paste table creation sql from pginit.sh.
+
+Picture shows workig setup..
+../docs/couchtopostgres,pgcouch,setupdb-listotbl-192.168.88.60_5433-Adminer.jpg
 
 
 Couch:
@@ -26,6 +29,7 @@ curl -X PUT http://127.0.0.1:6212/_global_changes
 curl -X PUT http://user:pass@127.0.0.1:6212/_users
 curl -X PUT http://user:pass@127.0.0.1:6212/_replicator
 curl -X PUT http://user:pass@127.0.0.1:6212/_global_changes
+
 
 
 

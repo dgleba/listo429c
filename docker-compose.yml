@@ -145,7 +145,7 @@ services:
     depends_on:
       - couchdb
       - postgres429    
-    #command: sh .env &&  ./bin/index.js     
+    # noworky.. command: sh .env &&  ./bin/index.js     
     command:  ./bin/index.js     
 
   #6
@@ -165,10 +165,10 @@ services:
     ports:
         - 5433:5432                          
     volumes:
-      - ../datasys/postgres421/:/var/lib/postgresql/data/       # folder for db internal data files.
+      - ../datasys/postgres429/:/var/lib/postgresql/data/       # folder for db internal data files.
       - .:/root                                                 # folder for scripts, etc.
-      - ../data/data421/:/home                                  # folder for exported data, etc.
-      - ../docker/postgres/init/:/docker-entrypoint-initdb.d                # init -- create db etc..
+      - ../data/data429/:/home                                  # folder for exported data, etc.
+      - ../docker/postgres/init/:/docker-entrypoint-initdb.d/                # init -- create db etc..
     networks:
       - sister
       

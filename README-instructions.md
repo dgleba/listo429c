@@ -1,11 +1,45 @@
 # Instructions
 
-## build.sh
 
-Use `make bh` to assemble the html/css/js files into index.html file. The files will be concatenated sorted by the numerical value in the name.
 
-old:
-  Use `make b` to assemble the js files into the main shopping list js file. The files will be concatenated sorted by the numerical value in the name.
+
+# Setup, or To move this project to other server.
+
+ - check .env files in each folder as needed. eg: root and couch-to-postgres
+ - setup postgres as needed.  follow couch2postgres instructions. see docker/postgres/init/pginit.sh
+ - check couchdb docker.ini file. copy .../docs/docker/couchdb/docker.ini.example.in2 in as starter ini file.
+ - npm install in in each folder as needed. eg: couch-to-postgres, vpv445g
+ - setup couch as needed. curl system tables like _user. 
+
+Postgres:
+
+
+NOT - listodb.  
+Use:  DB: postgres Schema: public 
+I used adminer, go to postgres public and paste table creation sql from pginit.sh.
+
+Picture shows workig setup..
+../docs/couchtopostgres,pgcouch,setupdb-listotbl-192.168.88.60_5433-Adminer.jpg
+
+
+Couch:
+
+curl -X PUT http://127.0.0.1:6212/_users
+curl -X PUT http://127.0.0.1:6212/_replicator
+curl -X PUT http://127.0.0.1:6212/_global_changes
+
+curl -X PUT http://user:pass@127.0.0.1:6212/_users
+curl -X PUT http://user:pass@127.0.0.1:6212/_replicator
+curl -X PUT http://user:pass@127.0.0.1:6212/_global_changes
+
+
+
+
+
+# Older info..
+
+This is older info. 
+
 
 ## Docker-compose
 
@@ -33,18 +67,31 @@ There are some things that are not automatically done on startup.
   - start postgres `make pup`
   -
 
+
+
+
+# listo429 app
+
+## build.sh
+
+This is older info. See app in `vpv445g` folder.
+
+Use `make bh` to assemble the html/css/js files into index.html file. The files will be concatenated sorted by the numerical value in the name.
+
+old:
+  Use `make b` to assemble the js files into the main shopping list js file. The files will be concatenated sorted by the numerical value in the name.
+
 ## to Update js and css that a users browser has cached.
 
   To update js file in client browsers, change the name in the `dist` folder by incrementing the number and edit the index.html to use that file.
   
-  
     
-# Issues
+## Issues
 
  - difficult to update js and css in android.
  - possibly look for better way to split up the js and html file into smaller files.
 
-# Todo
+## Todo
 
  - documentation
  - add autocomplete from data table
