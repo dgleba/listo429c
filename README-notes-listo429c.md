@@ -1,4 +1,95 @@
 
+
+----------------------------------------------------
+
+## Title:  Start up instructions.
+
+----------------------- 2019-03-18[Mar-Mon]19-59PM
+
+ - root .env file - copy from .env.example to .env
+ - copy ./docs/docker/couchdb/docker.ini.example.in2 to  ./docker/couchdb/docker.ini
+ - copy docker-compose.example.yml to docker-compose.yml
+
+ ```
+ docker-compose up couchdb
+ 
+ ```
+
+
+Delete data (because I had set it up previously)
+
+```
+     sudo rm -rf ../datasys/couch429c/
+     sudo rm -rf ../datasys/postgres421/
+     sudo rm -rf ../datasys/postgres429/
+
+```
+
+Setup couchdb system dbs
+
+```
+curl -X PUT http://cuser:abc@192.168.88.58:6212/_users
+curl -X PUT http://cuser:abc@192.168.88.58:6212/_replicator
+curl -X PUT http://cuser:abc@192.168.88.58:6212/_global_changes
+
+```
+
+
+```
+docker-compose up post445
+
+```
+
+visit:    http://192.168.88.58:6214
+
+visit:    http://192.168.88.58:6212/_utils
+
+
+docker-compose up  vpv445gb
+
+visit:    http://192.168.88.58:6216
+
+
+docker-compose up postgres429
+
+
+cd couch-to-postgres
+npm install
+
+docker-compose up adminer429  pgadmin
+
+
+Postgres:
+
+    NOT - listodb.  
+    Use:  DB: postgres Schema: public 
+    I used adminer, go to postgres public and paste table creation sql from docker/postgres/init/pginit.sh
+
+    Picture shows workig setup..
+    ../docs/couchtopostgres,pgcouch,setupdb-listotbl-192.168.88.60_5433-Adminer.jpg
+
+
+
+docker-compose up pgcouch429
+
+
+Got this error.
+
+pgcouch429_1   | post445gtbl: Could not get pgtables and checkpoints with: SELECT since FROM since_checkpoints WHERE pgtable='post445gtbl' AND enabled=True { error: relation "since_checkpoints" does not exist
+pgcouch429_1   | Error 42P01:post445gtbl in change
+pgcouch429_1   | post445gtbl: stopping stream
+pgcouch429_1   | post445gtbl: stopped
+
+
+Solution: restart pgcouch429. OK now.
+
+
+
+
+----------------------------------------------------
+
+
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Setup, or To move this project to other server.
@@ -6,7 +97,7 @@
  - check .env files in each folder as needed. eg: root and couch-to-postgres
  - setup postgres as needed.  follow couch2postgres instructions. see docker/postgres/init/pginit.sh
  - check couchdb docker.ini file. copy .../docs/docker/couchdb/docker.ini.example.in2 in as starter ini file.
- - npm install in in each folder as needed. eg: couch-to-postgres, vpv445g
+ - npm install in  each folder as needed. eg: couch-to-postgres, vpv445g
  - setup couch as needed. curl system tables like _user. 
 
 Postgres:

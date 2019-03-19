@@ -25,11 +25,11 @@ psql -v ON_ERROR_STOP=0 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-E
     CONSTRAINT since_checkpoint_pkey PRIMARY KEY (pgtable)
   );    
     
-  CREATE TABLE listotbl
+  CREATE TABLE post445gtbl
   (
     id text NOT NULL,
     doc jsonb,
-    CONSTRAINT opennotetbl_pkey PRIMARY KEY (id)
+    CONSTRAINT post445gtbl_pkey PRIMARY KEY (id)
   );    
       
     

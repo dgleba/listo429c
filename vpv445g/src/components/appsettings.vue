@@ -4,7 +4,7 @@
     <v-container   id="input-usage"   grid-list-xl   fluid>
       <!-- settings -->
 
-      <div id="dgdivright" align="right"> dg-v06 </div> 
+      <div id="dgdivright" align="right"> dg-v08 </div> 
 
       <v-card v-if="mode == 'settings'">
           <v-card-title>Settings</v-card-title>
@@ -29,8 +29,14 @@
               <input id="dginput" type="text"  v-model="syncpartC" >
               </div>                          
             <div>&nbsp;</div>
-            example...   http://user:pass@localhost:5984/list
+            Example...   http://user:pass@localhost:5984/list
             <div>&nbsp;</div>
+            <div> Example... First part...   http://user: </div>
+            
+            <div> Example: password...   pass </div>
+            
+            <div> Example: Last part. (host,port,database)..   @localhost:5984/list </div>
+            
             <h4>Sync Status</h4>
             
             <!-- visualisation of sync status -->
