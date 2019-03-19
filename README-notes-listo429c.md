@@ -85,8 +85,49 @@ Got this error.
 
 Solution: restart pgcouch429. OK now.
 
-.
+_____________
 
+
+
+-----------------------2019-03-06[Mar-Wed]13-27PM
+
+`docker-compose up sqlpad`
+
+
+sqlpad settings
+
+see this file and others in the folder.
+
+./docs/sqlpad,postgres,query-SQLPad-Connections.jpg
+
+_____________
+
+
+sqlpad settings.
+
+      192.168.88.60
+      5433
+      db postgres
+      user postgres
+
+    http://192.168.88.60:6152/
+    dgleba@gmail.com
+    pas,ar
+
+_____________
+
+
+example query:
+
+    select 
+          doc -> 'list' as list,
+          doc -> 'title' as title,
+          doc -> 'updatedAt' as updatedat
+    from listotbl
+    WHERE doc ->> 'title' is not null  -- need ->> operator to make it text
+    ORDER BY doc->'updatedAt' desc;
+
+_____________
 
 
 
@@ -305,6 +346,37 @@ sqlpad query
 
 see this file and others in the folder.
 
-C:\n\Dropbox\csd\0-csd\vuepouch\listo429notes\couchtopostgres\sqlpad,postgres,query-SQLPad - Connections.jpg
+./docs/sqlpad,postgres,query-SQLPad-Connections.jpg
+
+_____________
+
+
+sqlpad settings.
+
+192.168.88.60
+5433
+db postgres
+user postgres
+
+http://192.168.88.60:6152/
+dgleba@gmail.com
+pas,ar
+
+_____________
+
+
+
+works:
+
+select 
+       doc -> 'list' as list,
+       doc -> 'title' as title,
+       doc -> 'updatedAt' as updatedat
+from listotbl
+WHERE doc ->> 'title' is not null  -- need ->> operator to make it text
+ORDER BY doc->'updatedAt' desc;
+
+_____________
+
 
 ----------------------------------------------------
