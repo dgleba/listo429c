@@ -1,11 +1,11 @@
 <template>
   <div class="maindb">
     <br />
-    <div>Add new items here..</div>
+    <div>ADD new items here..</div>
     <input id="dginput" v-model="arow.name" placeholder="...Enter New... " />
     <button id="dgbutton" @click="addrow">Save `Statusfield'</button>
     <div>
-      Click on an item below to edit it. Click outside that box to finish (like
+      Click on an item below to EDIT it. Click outside that box to finish (like
       a spreadsheet).
     </div>
     <div v-for="arow in maindb">

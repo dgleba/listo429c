@@ -25,7 +25,7 @@ Delete data (because I had set it up previously)
 
 ```
 
-Setup couchdb system dbs
+Setup couchdb system db's
 
 ```
 curl -X PUT http://cuser:abc@192.168.88.58:6212/_users
@@ -45,19 +45,21 @@ visit:    http://192.168.88.58:6214
 visit:    http://192.168.88.58:6212/_utils
 
 
-docker-compose up  vpv445gb
+`docker-compose up  vpv445gb`
 
 visit:    http://192.168.88.58:6216
 
 
-docker-compose up postgres429
+`docker-compose up postgres429`
 
-
+```
 cd couch-to-postgres
 npm install
+```
 
+```
 docker-compose up adminer429  pgadmin
-
+```
 
 Postgres:
 
@@ -65,23 +67,27 @@ Postgres:
     Use:  DB: postgres Schema: public 
     I used adminer, go to postgres public and paste table creation sql from docker/postgres/init/pginit.sh
 
-    Picture shows workig setup..
+    Picture shows working setup..
     ../docs/couchtopostgres,pgcouch,setupdb-listotbl-192.168.88.60_5433-Adminer.jpg
 
 
 
-docker-compose up pgcouch429
+`docker-compose up pgcouch429`
 
 
 Got this error.
 
-pgcouch429_1   | post445gtbl: Could not get pgtables and checkpoints with: SELECT since FROM since_checkpoints WHERE pgtable='post445gtbl' AND enabled=True { error: relation "since_checkpoints" does not exist
-pgcouch429_1   | Error 42P01:post445gtbl in change
-pgcouch429_1   | post445gtbl: stopping stream
-pgcouch429_1   | post445gtbl: stopped
+    pgcouch429_1   | post445gtbl: Could not get pgtables and checkpoints with: SELECT since FROM since_checkpoints WHERE pgtable='post445gtbl' AND enabled=True { error: relation "since_checkpoints" does not exist
+    pgcouch429_1   | Error 42P01:post445gtbl in change
+    pgcouch429_1   | post445gtbl: stopping stream
+    pgcouch429_1   | post445gtbl: stopped
 
 
 Solution: restart pgcouch429. OK now.
+
+.
+
+
 
 
 
@@ -90,7 +96,13 @@ Solution: restart pgcouch429. OK now.
 
 
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------------------------
+
+
+
+
+
+2019-03-02
 
 # Setup, or To move this project to other server.
 

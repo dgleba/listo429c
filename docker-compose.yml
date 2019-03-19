@@ -1,0 +1,245 @@
+version: '3.6'
+
+  # http://a.davidg.ml:46272
+  # http://c.davidg.ml:46272/_utils/
+  # http://couch429c.david462.tk:46272/_utils/
+  
+networks:
+  sister:
+    name: sister
+      external:true      
+
+services:
+
+  #1
+  couchdb:
+    image: couchdb
+    volumes:
+          - ../data/home429c/:/home                  # folder for exported data, etc.
+          - ../datasys/couch429c/:/opt/couchdb/data     #TODO set this
+          - ./docker/couchdb/:/opt/couchdb/etc/local.d             
+    ports:
+        - "6212:5984" # no ssl
+    env_file:
+      - .env      
+    restart: always
+    networks:
+      - sister
+    labels:
+      - "virtual.host=couch.davidg.ml couch.dg24.tk"
+      - "virtual.port=5984"
+      - "virtual.tls-email=dgleba@gmail.com" # set to valid email to activate SSL
+      - "virtual.websockets" # enable websocket passthrough
+
+  #2
+  listo429c:
+    # https://github.com/mikechernev/dockerised-php/blob/master/docker-compose.yml
+    image:  nginx:1.14 
+    # build:
+      # context: ./
+      # dockerfile: Dockerfile
+    volumes:
+        # - .:/usr/share/nginx/html
+        - ./listo429:/usr/share/nginx/html
+    ports:
+        # -  "82:80"
+        -  "6211:80"
+    # links:
+        # - "couchdb:couchdb"
+    restart: always
+    networks:
+      - sister
+    # environment:
+      # VIRTUAL_HOST: listo429c.david462.tk      
+      # VIRTUAL_HOST: a.davidg.ml      
+      # VIRTUAL_PORT: 80      
+    labels:
+      # caddy-gen info..
+      - "virtual.host=l.davidg.ml"
+      - "virtual.port=80"
+      - "virtual.tls-email=dgleba@gmail.com" # set to valid email to activate SSL
+      - "virtual.websockets" # enable websocket passthrough
+
+  #3
+  post429445:
+    image: nginx:1.14-alpine
+    ports:
+        -  "6214:8081"
+    volumes:
+      - ./docker/nginx_vpv445/nginxmain.conf:/etc/nginx/nginx.conf
+      - ./docker/nginx_vpv445/default.conf:/etc/nginx/conf.d/default.conf
+      - ./vpv445/dist:/usr/share/nginx/html
+    restart: always
+    networks:
+      - sister     
+    labels:
+      # caddy-gen info..
+      - "virtual.host=p.davidg.ml"
+      - "virtual.port=8081"
+      - "virtual.tls-email=dgleba@gmail.com" # set to valid email to activate SSL
+      - "virtual.websockets" # enable websocket passthrough
+
+  #3b
+  vpv445gb:
+    # 192.168.88.60:6216
+    image: nginx:1.14-alpine
+    ports:
+        -  "6216:8083"
+    volumes:
+      - ./docker/nginx_vpv445g/nginxmain.conf:/etc/nginx/nginx.conf
+      - ./docker/nginx_vpv445g/default.conf:/etc/nginx/conf.d/default.conf
+      - ./vpv445g/dist:/usr/share/nginx/html
+    restart: always
+    networks:
+      - sister     
+    labels:
+      # caddy-gen info..  t.dg24.tk t.david23.tk
+      - "virtual.host=t.david462.tk t.davidg.ml t.dg24.tk"
+      - "virtual.port=8083"
+      - "virtual.tls-email=dgleba@gmail.com" # set to valid email to activate SSL
+      - "virtual.websockets" # enable websocket passthrough
+
+  #4
+  caddy-gen:
+    container_name: caddy-gen
+    # build: .
+    build:
+      context: ./caddy-gen
+      dockerfile: Dockerfile
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./caddy-gen/certs/acme:/etc/caddy/acme  # to save acme
+      - ./caddy-gen/certs/ocsp:/etc/caddy/ocsp  # to save certificates
+      - ./caddy-gen/backup:/root/.caddy
+      - ./caddy-gen:/crib
+      - ./caddy-gen/backup:/root/.caddy
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      # - whoami
+      - listo429c
+      - couchdb
+      - post429445
+      - vpv445gb
+    networks:
+      - sister
+    # ACME_AGREE: "true" may not be needed as i have -agree in caddy-gen/Procfile 2019-03-06
+    environment:
+      ACME_AGREE: "true"
+
+  #5
+  pgcouch429:
+  # couch to pg job
+    image: "node:10-slim"
+    restart: always
+    # user: "node"
+    # environment:
+    #   - NODE_ENV=production
+    working_dir: /app
+    volumes:
+      - ./couch-to-postgres/:/app
+    # expose:
+    #   - "8081"
+    depends_on:
+      - couchdb
+      - postgres429    
+    # noworky.. command: sh .env &&  ./bin/index.js     
+    command:  ./bin/index.js     
+
+  #6
+  postgres429:
+    # https://hub.docker.com/_/postgres/
+    image: postgres:11
+    restart: always
+    # command: postgres -c listen_addresses = '*'
+    env_file:
+      - .env
+    environment:
+        # POSTGRES_PASSWORD: postgress
+        CONFIGS: "listen_addresses:'*'"
+        # https://github.com/syndbg/postgres-docker-cluster/blob/master/docker-compose.yml
+                              # in format variable1:value1[,variable2:value2[,...]]
+                              # used for pgpool.conf file
+    ports:
+        - 5433:5432                          
+    volumes:
+      - ../datasys/postgres429/:/var/lib/postgresql/data/       # folder for db internal data files.
+      - .:/root                                                 # folder for scripts, etc.
+      - ../data/data429/:/home                                  # folder for exported data, etc.
+      - ../docker/postgres/init/:/docker-entrypoint-initdb.d/                # init -- create db etc..
+    networks:
+      - sister
+      
+  #7
+  sqlpad:
+    # 192.168.88.60:6152
+    image: sqlpad/sqlpad
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "6152:3000"
+    volumes:
+      - ../datasys/sqlpad429/:/var/lib/sqlpad   # folder for mysql's internal data files.
+    # docker-compose up sqlpad
+
+  #9
+  adminer429:
+    # 192.168.88.60:8089
+    image: adminer:4.6
+    restart: always
+    ports:
+      - 8089:8080
+    networks:
+      - sister 
+      
+  #10
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    ports:
+      - 8090:80
+    networks:
+      - sister
+    env_file:
+      - .env
+
+
+
+      
+  # mb429:
+  #   image: metabase/metabase:v0.30.0
+  #   # image: metabase/metabase:v0.25.2
+  #   ports:
+  #     - "6151:3000"
+  #   volumes:
+  #     - ../datasys/metabasedata:/metabase-data
+  #   env_file:
+  #     - .env
+  #   depends_on:
+  #     - my429
+  #   networks:
+  #     - sister      
+
+  # my429:
+  #   image: mysql:5.7
+  #   #container_name: mysqlm
+  #   # build: .
+  #   restart: always
+  #   env_file:
+  #     - .env
+  #   # environment:
+  #     # MYSQL_ROOT_PASSWORD: root
+  #     # MYSQL_DATABASE: test
+  #   ports:
+  #     - "6112:3306"
+  #   volumes:
+  #     - ../datasys/mysql429/:/var/lib/mysql/   # folder for mysql's internal data files.
+  #     - .:/root                                   # folder for scripts, etc.
+  #     - ../data/data429/:/home                   # folder for exported data, etc.
+  #   networks:
+  #     - sister 
+     
+    

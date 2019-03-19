@@ -5,6 +5,12 @@
 
 # Setup, or To move this project to other server.
 
+
+## Note:  I am working on better instructions. 
+They are in ./README-notes-listo429c.md
+
+### Instructions..
+
  - check .env files in each folder as needed. eg: root and couch-to-postgres
  - setup postgres as needed.  follow couch2postgres instructions. see docker/postgres/init/pginit.sh
  - check couchdb docker.ini file. copy .../docs/docker/couchdb/docker.ini.example.in2 in as starter ini file.
@@ -23,6 +29,8 @@ Picture shows workig setup..
 
 
 Couch:
+
+Edit these examples..
 
 curl -X PUT http://127.0.0.1:6212/_users
 curl -X PUT http://127.0.0.1:6212/_replicator
