@@ -7,7 +7,7 @@
 
 
 ## Note:  I am working on better instructions. 
-They are in ./README-notes-listo429c.md
+They are in ./README-installation-notes.md
 
 ### Instructions..
 

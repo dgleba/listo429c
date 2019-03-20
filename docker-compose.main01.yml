@@ -1,5 +1,10 @@
+# Main01
 version: '3.6'
 
+  # http://a.davidg.ml:46272
+  # http://c.davidg.ml:46272/_utils/
+  # http://couch429c.david462.tk:46272/_utils/
+  
 networks:
   sister:
     name: sister
@@ -22,9 +27,9 @@ services:
     networks:
       - sister
     labels:
-      - "virtual.host=couch.example.ml"
+      - "virtual.host=couch.davidg.ml couch.dg24.tk"
       - "virtual.port=5984"
-      - "virtual.tls-email=eg@gemail.com" # set to valid email to activate SSL
+      - "virtual.tls-email=dgleba@gmail.com" # set to valid email to activate SSL
       - "virtual.websockets" # enable websocket passthrough
 
   #2
@@ -45,16 +50,19 @@ services:
     restart: always
     networks:
       - sister
- 
+    # environment:
+      # VIRTUAL_HOST: listo429c.david462.tk      
+      # VIRTUAL_HOST: a.davidg.ml      
+      # VIRTUAL_PORT: 80      
     labels:
       # caddy-gen info..
-      - "virtual.host=l.example.ml"
+      - "virtual.host=l.davidg.ml"
       - "virtual.port=80"
-      - "virtual.tls-email=eg@gemail.com" # set to valid email to activate SSL
+      - "virtual.tls-email=dgleba@gmail.com" # set to valid email to activate SSL
       - "virtual.websockets" # enable websocket passthrough
 
   #3
-  vpv445:
+  post429445:
     image: nginx:1.14-alpine
     ports:
         -  "6214:8081"
@@ -67,14 +75,14 @@ services:
       - sister     
     labels:
       # caddy-gen info..
-      - "virtual.host=p.example.ml"
+      - "virtual.host=p.davidg.ml"
       - "virtual.port=8081"
-      - "virtual.tls-email=eg@gemail.com" # set to valid email to activate SSL
+      - "virtual.tls-email=dgleba@gmail.com" # set to valid email to activate SSL
       - "virtual.websockets" # enable websocket passthrough
 
   #3b
   vpv445gb:
-    # http://192.168.88.60:6216
+    # 192.168.88.60:6216
     image: nginx:1.14-alpine
     ports:
         -  "6216:8083"
@@ -87,9 +95,9 @@ services:
       - sister     
     labels:
       # caddy-gen info..  t.dg24.tk t.david23.tk
-      - "virtual.host= t.example.ml"
+      - "virtual.host=t.david462.tk t.davidg.ml t.dg24.tk"
       - "virtual.port=8083"
-      - "virtual.tls-email=eg@gemail.com" # set to valid email to activate SSL
+      - "virtual.tls-email=dgleba@gmail.com" # set to valid email to activate SSL
       - "virtual.websockets" # enable websocket passthrough
 
   #4
@@ -114,7 +122,7 @@ services:
       # - whoami
       - listo429c
       - couchdb
-      - vpv445
+      - post429445
       - vpv445gb
     networks:
       - sister
@@ -167,7 +175,7 @@ services:
       
   #7
   sqlpad:
-    # http://192.168.88.60:6152
+    # 192.168.88.60:6152
     image: sqlpad/sqlpad
     restart: always
     env_file:
@@ -180,7 +188,7 @@ services:
 
   #9
   adminer429:
-    # http://192.168.88.60:8089
+    # 192.168.88.60:8089
     image: adminer:4.6
     restart: always
     ports:

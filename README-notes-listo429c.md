@@ -110,9 +110,9 @@ sqlpad settings.
       db postgres
       user postgres
 
-    http://192.168.88.60:6152/
+    http://192.168.88.58:6152/
     dgleba@gmail.com
-    pas,ar
+    pas,mr
 
 _____________
 
@@ -127,9 +127,34 @@ example query:
     WHERE doc ->> 'title' is not null  -- need ->> operator to make it text
     ORDER BY doc->'updatedAt' desc;
 
+Query.
+
+    select 
+          doc -> 'title' as title,
+          doc -> 'body' as body,
+          doc -> 'statusfld' as statusfld,
+          doc -> '_id' as _id
+    from post445gtbl
+    WHERE doc ->> 'rtype' is not null  -- need ->> operator to make it text
+    ORDER BY doc->>'_id' desc;
+
+Query.
+
+    select 
+          doc -> 'title' as title,
+          doc -> 'body' as body,
+          doc -> 'statusfld' as statusfld,
+          doc -> '_id' as _id,
+          doc -> 'rtype' as rectype
+    from post445gtbl
+    WHERE doc ->> 'rtype' = 'mlist'  -- need ->> operator to make it text
+    ORDER BY doc->>'_id' desc;
+
+
 _____________
 
 
+docker-compose restart pgcouch429
 
 
 

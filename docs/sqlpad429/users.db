@@ -1,0 +1,2 @@
+{"_id":"wzbtjV5fPIUNESnL","email":"dgleba@gmail.com","role":"admin","passhash":"$2a$10$2w0E0z9EaAmt.bDR6f3rGOEU7AAkF1Zflp4VIEyH7X1e3kLl.Sj86","createdDate":{"$$date":1553040989498},"modifiedDate":{"$$date":1553041115781},"signupDate":{"$$date":1553041115781}}
+{"$$indexCreated":{"fieldName":"email","unique":true,"sparse":false}}

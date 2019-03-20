@@ -1,0 +1,184 @@
+
+----------------------------------------------------
+
+## Title:  Start up instructions.
+
+----------------------- 2019-03-18[Mar-Mon]19-59PM
+
+## The plan
+
+The idea is to use example files below as is. They include example settings with usernames and simple passwords. 
+The system should start using these example settings.
+
+## requirements.
+
+    - linux system with docker-ce 18 and docker compose installed (I use ubuntu)
+    - node installed. (I use nvm to install)
+
+
+## Delete data (because I had set it up previously)
+
+```
+     sudo rm -rf ../datasys/couch429c/
+     sudo rm -rf ../datasys/postgres421/
+     sudo rm -rf ../datasys/postgres429/
+
+```
+
+
+ - root .env file - copy from .env.example to .env
+
+ - copy ./docs/docker/couchdb/docker.ini.example.in2 to  ./docker/couchdb/docker.ini
+
+ - copy docker-compose.example.yml to docker-compose.yml
+
+
+ ```
+ docker-compose up couchdb
+ 
+ ```
+
+
+## Setup couchdb system db's
+
+Edit Ip-address, user, password.
+
+```
+curl -X PUT http://cuser:abc@192.168.88.58:6212/_users
+curl -X PUT http://cuser:abc@192.168.88.58:6212/_replicator
+curl -X PUT http://cuser:abc@192.168.88.58:6212/_global_changes
+
+```
+
+
+
+visit:    http://192.168.88.58:6212/_utils
+
+
+`docker-compose up  vpv445gb`
+
+visit:    http://192.168.88.58:6216
+
+
+`docker-compose up postgres429`
+
+```
+cd couch-to-postgres
+npm install
+```
+
+```
+docker-compose up adminer429  pgadmin
+```
+
+## Postgres:
+
+    NOT - listodb.  
+    Use:  DB: postgres Schema: public 
+    I used adminer, go to postgres public and paste table creation sql from docker/postgres/init/pginit.sh
+
+    Todo: pginit.sh should run on first startup, but it's not working. Fix it.
+
+    Picture shows working setup..
+    ../docs/couchtopostgres,pgcouch,setupdb-listotbl-192.168.88.60_5433-Adminer.jpg
+
+
+
+`docker-compose up pgcouch429`
+
+
+## Got this error.
+
+    pgcouch429_1   | post445gtbl: Could not get pgtables and checkpoints with: SELECT since FROM since_checkpoints WHERE pgtable='post445gtbl' AND enabled=True { error: relation "since_checkpoints" does not exist
+    pgcouch429_1   | Error 42P01:post445gtbl in change
+    pgcouch429_1   | post445gtbl: stopping stream
+    pgcouch429_1   | post445gtbl: stopped
+
+
+Solution: restart pgcouch429. OK now.
+
+_____________
+
+
+
+-----------------------2019-03-06[Mar-Wed]13-27PM
+
+`docker-compose up sqlpad`
+
+
+## sqlpad settings
+
+see this file and others in the folder.
+
+./docs/sqlpad,postgres,query-SQLPad-Connections.jpg
+
+_____________
+
+
+sqlpad settings.
+
+      192.168.88.58
+      5433
+      db postgres
+      user postgres
+
+    http://192.168.88.58:6152/
+    dgleba@gmail.com
+    pas,mr
+
+_____________
+
+
+Example query:
+
+    select 
+          doc -> 'list' as list,
+          doc -> 'title' as title,
+          doc -> 'updatedAt' as updatedat
+    from listotbl
+    WHERE doc ->> 'title' is not null  -- need ->> operator to make it text
+    ORDER BY doc->'updatedAt' desc;
+
+Query.
+
+    select 
+          doc -> 'title' as title,
+          doc -> 'body' as body,
+          doc -> 'statusfld' as statusfld,
+          doc -> '_id' as _id
+    from post445gtbl
+    WHERE doc ->> 'rtype' is not null  -- need ->> operator to make it text
+    ORDER BY doc->>'_id' desc;
+
+Query.
+
+    select 
+          doc -> 'title' as title,
+          doc -> 'body' as body,
+          doc -> 'statusfld' as statusfld,
+          doc -> '_id' as _id,
+          doc -> 'rtype' as rectype
+          --  doc -> 'name' as name
+    from post445gtbl
+    WHERE doc ->> 'rtype' = 'mlist'  -- need ->> operator to make it text
+    ORDER BY doc->>'_id' desc;
+
+
+
+_____________
+
+
+docker-compose restart pgcouch429
+
+
+## restart
+
+I find that it helps to restart the system after setting up and getting it running intially.
+
+`docker-compose restart`
+
+
+
+----------------------------------------------------
+
+
