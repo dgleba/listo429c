@@ -4,7 +4,7 @@
     <v-container   id="input-usage"   grid-list-xl   fluid>
       <!-- settings -->
 
-      <div id="dgdivright" align="right"> dg-v08 </div> 
+      <div id="dgdivright" align="right"> vpv445g. version 09 </div> 
 
       <v-card v-if="mode == 'settings'">
           <v-card-title>Settings</v-card-title>
@@ -29,14 +29,15 @@
               <input id="dginput" type="text"  v-model="syncpartC" >
               </div>                          
             <div>&nbsp;</div>
-            Example...   http://user:pass@localhost:5984/list
-            <div>&nbsp;</div>
-            <div> Example... First part...   http://user: </div>
+            Example...   http://user:pass@localhost:5984/listdb
+            <div class="sm-vert-div">&nbsp;</div>
+            <div> &nbsp;&nbsp;&nbsp;&nbsp; First part...   http://user: </div>
             
-            <div> Example: password...   pass </div>
+            <div> &nbsp;&nbsp;&nbsp;&nbsp; password...   password </div>
             
-            <div> Example: Last part. (host,port,database)..   @localhost:5984/list </div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp; Last part. (host,port,database)..   @couchdb.e29.com/listdb </div>
             
+            <div class="sm-vert-div">&nbsp;</div>
             <h4>Sync Status</h4>
             
             <!-- visualisation of sync status -->

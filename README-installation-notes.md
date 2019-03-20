@@ -7,14 +7,14 @@
 
 ## Quick-Start installation - The plan
 
-The idea is to use example files below as is. They are settings including usernames and simple passwords. 
+The idea is to use example files below as is. They have settings including usernames and simple passwords. 
 The system should start using these example settings. 
-Read the example files to see the passwords and settings needed to login and access things.
+Read the example files to see the passwords and settings needed to login and access urls.
 
 ## Requirements.
 
     - linux system with docker-ce 18 and docker compose installed (I use ubuntu)
-    - node installed. (I use nvm to install)
+    - node installed. npm installed. (I use nvm to install)
 
 
 ```
@@ -100,7 +100,7 @@ docker-compose up adminer429  pgadmin
 `docker-compose up pgcouch429`
 
 
-## Got this error.
+### Got this error.
 
     pgcouch429_1   | post445gtbl: Could not get pgtables and checkpoints with: SELECT since FROM since_checkpoints WHERE pgtable='post445gtbl' AND enabled=True { error: relation "since_checkpoints" does not exist
     pgcouch429_1   | Error 42P01:post445gtbl in change
@@ -189,6 +189,24 @@ docker-compose restart pgcouch429
 I find that it helps to restart the system after initially setting up and getting it running.
 
 `docker-compose restart`
+
+
+
+----------------------------------------------------
+
+# Https, SSL, TLS
+
+Up to now, we have been accessing urls in the/your local network. 
+
+To enable HTTPS, edit docker-compose.yml.
+The labels: stanzas should have valid registered domain names, valid email, etc.
+Edit the examples provided.
+
+then
+
+`docker-compose up caddy-gen`
+
+This will make the system available to the outside internet.
 
 
 
