@@ -5,15 +5,23 @@
 
 ----------------------- 2019-03-18[Mar-Mon]19-59PM
 
-## The plan
+## Quick-Start installation - The plan
 
-The idea is to use example files below as is. They include example settings with usernames and simple passwords. 
-The system should start using these example settings.
+The idea is to use example files below as is. They are settings including usernames and simple passwords. 
+The system should start using these example settings. 
+Read the example files to see the passwords and settings needed to login and access things.
 
-## requirements.
+## Requirements.
 
     - linux system with docker-ce 18 and docker compose installed (I use ubuntu)
     - node installed. (I use nvm to install)
+
+
+```
+git clone https://github.com/dgleba/listo429c.git
+cd listo429c
+
+```
 
 
 ## Delete data (because I had set it up previously)
@@ -22,6 +30,7 @@ The system should start using these example settings.
      sudo rm -rf ../datasys/couch429c/
      sudo rm -rf ../datasys/postgres421/
      sudo rm -rf ../datasys/postgres429/
+     sudo rm -rf ../datasys/sqlpad429/
 
 ```
 
@@ -41,7 +50,7 @@ The system should start using these example settings.
 
 ## Setup couchdb system db's
 
-Edit Ip-address, user, password.
+Edit local Ip-address to match your system. 
 
 ```
 curl -X PUT http://cuser:abc@192.168.88.58:6212/_users
@@ -54,6 +63,8 @@ curl -X PUT http://cuser:abc@192.168.88.58:6212/_global_changes
 
 visit:    http://192.168.88.58:6212/_utils
 
+It should require user and password.
+
 
 `docker-compose up  vpv445gb`
 
@@ -65,17 +76,19 @@ visit:    http://192.168.88.58:6216
 ```
 cd couch-to-postgres
 npm install
+
 ```
 
 ```
 docker-compose up adminer429  pgadmin
+
 ```
 
 ## Postgres:
 
     NOT - listodb.  
     Use:  DB: postgres Schema: public 
-    I used adminer, go to postgres public and paste table creation sql from docker/postgres/init/pginit.sh
+    I used adminer, go to postgres public and paste sql commands for table creation from docker/postgres/init/pginit.sh
 
     Todo: pginit.sh should run on first startup, but it's not working. Fix it.
 
@@ -129,15 +142,6 @@ sqlpad settings.
 _____________
 
 
-Example query:
-
-    select 
-          doc -> 'list' as list,
-          doc -> 'title' as title,
-          doc -> 'updatedAt' as updatedat
-    from listotbl
-    WHERE doc ->> 'title' is not null  -- need ->> operator to make it text
-    ORDER BY doc->'updatedAt' desc;
 
 Query.
 
@@ -164,6 +168,15 @@ Query.
     ORDER BY doc->>'_id' desc;
 
 
+Example query:
+
+    select 
+          doc -> 'list' as list,
+          doc -> 'title' as title,
+          doc -> 'updatedAt' as updatedat
+    from listotbl
+    WHERE doc ->> 'title' is not null  -- need ->> operator to make it text
+    ORDER BY doc->'updatedAt' desc;
 
 _____________
 
@@ -171,9 +184,9 @@ _____________
 docker-compose restart pgcouch429
 
 
-## restart
+## Restart
 
-I find that it helps to restart the system after setting up and getting it running intially.
+I find that it helps to restart the system after initially setting up and getting it running.
 
 `docker-compose restart`
 

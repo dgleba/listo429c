@@ -405,3 +405,30 @@ _____________
 
 
 ----------------------------------------------------
+
+
+----------------------------------------------------
+Title:  .
+-----------------------2019-03-19[Mar-Tue]22-57PM
+
+nextcloud
+
+
+docker-compose stop maria nextcl
+
+docker-compose up  maria nextcl
+
+visit:    http://192.168.88.58:6218
+
+
+
+
+NEXTCLOUD_ADMIN_USER=dgleba 
+NEXTCLOUD_ADMIN_PASSWORD=abc 
+NEXTCLOUD_DATA_DIR=/var/www/html/dat
+NEXTCLOUD_TABLE_PREFIX=nxt_
+NEXTCLOUD_TRUSTED_DOMAINS=nc.dg24.tk
+
+
+
+----------------------------------------------------

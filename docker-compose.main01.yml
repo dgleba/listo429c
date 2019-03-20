@@ -175,7 +175,7 @@ services:
       
   #7
   sqlpad:
-    # 192.168.88.60:6152
+    #http://192.168.88.60:6152
     image: sqlpad/sqlpad
     restart: always
     env_file:
@@ -185,6 +185,13 @@ services:
     volumes:
       - ../datasys/sqlpad429/:/var/lib/sqlpad   # folder for mysql's internal data files.
     # docker-compose up sqlpad
+    labels:
+      # caddy-gen info..  t.dg24.tk t.david23.tk
+      - "virtual.host=sp.dg24.tk"
+      - "virtual.port=3000"
+      - "virtual.tls-email=dgleba@gmail.com" # set to valid email to activate SSL
+      - "virtual.websockets" # enable websocket passthrough
+
 
   #9
   adminer429:
