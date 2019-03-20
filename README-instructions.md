@@ -9,7 +9,9 @@
 ## Note:  I am working on better instructions. 
 They are in ./README-installation-notes.md
 
-### Instructions..
+
+
+### Old Instructions..
 
  - check .env files in each folder as needed. eg: root and couch-to-postgres
  - setup postgres as needed.  follow couch2postgres instructions. see docker/postgres/init/pginit.sh
@@ -46,7 +48,7 @@ curl -X PUT http://user:pass@127.0.0.1:6212/_global_changes
 
 # Older info..
 
-This is older info. 
+Following is older info. 
 
 
 ## Docker-compose
