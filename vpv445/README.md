@@ -1,12 +1,15 @@
 # MEVN example converted to use pouchdb
 
-## Code is at Github this.
+## Code is at Github.
 
-https://github.com/dgleba/mevn-Krunal-vuepouch445
+Originally at https://github.com/dgleba/mevn-Krunal-vuepouch445 - Now in listo429c
+
 
 ## Status
 
-- 2019-02-26_Tue_22.02-PM basic app is complete with pouch, vue, search, autocomplete, both vuetify and bootstrap,
+ - 2019-02-26_Tue_22.02-PM 
+    basic app is complete with pouch, vue, search, autocomplete, both vuetify and bootstrap (messy but working).
+
 
 ## Includes:
 
@@ -21,7 +24,7 @@ tech to learn..
 - vue-cli v3
 - webpack
 - couchdb - sync data to server db from pouchdb
-- html css js (w3schools.com)
+- html css js (see w3schools.com)
 
 See package.json for more details.
 
