@@ -1,4 +1,7 @@
 # Main01
+#   I stopped copying my docker-compose.yml to this file.
+#    If you want a copy of my latest config, plese contact me at dgleba@gmail.com
+
 version: '3.6'
 
   # http://a.davidg.ml:46272
