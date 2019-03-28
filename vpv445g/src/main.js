@@ -6,10 +6,9 @@ import "./registerServiceWorker";
 
 Vue.config.productionTip = false;
 
-
 // typeof module.exports !== 'undefined'
 import "bootstrap/dist/css/bootstrap.min.css";
-require('dotenv').config();
+require("dotenv").config();
 
 import Vuetify from "vuetify";
 import colors from "vuetify/es5/util/colors";
@@ -24,6 +23,8 @@ import "vuetify/dist/vuetify.min.css"; // Ensure you are using css-loader
 // import "vue-material/dist/vue-material.min.css";
 // Vue.use(VueMaterial);
 
+var VueTruncate = require("vue-truncate-filter");
+Vue.use(VueTruncate);
 
 import PouchDB from "pouchdb-browser";
 import lf from "pouchdb-find";

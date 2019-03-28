@@ -1,45 +1,43 @@
 <template>
-  <v-app id="inspireindex">
-  <div class="atable">
-    <div class="svdiv"></div>
-    <div class="row">
-      <div class="col-md-3">
-        <router-link :to="{ name: 'create' }" class="btn btn-success"
-          >Create
-        </router-link>
+  <v-app>
+    <div class="atable">
+      <div class="svdiv"></div>
+      <div class="row">
+        <div class="col-md-3">
+          <router-link :to="{ name: 'create' }" class="btn btn-success">Create</router-link>
+        </div>
+        <div class="col-md-9">
+          <v-input></v-input>Search (text fields contains)
+          <input id="dginput" v-model="qsearch">
+        </div>
       </div>
-      <div class="col-md-9">
-      <v-input> </v-input>
-        Search main-table -- contains  <input id="dginput" v-model="qsearch" />
-       
-      </div>
+
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Actions</th>
+            <th>Title</th>
+            <th>Body</th>
+            <th>Statusfld</th>
+            <th>_id</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="mrow in atable" :key="mrow._id">
+            <router-link
+              :to="{ name: 'edit', params: { id: mrow._id } }"
+              class="btn btn-primary"
+            >Edit</router-link>
+
+            <td>{{ mrow.title }}</td>
+            <td>{{ mrow.body | truncate(50, ' ..') }}</td>
+            <td>{{ mrow.statusfld }}</td>
+            <td>{{ mrow._id }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-
-    <table class="table table-hover ">
-      <thead>
-        <tr>
-          <th>Actions</th>
-          <th>Title</th>
-          <th>Body</th>
-          <th>_id</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="mrow in atable" :key="mrow._id">
-          <router-link
-            :to="{ name: 'edit', params: { id: mrow._id } }"
-            class="btn btn-primary"
-            >Edit</router-link
-          >
-
-          <td>{{ mrow.title }}</td>
-          <td>{{ mrow.body }}</td>
-          <td>{{ mrow._id }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  </v-app id="inspireindex">
+  </v-app>
 </template>
 
 <script>
@@ -62,8 +60,15 @@ export default {
     //   this.posts = response.data;
     // });
     console.log(this.atable);
-    
-    },
+  },
+
+  filters: {
+    // Truncate text in template.. https://stackoverflow.com/questions/35070271/vue-js-components-how-to-truncate-the-text-in-the-slot-element-in-a-component
+    truncate: function(text, length, suffix) {
+      text = text || ""; // ref. https://github.com/imcvampire/vue-truncate-filter/issues/10 - fails on null
+      return text.substring(0, length) + suffix;
+    }
+  },
 
   methods: {},
 
@@ -80,7 +85,15 @@ export default {
       return {
         //database: this.selectedDatabase, // you can pass a database string or a pouchdb instance
         database: "maindb",
-        selector: { rtype: "mlist", _id: { $regex: this.qsearch } },
+        // selector: { rtype: "mlist", _id: { $regex: this.qsearch } },
+        selector: {
+          rtype: "mlist",
+          $or: [
+            { body: { $regex: this.qsearch } },
+            { title: { $regex: this.qsearch } },
+            { statusfld: { $regex: this.qsearch } }
+          ]
+        },
         sort: [{ _id: "desc" }],
         limit: this.resultsPerPage
       };

@@ -21,7 +21,8 @@
     "vue": "^2.6.6",
     "vue-router": "^3.0.1",
     "vuetify": "1.5.2",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "vue-truncate-filter": "^1.1.7"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.4.0",

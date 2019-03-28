@@ -2,17 +2,12 @@
   <div class="container-fluid">
     <v-app id="inspire">
       <v-toolbar>
-        <v-toolbar-title>AnApp.&nbsp </v-toolbar-title>
+        <v-toolbar-title>AnApp.&nbsp</v-toolbar-title>
 
         <v-menu class="hidden-md-and-up">
           <v-toolbar-side-icon slot="activator"></v-toolbar-side-icon>
           <v-list>
-            <v-list-tile
-              v-for="item in menu"
-              :key="item.icon"
-              :to="item.link"
-              flat
-            >
+            <v-list-tile v-for="item in menu" :key="item.icon" :to="item.link" flat>
               <v-list-tile-content>
                 <v-list-tile-title>{{ item.title }}</v-list-tile-title>
               </v-list-tile-content>
@@ -21,9 +16,11 @@
         </v-menu>
 
         <v-toolbar-items class="hidden-xs-and-down">
-          <v-btn v-for="item in menu" :key="item.icon" :to="item.link" flat>{{
+          <v-btn v-for="item in menu" :key="item.icon" :to="item.link" flat>
+            {{
             item.title
-          }}</v-btn>
+            }}
+          </v-btn>
         </v-toolbar-items>
       </v-toolbar>
       <router-view></router-view>
@@ -32,6 +29,9 @@
 </template>
 
 <script>
+// Try to make appsettings available/created in app.vue
+import appsettings from "./components/appsettings.vue";
+
 export default {
   data() {
     return {
@@ -43,7 +43,9 @@ export default {
       ]
     };
   },
-
+  components: {
+    appsettings
+  },
   methods: {
     menuItems() {
       return this.menu;
@@ -54,10 +56,10 @@ export default {
 
 <style>
 /* <!--  // small height div to create a small vertical spacing --> */
-.svdiv, .sm-vert-div {
+.svdiv,
+.sm-vert-div {
   height: 7px;
   width: 50%;
   /* background-color: powderblue; */
 }
-
 </style>
