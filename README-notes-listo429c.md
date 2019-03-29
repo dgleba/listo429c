@@ -4,18 +4,33 @@ Title:  .
 -----------------------2019-03-28[Mar-Thu]16-13PM
 
 
-# restart after new vpv445g build
+# Restart after new vpv445g build
 
+docker-compose stop vpv445gb
+docker-compose   up vpv445gb
+dkps
+
+
+# Restart couch-to-postgres if it's not working
+
+### look at logs..
+
+docker-compose   up pgcouch429
+
+### stop and start
+
+docker-compose stop pgcouch429
+sleep 3
+docker-compose   up pgcouch429
+
+
+# Restart caddy-gen after  changes affecting web address routing
 
 cd /srv/dkr/listo429c
 docker-compose stop
-
 sudo chmod -R 775 caddy-gen/certs
-
 docker rm -f $(docker ps -a |    grep caddy       | awk '{print $1}')
 docker images | grep caddy | awk '{print $1 ":" $2}' | xargs docker rmi 
- 
-
 dkps
 dkup
 
@@ -33,10 +48,6 @@ scratch..
 
 
 docker-compose stop
-
-docker-compose stop pgcouch429
-
-docker-compose up pgcouch429
 
 docker-compose up adminer429 pgadmin
 

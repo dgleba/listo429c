@@ -35,4 +35,6 @@ https://github.com/sysadminmike/couch-to-postgres
 
 
 
+# Status
 
+ - 2019-03-29_Fri_18.50-PM before settings in app.vue branch

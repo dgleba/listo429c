@@ -14,7 +14,7 @@ Read the example files to see the passwords and settings needed to login and acc
 ## Requirements.
 
     - linux system with docker-ce 18 and docker compose installed (I use ubuntu)
-    - node installed. npm installed. (I use nvm to install)
+    - node installed. npm installed. (I use nvm to install node ver 8 or 10)
 
 
 ```
@@ -37,9 +37,9 @@ cd listo429c
 
  - root .env file - copy from .env.example to .env
 
- - copy ./docs/docker/couchdb/docker.ini.example.in2 to  ./docker/couchdb/docker.ini
+ - cp ./docs/docker/couchdb/docker.ini.example.in2  ./docker/couchdb/docker.ini
 
- - copy docker-compose.example.yml to docker-compose.yml
+ - cp docker-compose.example.yml  docker-compose.yml
 
 
  ```
@@ -50,7 +50,7 @@ cd listo429c
 
 ## Setup couchdb system db's
 
-Edit local Ip-address to match your system. 
+Note.. Edit local Ip-address to match your system. 
 
 ```
 curl -X PUT http://cuser:abc@192.168.88.58:6212/_users
@@ -110,7 +110,6 @@ docker-compose up adminer429  pgadmin
 
 Solution: restart pgcouch429. OK now.
 
-_____________
 
 
 
@@ -118,6 +117,7 @@ _____________
 
 `docker-compose up sqlpad`
 
+sign up to Create your own account.
 
 ## sqlpad settings
 
