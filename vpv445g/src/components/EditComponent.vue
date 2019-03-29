@@ -1,7 +1,7 @@
 <template>
   <div class="atable">
     <div class="svdiv"></div>
-    <h4>Edit</h4>
+    <!-- <h4>Edit</h4> -->
     <form @submit.prevent="update_mrow">
       <div class="row">
         <div class="col-md-11">
@@ -11,31 +11,33 @@
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-11">
-          <div class="form-group">
-            <label>Body: </label>
-            <textarea
-              class="form-control"
-              v-model="atable.body"
-              rows="4"
-            ></textarea>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-11">
-          <div class="form-group">
-            <label>Statusfld:</label>
-            <input
-              type="text"
-              class="form-control"
-              v-model="atable.statusfld"
-            />
-          </div>
-        </div>
-      </div>
+   
+      <v-textarea
+        name="input-7-1"
+        solo
+        label="Body"
+        auto-grow
+        v-model="atable.body"
+      ></v-textarea>
+       
+        <v-card>
+          <v-autocomplete
+            v-model="atable.statusfld"
+            label="Statusfield"
+            :items="statusflds"
+            item-text="name"
+            :persistent-hint="true"
+            color="blue"
+            :multiple="true"
+          >
+          </v-autocomplete>
+        </v-card>
+
+
       <br />
+       <p class="text-sm-center">   _id: {{atable._id}} --  Updated: {{atable.updatedat}} </p>
+   
+
       <div class="form-group">
         <button class="btn btn-primary">Update</button>
         <button
@@ -50,10 +52,13 @@
 </template>
 
 <script>
+var dghelper = require(".././helper.js");
+
 export default {
   data() {
     return {
       mrow: {},
+      statusflds: [],
       atable: {}
     };
   },
@@ -75,6 +80,7 @@ export default {
 
     update_mrow: function() {
       //console.log(this.atable);
+      this.atable.updatedat=dghelper.updatedat();
       this.$pouch
         .put(
           "maindb",
@@ -132,6 +138,17 @@ export default {
         first: true
       };
       // console.log(this.atable);
+    },
+    statusflds: function() {
+      return {
+        //database: this.selectedDatabase, // you can pass a database string or a pouchdb instance
+        database: "maindb",
+        selector: { rtype: "statusfld_type" },
+        sort: [{ name: "asc" }],
+        include_docs: "false",
+        fields: ["name"],
+        limit: 3456
+      };
     }
   }
 };

@@ -12,19 +12,15 @@
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-11">
-            <div class="form-group">
-              <label>Body:</label>
-              <textarea
-                class="form-control"
-                v-model="mrow.body"
-                rows="5"
-              ></textarea>
-            </div>
-          </div>
-        </div>
 
+      <v-textarea
+        name="input-7-1"
+        solo
+        label="Body"
+        auto-grow
+        v-model="mrow.body"
+      ></v-textarea>
+       
         <v-card>
           <v-autocomplete
             v-model="mrow.statusfld"

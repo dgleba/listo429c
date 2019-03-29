@@ -68,7 +68,7 @@ var db = new PouchDB("maindb");
 export default {
   data: function() {
     return {
-      dgversion: "vpv445g. version 15",
+      dgversion: "vpv445g. version 17",
       e: null,
       passwordFieldType: "password",
       arow: {},
