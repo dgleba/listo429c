@@ -46,7 +46,7 @@ export default {
     return {
       mrow: {},
       atable: {},
-      resultsPerPage: 25,
+      resultsPerPage: 50,
       currentPage: 1,
       qsearch: ""
     };
@@ -65,7 +65,7 @@ export default {
   filters: {
     // Truncate text in template.. https://stackoverflow.com/questions/35070271/vue-js-components-how-to-truncate-the-text-in-the-slot-element-in-a-component
     truncate: function(text, length, suffix) {
-      text = text || ""; // ref. https://github.com/imcvampire/vue-truncate-filter/issues/10 - fails on null
+      text = text || "."; // ref. https://github.com/imcvampire/vue-truncate-filter/issues/10 - fails on null
       return text.substring(0, length) + suffix;
     }
   },

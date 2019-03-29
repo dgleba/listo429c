@@ -1,4 +1,72 @@
 
+----------------------------------------------------
+Title:  .
+-----------------------2019-03-28[Mar-Thu]16-13PM
+
+
+# restart after new vpv445g build
+
+
+cd /srv/dkr/listo429c
+docker-compose stop
+
+sudo chmod -R 775 caddy-gen/certs
+
+docker rm -f $(docker ps -a |    grep caddy       | awk '{print $1}')
+docker images | grep caddy | awk '{print $1 ":" $2}' | xargs docker rmi 
+ 
+
+dkps
+dkup
+
+
+
+
+----------------------------------------------------
+
+----------------------------------------------------
+Title:  .
+-----------------------2019-03-28[Mar-Thu]15-32PM
+
+
+scratch..
+
+
+docker-compose stop
+
+docker-compose stop pgcouch429
+
+docker-compose up pgcouch429
+
+docker-compose up adminer429 pgadmin
+
+docker-compose up pgadmin
+docker-compose up postgres429
+
+
+docker-compose up vpv445gb
+
+docker-compose restart caddy-gen
+
+docker-compose stop caddy-gen
+
+docker-compose up caddy-gen
+
+https://t.david23.tk
+
+ docker-compose stop caddy-gen
+
+
+ 
+ docker-compose up  --build  --force-recreate caddy-gen 
+
+
+_____________
+
+
+----------------------------------------------------
+
+
 
 ----------------------------------------------------
 
@@ -432,3 +500,4 @@ NEXTCLOUD_TRUSTED_DOMAINS=nc.dg24.tk
 
 
 ----------------------------------------------------
+

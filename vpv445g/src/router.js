@@ -4,14 +4,15 @@ import Router from "vue-router";
 
 // import Home from "./views/Home.vue";
 
-import HomeComponent from "./components/HomeComponent.vue";
-import CreateComponent from "./components/CreateComponent.vue";
+import appsettings from "./components/appsettings.vue";
+
 import IndexComponent from "./components/IndexComponent.vue";
+import CreateComponent from "./components/CreateComponent.vue";
 import EditComponent from "./components/EditComponent.vue";
 
 import statusfield from "./components/statusfield.vue";
-import appsettings from "./components/appsettings.vue";
 
+import HomeComponent from "./components/HomeComponent.vue";
 
 Vue.use(Router);
 
@@ -20,9 +21,8 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      name: "home",
-      path: "/",
-      component: HomeComponent
+      path: "/settings",
+      component: appsettings
     },
     {
       name: "create",
@@ -31,7 +31,7 @@ export default new Router({
     },
     {
       name: "posts",
-      path: "/posts",
+      path: "/",
       component: IndexComponent
     },
     {
@@ -44,9 +44,9 @@ export default new Router({
       component: statusfield
     },
     {
-      path: "/settings",
-      component: appsettings
+      name: "home",
+      path: "/home",
+      component: HomeComponent
     },
-
   ]
 });

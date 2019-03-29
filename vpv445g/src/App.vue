@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <v-app id="inspire">
       <v-toolbar>
-        <v-toolbar-title>AnApp.&nbsp</v-toolbar-title>
+        <v-toolbar-title>App&nbsp</v-toolbar-title>
 
         <v-menu class="hidden-md-and-up">
           <v-toolbar-side-icon slot="activator"></v-toolbar-side-icon>
@@ -36,10 +36,10 @@ export default {
   data() {
     return {
       menu: [
-        { icon: "home", title: "home", link: "/" },
-        { icon: "a", title: "Posts", link: "/posts" },
-        { title: "Statusfield", link: "/statusfield" },
-        { title: "Settings", link: "/settings" }
+        { icon: "a", title: "Posts",    link: "/" },
+        {             title: "Sync",      link: "/settings" },
+        {             title: "StatusTag", link: "/statusfield" },
+        { icon: "home", title: "Help",    link: "/home" },
       ]
     };
   },
