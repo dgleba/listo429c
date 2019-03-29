@@ -44,6 +44,8 @@ docker-compose up pgadmin
 docker-compose up postgres429
 
 
+docker-compose stop vpv445gb
+
 docker-compose up vpv445gb
 
 docker-compose restart caddy-gen
