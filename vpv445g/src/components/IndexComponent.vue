@@ -1,7 +1,7 @@
 <template>
-  <v-app>
+  <v-app> 
     <div class="atable">
-      <div class="svdiv"></div>
+      <div class="sm-vert-div">&nbsp;</div>
       <div class="row">
         <div class="col-md-3">
           <router-link :to="{ name: 'create' }" class="btn btn-success">Create</router-link>
