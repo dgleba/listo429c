@@ -4,14 +4,14 @@ Other readme docs here, in the docs folder, and other folders.
 
 
 
-README-instructions*.md should have consise instructions.
+README-installation-notes.md is pretty good as of 2019-03-31
+
+README-instructions*.md did have consise instructions -- but things changed.
 
 *notes*.md files are just many jotted notes - less organized.
 
 
-David Gleba
-
-dgleba@gmail.com
+David Gleba dgleba@gmail.com
 
 https://github.com/dgleba/listo429c
 
@@ -37,4 +37,5 @@ https://github.com/sysadminmike/couch-to-postgres
 
 # Status
 
+ - 2019-03-31_Sun_11.56-AM moved settings to app.vue and reduced syncurl to two fields
  - 2019-03-29_Fri_18.50-PM before settings in app.vue branch
