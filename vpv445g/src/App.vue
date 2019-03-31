@@ -143,9 +143,9 @@ export default {
   },
   methods: {
     menuItems() {
-      return this.menu;
       // add this 2019-03-31 11:27AM to see if it will kick off sync on menu press
       this.startSync();
+      return this.menu;
     },
     // https://simedia.tech/blog/show-hide-password-input-values-with-vue-js/
     switchVisibility() {
