@@ -556,3 +556,35 @@ git psa
 
  
 ----------------------------------------------------
+----------------------------------------------------
+
+feature branch  #2
+
+
+git co master
+git branch -r | grep -v '\->' | while read remote; do git branch --track "${remote#origin/}" "$remote"; done
+git pull
+git fetch --all
+git pull --all
+
+vfeat=syncurl-regex
+
+  git checkout -b $vfeat
+  
+  git branch --set-upstream-to=origin/$vfeat $vfeat
+    
+git b
+    
+#https://coderwall.com/p/9idt5g/keep-your-feature-branch-up-to-date
+  git checkout master && git pull && git checkout - && git rebase master
+  
+
+git cap 
+
+git checkout master
+git merge --no-ff $vfeat
+git psa
+
+
+
+----------------------------------------------------
