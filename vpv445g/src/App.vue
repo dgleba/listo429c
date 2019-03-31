@@ -7,7 +7,7 @@
         <v-menu class="hidden-md-and-up">
           <v-toolbar-side-icon slot="activator"></v-toolbar-side-icon>
           <v-list>
-            <v-list-tile v-for="item in menu" :key="item.icon" :to="item.link" flat>
+            <v-list-tile v-for="item in menu" :key="item.icon" :to="item.link" flat @click="settingshow=''">
               <v-list-tile-content>
                 <v-list-tile-title>{{ item.title }}</v-list-tile-title>
               </v-list-tile-content>
@@ -19,7 +19,7 @@
         </v-menu>
 
         <v-toolbar-items class="hidden-xs-and-down">
-          <v-btn v-for="item in menu" :key="item.icon" :to="item.link" flat>
+          <v-btn v-for="item in menu" :key="item.icon" :to="item.link" flat @click="settingshow=''">
             {{
             item.title
             }}
@@ -37,13 +37,25 @@
         <!-- settings -->
         <div id="dgdivright" align="right">{{dgversion}}</div>
         <v-card v-if="mode == 'settings'">
-          <v-card-title>Settings</v-card-title>
+          <v-card-title>Settings <v-btn v-show="settingshow" @click="settingshow=''">Close Settings</v-btn></v-card-title>
           <v-card-text>
+            
             You can sync your data to a remote Apache CouchDB, IBM Cloudant or PouchDB server. Supply the URL, including
             credentials and database name and click "Start Sync".
             <!-- Cloudant URL -->
+
+            <div>&nbsp;</div> Example... http://user:pw@localhost:5984/listdb
+            <div class="sm-vert-div">&nbsp;</div>Example... https://user:pw@couch.dg.tk/posts-db
+            <div class="sm-vert-div">&nbsp;</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp; pw will be replaced with your password</div>
+            <div class="sm-vert-div">&nbsp;</div>
+
+            <!-- <div>&nbsp;&nbsp;&nbsp;&nbsp; password... password</div>
+
+            <div>&nbsp;&nbsp;&nbsp;&nbsp; Last part. (host,port,database).. @couchdb.e29.com/listdb</div> -->
+
             <div>&nbsp;</div>
-            <div>URL first part</div>
+            <div>URL ('pw' will be replaced by the password you enter below)</div>
             <div>
               <input id="dginput" type="url" v-model="syncpartA">
             </div>
@@ -53,17 +65,11 @@
               <input id="dginput" :type="passwordFieldType" v-model="syncpass">
               <button type="password" @click="switchVisibility" id="dgbutton">Show/hide</button>
             </div>
-            <div>URL last part</div>
+
+            <!-- <div>URL last part</div>
             <div>
               <input id="dginput" type="text" v-model="syncpartC">
-            </div>
-            <div>&nbsp;</div>Example... http://user:pass@localhost:5984/listdb
-            <div class="sm-vert-div">&nbsp;</div>
-            <div>&nbsp;&nbsp;&nbsp;&nbsp; First part... http://user:</div>
-
-            <div>&nbsp;&nbsp;&nbsp;&nbsp; password... password</div>
-
-            <div>&nbsp;&nbsp;&nbsp;&nbsp; Last part. (host,port,database).. @couchdb.e29.com/listdb</div>
+            </div> -->
 
             <div class="sm-vert-div">&nbsp;</div>
             <h4>Sync Status</h4>
@@ -72,7 +78,8 @@
             <v-chip v-if="syncStatus == 'notsyncing'">Not Syncing</v-chip>
             <v-chip v-if="syncStatus == 'syncing'" color="info">Syncing</v-chip>
             <v-chip v-if="syncStatus == 'syncerror'" color="error">Sync Error</v-chip>
-            {{ syncURL }} , {{ syncpartA }} _***_ {{ syncpartC }}
+            <!-- url:  {{ syncURL }} , Abc:  {{ syncpartA }}  _***_ {{ syncpartC }} -->
+            You entered:  {{ syncpartA }}
           </v-card-text>
 
           <v-card-actions>
@@ -103,7 +110,7 @@ var db = new PouchDB("maindb");
 export default {
   data() {
     return {
-      dgversion: "vpv445g. version 18",
+      dgversion: "vpv445g. version 20",
        settingshow: '',
        aset: "asetting",
       passwordFieldType: "password",
@@ -111,11 +118,11 @@ export default {
       syncURL: "",
       syncpartA: "",
       syncpass: "",
-      syncpartC: "",
+      syncpartC: "xpartcx",
       syncStatus: "notsyncing",
       menu: [
         { icon: "a", title: "Posts",    link: "/" },
-        {             title: "Sync",      link: "/settings" },
+        {             title: "x",      link: "/settings" },
         {             title: "StatusTag", link: "/statusfield" },
         { icon: "home", title: "Help",    link: "/home" },
       ]
@@ -137,6 +144,8 @@ export default {
   methods: {
     menuItems() {
       return this.menu;
+      // add this 2019-03-31 11:27AM to see if it will kick off sync on menu press
+      this.startSync();
     },
     // https://simedia.tech/blog/show-hide-password-input-values-with-vue-js/
     switchVisibility() {
@@ -187,16 +196,23 @@ export default {
      */
     startSync: function() {
       this.syncStatus = "notsyncing";
+
+      // replace password into the url
+      var vsyncURL = this.syncpartA
+      this.syncURL = vsyncURL.replace(":pw", ":" + this.syncpass);
+      console.log(vsyncURL, this.syncURL);
+
       if (this.sync) {
         this.sync.cancel();
         this.sync = null;
       }
-      if (!this.syncpartA.concat(this.syncpass).concat(this.syncpartC)) {
+      // if (!this.syncpartA.concat(this.syncpass).concat(this.syncpartC)) {
+      if (!this.syncURL) {
         return;
       }
       this.syncStatus = "syncing";
       this.sync = db
-        .sync(this.syncpartA.concat(this.syncpass).concat(this.syncpartC), {
+        .sync(this.syncURL, {
           live: true,
           retry: true
         })
@@ -286,7 +302,7 @@ export default {
   color: black;
   background-color: hsl(80, 12%, 91%);
   margin: 2px;
-  width: 70%;
+  width: 80%;
 }
 #dgbutton {
   background-color: hsl(190, 26%, 91%);
