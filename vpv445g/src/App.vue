@@ -7,14 +7,19 @@
         <v-menu class="hidden-md-and-up">
           <v-toolbar-side-icon slot="activator"></v-toolbar-side-icon>
           <v-list>
-            <v-list-tile v-for="item in menu" :key="item.icon" :to="item.link" flat @click="settingshow=''">
+            <v-list-tile
+              v-for="item in menu"
+              :key="item.icon"
+              :to="item.link"
+              flat
+              @click="settingshow=''"
+            >
               <v-list-tile-content>
                 <v-list-tile-title>{{ item.title }}</v-list-tile-title>
               </v-list-tile-content>
             </v-list-tile>
-            <v-btn  @click="settingshow='on'">Settings</v-btn> 
+            <v-btn @click="settingshow='on'">Settings</v-btn>
             <v-btn v-show="settingshow" @click="settingshow=''">Close Settings</v-btn>
-
           </v-list>
         </v-menu>
 
@@ -25,73 +30,75 @@
             }}
           </v-btn>
 
-          <v-btn flat @click="settingshow='on'">Settings</v-btn> 
-          <v-btn  v-show="settingshow" @click="settingshow=''"> Close Settings </v-btn>
-
+          <v-btn flat @click="settingshow='on'">Settings</v-btn>
+          <v-btn v-show="settingshow" @click="settingshow=''">Close Settings</v-btn>
         </v-toolbar-items>
       </v-toolbar>
 
       <!-- settings section -->
       <div v-show="settingshow" class="panel panel-default">
         <div class="localaapp">
-        <!-- settings -->
-        <div id="dgdivright" align="right">{{dgversion}}</div>
-        <v-card v-if="mode == 'settings'">
-          <v-card-title>Settings <v-btn v-show="settingshow" @click="settingshow=''">Close Settings</v-btn></v-card-title>
-          <v-card-text>
-            
-            You can sync your data to a remote Apache CouchDB, IBM Cloudant or PouchDB server. Supply the URL, including
-            credentials and database name and click "Start Sync".
-            <!-- Cloudant URL -->
+          <!-- settings -->
+          <div id="dgdivright" align="right">{{dgversion}}</div>
+          <v-card v-if="mode == 'settings'">
+            <v-card-title>
+              Settings
+              <v-btn v-show="settingshow" @click="settingshow=''">Close Settings</v-btn>
+            </v-card-title>
+            <v-card-text>
+              You can sync your data to a remote Apache CouchDB, IBM Cloudant or PouchDB server. Supply the URL, including
+              credentials and database name and click "Start Sync".
+              <!-- Cloudant URL -->
 
-            <div>&nbsp;</div> Example... http://user:pw@localhost:5984/listdb
-            <div class="sm-vert-div">&nbsp;</div>Example... https://user:pw@couch.dg.tk/posts-db
-            <div class="sm-vert-div">&nbsp;</div>
-            <div>&nbsp;&nbsp;&nbsp;&nbsp; pw will be replaced with your password</div>
-            <div class="sm-vert-div">&nbsp;</div>
+              <div>&nbsp;</div>Example... http://user:pw@localhost:5984/listdb
+              <div class="sm-vert-div">&nbsp;</div>Example... https://user:pw@couch.dg.tk/posts-db
+              <div class="sm-vert-div">&nbsp;</div>
+              <div>&nbsp;&nbsp;&nbsp;&nbsp; pw will be replaced with your password</div>
+              <div class="sm-vert-div">&nbsp;</div>
 
-            <!-- <div>&nbsp;&nbsp;&nbsp;&nbsp; password... password</div>
+              <!-- <div>&nbsp;&nbsp;&nbsp;&nbsp; password... password</div>
 
-            <div>&nbsp;&nbsp;&nbsp;&nbsp; Last part. (host,port,database).. @couchdb.e29.com/listdb</div> -->
+              <div>&nbsp;&nbsp;&nbsp;&nbsp; Last part. (host,port,database).. @couchdb.e29.com/listdb</div>-->
 
-            <div>&nbsp;</div>
-            <div>URL ('pw' will be replaced by the password you enter below)</div>
-            <div>
-              <input id="dginput" type="url" v-model="syncpartA">
-            </div>
-            <div class="sm-vert-div"></div>
-            <div>Password</div>
-            <div>
-              <input id="dginput" :type="passwordFieldType" v-model="syncpass">
-              <button type="password" @click="switchVisibility" id="dgbutton">Show/hide</button>
-            </div>
+              <div>&nbsp;</div>
+              <div>URL ('pw' will be replaced by the password you enter below)</div>
+              <div>
+                <input id="dginput" type="url" v-model="syncpartA">
+              </div>
+              <div class="sm-vert-div"></div>
+              <div>Password</div>
+              <div>
+                <input id="dginput" :type="passwordFieldType" v-model="syncpass">
+                <button type="password" @click="switchVisibility" id="dgbutton">Show/hide</button>
+              </div>
 
-            <!-- <div>URL last part</div>
+              <!-- <div>URL last part</div>
             <div>
               <input id="dginput" type="text" v-model="syncpartC">
-            </div> -->
+              </div>-->
 
-            <div class="sm-vert-div">&nbsp;</div>
-            <h4>Sync Status</h4>
+              <div class="sm-vert-div">&nbsp;</div>
+              <h4>Sync Status</h4>
 
-            <!-- visualisation of sync status -->
-            <v-chip v-if="syncStatus == 'notsyncing'">Not Syncing</v-chip>
-            <v-chip v-if="syncStatus == 'syncing'" color="info">Syncing</v-chip>
-            <v-chip v-if="syncStatus == 'syncerror'" color="error">Sync Error</v-chip>
-            <!-- url:  {{ syncURL }} , Abc:  {{ syncpartA }}  _***_ {{ syncpartC }} -->
-            You entered:  {{ syncpartA }}
-          </v-card-text>
+              <!-- visualisation of sync status -->
+              <v-chip v-if="syncStatus == 'notsyncing'">Not Syncing</v-chip>
+              <v-chip v-if="syncStatus == 'syncing'" color="info">Syncing</v-chip>
+              <v-chip v-if="syncStatus == 'syncerror'" color="error">Sync Error</v-chip>
+              <!-- url:  {{ syncURL }} , Abc:  {{ syncpartA }}  _***_ {{ syncpartC }} -->
+              You entered: {{ syncpartA }}
+            </v-card-text>
 
-          <v-card-actions>
-            <!-- submit btn that saves the Cloudant URL -->
-            <v-btn v-on:click="onClickStartSync">Start Sync</v-btn>
-            <v-btn v-show="settingshow" @click="settingshow=''"> Close Settings </v-btn>
-          </v-card-actions>
-
-        </v-card>
-        <!-- settings -->
+            <v-card-actions>
+              <!-- submit btn that saves the Cloudant URL -->
+              <v-btn v-on:click="onClickStartSync">Start Sync</v-btn>
+              <v-btn v-show="settingshow" @click="settingshow=''">Close Settings</v-btn>
+            </v-card-actions>
+          </v-card>
+          <!-- settings -->
         </div>
-        <div><div v-for="n in 7">&nbsp;</div></div>
+        <div>
+          <div v-for="n in 7">&nbsp;</div>
+        </div>
       </div>
 
       <router-view></router-view>
@@ -111,8 +118,8 @@ export default {
   data() {
     return {
       dgversion: "vpv445g. version 20",
-       settingshow: '',
-       aset: "asetting",
+      settingshow: "",
+      aset: "asetting",
       passwordFieldType: "password",
       mode: "settings",
       syncURL: "",
@@ -121,12 +128,25 @@ export default {
       syncpartC: "xpartcx",
       syncStatus: "notsyncing",
       menu: [
-        { icon: "a", title: "Posts",    link: "/" },
-        {             title: "x",      link: "/settings" },
-        {             title: "StatusTag", link: "/statusfield" },
-        { icon: "home", title: "Help",    link: "/home" },
+        { icon: "a", title: "Posts", link: "/" },
+        { title: "x", link: "/settings" },
+        { title: "StatusTag", link: "/statusfield" },
+        { icon: "home", title: "Help", link: "/home" }
       ]
     };
+  },
+  mounted: function() {
+    // try to kick off sync 2019-04-01..
+    db.get("_local/user")
+      .then(data => {
+        // if we have settings, start syncing
+        this.syncpartA = data.syncpartA;
+        this.syncpass = data.syncpass;
+        this.syncpartC = data.syncpartC;
+        this.startSync();
+        console.log(" Mounted startsync. ");
+      })
+      .catch(e => {});
   },
   created: function() {
     //this.syncURL = (this.syncpartA).concat(this.syncpass).concat(this.syncpartC);
@@ -198,9 +218,14 @@ export default {
       this.syncStatus = "notsyncing";
 
       // replace password into the url
-      var vsyncURL = this.syncpartA
+      var vsyncURL = this.syncpartA;
       this.syncURL = vsyncURL.replace(":pw", ":" + this.syncpass);
-      console.log(vsyncURL, this.syncURL);
+      console.log(
+        "startsync. vsyncurl: ",
+        vsyncURL,
+        ", thissyncurl: ",
+        this.syncURL
+      );
 
       if (this.sync) {
         this.sync.cancel();
@@ -282,7 +307,7 @@ export default {
       };
     }
   }
-  // end default    
+  // end default
 };
 </script>
 

@@ -29,11 +29,15 @@ docker-compose   up pgcouch429
 
 cd /srv/dkr/listo429c
 docker-compose stop
+sleep 14
 sudo chmod -R 775 caddy-gen/certs
 docker rm -f $(docker ps -a |    grep caddy       | awk '{print $1}')
 docker images | grep caddy | awk '{print $1 ":" $2}' | xargs docker rmi 
 dkps
 dkup
+
+## see logs
+ - docker-compose up caddy-gen
 
 
 
@@ -587,6 +591,39 @@ echo $vfeat
 git checkout master
 git merge --no-ff $vfeat
 git psa
+
+
+
+----------------------------------------------------
+
+
+----------------------------------------------------
+Title:  .
+-----------------------2019-04-01[Apr-Mon]07-19AM
+
+not working.. see error.
+
+
+albe@vamp398:/srv/dkr/listo429c$ docker-compose   up pgcouch429
+listo429c_postgres429_1 is up-to-date
+listo429c_couchdb_1 is up-to-date
+listo429c_pgcouch429_1 is up-to-date
+Attaching to listo429c_pgcouch429_1
+pgcouch429_1   | poststbl: stream.on error #Error: socket hang up# { Error: socket hang up
+pgcouch429_1   |     at createHangUpError (_http_client.js:323:15)
+pgcouch429_1   |     at Socket.socketOnEnd (_http_client.js:426:23)
+pgcouch429_1   |     at Socket.emit (events.js:194:15)
+pgcouch429_1   |     at endReadableNT (_stream_readable.js:1103:12)
+pgcouch429_1   |     at process._tickCallback (internal/process/next_tick.js:63:19) code: 'ECONNRESET' }
+pgcouch429_1   | Connected to postgres
+pgcouch429_1   | poststbl: initial since=175
+pgcouch429_1   | poststbl: Starting checkpointer
+pgcouch429_1   | poststbl: Checkpoint 0 is current next check in: 120 seconds
+pgcouch429_1   | poststbl: Checkpoint 0 is current next check in: 120 seconds
+pgcouch429_1   | poststbl: Checkpoint 0 is current next check in: 120 seconds
+pgcouch429_1   | poststbl: Checkpoint 0 is current next check in: 120 seconds
+pgcouch429_1   | poststbl: Checkpoint 0 is current next check in: 120 seconds
+pgcouch429_1   | poststbl: Checkpoint 0 is current next check in: 120 seconds
 
 
 
