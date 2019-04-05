@@ -1,4 +1,18 @@
 
+
+cd /srv/dkr/listo429c
+docker-compose stop caddy-gen
+sleep 14
+sudo chmod -R 775 caddy-gen/certs
+docker rm -f $(docker ps -a |    grep caddy       | awk '{print $1}')
+docker images | grep caddy | awk '{print $1 ":" $2}' | xargs docker rmi 
+dkps
+docker-compose up caddy-gen
+
+
+
+
+
 ----------------------------------------------------
 Title:  .
 -----------------------2019-03-28[Mar-Thu]16-13PM
@@ -51,6 +65,10 @@ Title:  .
 
 
 scratch..
+
+docker-compose up phppo ponotepad
+
+docker-compose up vpv445gb
 
 
 docker-compose stop
