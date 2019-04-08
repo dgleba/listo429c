@@ -117,7 +117,7 @@ var db = new PouchDB("maindb");
 export default {
   data() {
     return {
-      dgversion: "vpv445g. version 21",
+      dgversion: "vpv445g. version 22 - 19/4/8-11am",
       settingshow: "",
       aset: "asetting",
       passwordFieldType: "password",
@@ -157,14 +157,16 @@ export default {
         this.syncpartA = data.syncpartA;
         this.syncpass = data.syncpass;
         this.syncpartC = data.syncpartC;
-        this.startSync();
+        // commented out 2019-04-08 11:31AM to see if mounted is adeqate to start sync on app open.
+        //this.startSync();
       })
       .catch(e => {});
   },
   methods: {
     menuItems() {
       // add this 2019-03-31 11:27AM to see if it will kick off sync on menu press
-      this.startSync();
+      // commented out 2019-04-08 to see if the mounted is adequate.
+      // this.startSync();
       return this.menu;
     },
     // https://simedia.tech/blog/show-hide-password-input-values-with-vue-js/

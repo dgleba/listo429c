@@ -37,6 +37,11 @@ docker-compose up pgcouch429
 
 docker-compose restart pgcouch429
 
+## nextcloud
+
+docker-compose restart nextcl
+
+
 ## Restart caddy-gen after changes affecting web address routing
 
 cd /srv/dkr/listo429c
