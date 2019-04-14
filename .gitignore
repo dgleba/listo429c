@@ -8,6 +8,7 @@ local.ini
 docker.ini
 
 .env
+.env.*
 .env.local
 
 /x/
