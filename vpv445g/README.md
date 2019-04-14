@@ -11,6 +11,7 @@
 
 ## Status
 
+ - 2019-04-14 called startsync in mounted: of app.vue. Seems to start sync every time the app is used.
  - 2019-03-31 working on getting sync to resume automatically. 
 
 

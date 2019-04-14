@@ -1,14 +1,20 @@
+
+
+
+
+# Status
+
+ - 2019-04-14 -  I am using vpv445g, not this one.
+
+see status history for more..
+
+
 # MEVN example converted to use pouchdb
 
 ## Code is at Github.
 
 Originally at https://github.com/dgleba/mevn-Krunal-vuepouch445 - Now in listo429c
 
-
-## Status
-
- - 2019-02-26_Tue_22.02-PM 
-    basic app is complete with pouch, vue, search, autocomplete, both vuetify and bootstrap (messy but working).
 
 
 ## Includes:
@@ -66,6 +72,11 @@ David Gleba 2019-02-22_Fri_07.09-AM
 
 ## Status History
 
+
+ - 2019-02-26_Tue_22.02-PM 
+    basic app is complete with pouch, vue, search, autocomplete, both vuetify and bootstrap (messy but working).
+
+
 - 2019-02-26_Tue_22.02-PM basic app is complete with pouch vue search autocomplete vuetify and bootstrap
 
 - 2019-02-25_Mon_22.59-PM vue-material autocomplete has a bug with sub term - even typing a letter will
@@ -79,6 +90,7 @@ David Gleba 2019-02-22_Fri_07.09-AM
 
 * 2019-02-23_Sat_09.29-AM:: `create post` and `posts` are working.
   I set edit path to a constant to avoid error for now.
+
 
 ## Project setup
 

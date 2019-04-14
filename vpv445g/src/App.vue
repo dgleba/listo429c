@@ -117,7 +117,7 @@ var db = new PouchDB("maindb");
 export default {
   data() {
     return {
-      dgversion: "vpv445g. version 22 - 19/4/8-11am",
+      dgversion: "vpv445g. version 23 - 19/4/14",
       settingshow: "",
       aset: "asetting",
       passwordFieldType: "password",
@@ -129,7 +129,6 @@ export default {
       syncStatus: "notsyncing",
       menu: [
         { icon: "a", title: "Posts", link: "/" },
-        { title: "x", link: "/settings" },
         { title: "StatusTag", link: "/statusfield" },
         { icon: "home", title: "Help", link: "/home" }
       ]

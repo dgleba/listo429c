@@ -1,15 +1,14 @@
 
-----------------------------------------------------
+# Title:  Start up instructions.
 
-## Title:  Start up instructions.
 
------------------------ 2019-03-18[Mar-Mon]19-59PM
 
 ## Quick-Start installation - The plan
 
 The idea is to use example files below as is. They have settings including usernames and simple passwords. 
 The system should start using these example settings. 
 Read the example files to see the passwords and settings needed to login and access urls.
+
 
 ## Requirements.
 
@@ -24,7 +23,7 @@ cd listo429c
 ```
 
 
-## Delete data (because I had set it up previously)
+## Delete data (because I had set it up previously. This will start clean.)
 
 ```
      sudo rm -rf ../datasys/couch429c/

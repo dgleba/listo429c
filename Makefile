@@ -40,6 +40,11 @@ pcup:
 pcst:
 	docker-compose  stop pgcouch429
 
+pcr:
+	docker-compose  stop pgcouch429
+	sleep 4
+	docker-compose  start pgcouch429
+
 pgaup:
 	docker-compose  up pgadmin
 
