@@ -1,68 +1,70 @@
+---
 
+Title: .
+-----------------------2019-04-14[Apr-Sun]21-35PM
+
+# http://a.davidg.ml:46272
+
+# http://c.davidg.ml:46272/_utils/
+
+# http://couch429c.david462.tk:46272/_utils/
+
+---
 
 cd /srv/dkr/listo429c
 docker-compose stop caddy-gen
 sleep 14
 sudo chmod -R 775 caddy-gen/certs
 docker rm -f $(docker ps -a |    grep caddy       | awk '{print $1}')
-docker images | grep caddy | awk '{print $1 ":" $2}' | xargs docker rmi 
+docker images | grep caddy | awk '{print $1 ":" $2}' | xargs docker rmi
 dkps
 docker-compose up caddy-gen
 
+---
 
-
-
-
-----------------------------------------------------
-Title:  .
+Title: .
 -----------------------2019-03-28[Mar-Thu]16-13PM
-
 
 # Restart after new vpv445g build
 
 docker-compose stop vpv445gb
 sleep 3
-docker-compose   up vpv445gb
+docker-compose up vpv445gb
 dkps
-
 
 # Restart couch-to-postgres if it's not working
 
 ### look at logs..
 
-docker-compose   up pgcouch429
+docker-compose up pgcouch429
 
 ### stop and start
 
 docker-compose stop pgcouch429
 sleep 3
-docker-compose   up pgcouch429
+docker-compose up pgcouch429
 
-
-# Restart caddy-gen after  changes affecting web address routing
+# Restart caddy-gen after changes affecting web address routing
 
 cd /srv/dkr/listo429c
 docker-compose stop
 sleep 14
 sudo chmod -R 775 caddy-gen/certs
 docker rm -f $(docker ps -a |    grep caddy       | awk '{print $1}')
-docker images | grep caddy | awk '{print $1 ":" $2}' | xargs docker rmi 
+docker images | grep caddy | awk '{print $1 ":" $2}' | xargs docker rmi
 dkps
 dkup
 
 ## see logs
- - docker-compose up caddy-gen
 
+- docker-compose up caddy-gen
 
+---
 
+---
 
-----------------------------------------------------
-
-
-----------------------------------------------------
-Title:  .
+Title: .
 -----------------------2019-03-28[Mar-Thu]15-32PM
-
 
 scratch..
 
@@ -70,14 +72,12 @@ docker-compose up phppo ponotepad
 
 docker-compose up vpv445gb
 
-
 docker-compose stop
 
 docker-compose up adminer429 pgadmin
 
 docker-compose up pgadmin
 docker-compose up postgres429
-
 
 docker-compose stop vpv445gb
 
@@ -91,35 +91,28 @@ docker-compose up caddy-gen
 
 https://t.david23.tk
 
- docker-compose stop caddy-gen
+docker-compose stop caddy-gen
 
+docker-compose up --build --force-recreate caddy-gen
 
- 
- docker-compose up  --build  --force-recreate caddy-gen 
+---
 
+---
 
-_____________
+---
 
-
-----------------------------------------------------
-
-
-
-----------------------------------------------------
-
-## Title:  Start up instructions.
+## Title: Start up instructions.
 
 ----------------------- 2019-03-18[Mar-Mon]19-59PM
 
- - root .env file - copy from .env.example to .env
- - copy ./docs/docker/couchdb/docker.ini.example.in2 to  ./docker/couchdb/docker.ini
- - copy docker-compose.example.yml to docker-compose.yml
+- root .env file - copy from .env.example to .env
+- copy ./docs/docker/couchdb/docker.ini.example.in2 to ./docker/couchdb/docker.ini
+- copy docker-compose.example.yml to docker-compose.yml
 
- ```
- docker-compose up couchdb
- 
- ```
+```
+docker-compose up couchdb
 
+```
 
 Delete data (because I had set it up previously)
 
@@ -139,21 +132,18 @@ curl -X PUT http://cuser:abc@192.168.88.58:6212/_global_changes
 
 ```
 
-
 ```
 docker-compose up post445
 
 ```
 
-visit:    http://192.168.88.58:6214
+visit: http://192.168.88.58:6214
 
-visit:    http://192.168.88.58:6212/_utils
+visit: http://192.168.88.58:6212/_utils
 
+`docker-compose up vpv445gb`
 
-`docker-compose up  vpv445gb`
-
-visit:    http://192.168.88.58:6216
-
+visit: http://192.168.88.58:6216
 
 `docker-compose up postgres429`
 
@@ -168,17 +158,14 @@ docker-compose up adminer429  pgadmin
 
 Postgres:
 
-    NOT - listodb.  
-    Use:  DB: postgres Schema: public 
+    NOT - listodb.
+    Use:  DB: postgres Schema: public
     I used adminer, go to postgres public and paste table creation sql from docker/postgres/init/pginit.sh
 
     Picture shows working setup..
     ../docs/couchtopostgres,pgcouch,setupdb-listotbl-192.168.88.60_5433-Adminer.jpg
 
-
-
 `docker-compose up pgcouch429`
-
 
 Got this error.
 
@@ -187,17 +174,13 @@ Got this error.
     pgcouch429_1   | post445gtbl: stopping stream
     pgcouch429_1   | post445gtbl: stopped
 
-
 Solution: restart pgcouch429. OK now.
 
-_____________
-
-
+---
 
 -----------------------2019-03-06[Mar-Wed]13-27PM
 
 `docker-compose up sqlpad`
-
 
 sqlpad settings
 
@@ -205,8 +188,7 @@ see this file and others in the folder.
 
 ./docs/sqlpad,postgres,query-SQLPad-Connections.jpg
 
-_____________
-
+---
 
 sqlpad settings.
 
@@ -219,12 +201,11 @@ sqlpad settings.
     dgleba@gmail.com
     pas,mr
 
-_____________
-
+---
 
 example query:
 
-    select 
+    select
           doc -> 'list' as list,
           doc -> 'title' as title,
           doc -> 'updatedAt' as updatedat
@@ -234,7 +215,7 @@ example query:
 
 Query.
 
-    select 
+    select
           doc -> 'title' as title,
           doc -> 'body' as body,
           doc -> 'statusfld' as statusfld,
@@ -245,7 +226,7 @@ Query.
 
 Query.
 
-    select 
+    select
           doc -> 'title' as title,
           doc -> 'body' as body,
           doc -> 'statusfld' as statusfld,
@@ -255,44 +236,32 @@ Query.
     WHERE doc ->> 'rtype' = 'mlist'  -- need ->> operator to make it text
     ORDER BY doc->>'_id' desc;
 
-
-_____________
-
+---
 
 docker-compose restart pgcouch429
 
+---
 
-
-----------------------------------------------------
-
-
-
-----------------------------------------------------
-
-
-
-
+---
 
 2019-03-02
 
 # Setup, or To move this project to other server.
 
- - check .env files in each folder as needed. eg: root and couch-to-postgres
- - setup postgres as needed.  follow couch2postgres instructions. see docker/postgres/init/pginit.sh
- - check couchdb docker.ini file. copy .../docs/docker/couchdb/docker.ini.example.in2 in as starter ini file.
- - npm install in  each folder as needed. eg: couch-to-postgres, vpv445g
- - setup couch as needed. curl system tables like _user. 
+- check .env files in each folder as needed. eg: root and couch-to-postgres
+- setup postgres as needed. follow couch2postgres instructions. see docker/postgres/init/pginit.sh
+- check couchdb docker.ini file. copy .../docs/docker/couchdb/docker.ini.example.in2 in as starter ini file.
+- npm install in each folder as needed. eg: couch-to-postgres, vpv445g
+- setup couch as needed. curl system tables like \_user.
 
 Postgres:
 
-
 NOT - listodb.  
-Use:  DB: postgres Schema: public 
+Use: DB: postgres Schema: public
 I used adminer, go to postgres public and paste table creation sql from pginit.sh.
 
 Picture shows workig setup..
 ../docs/couchtopostgres,pgcouch,setupdb-listotbl-192.168.88.60_5433-Adminer.jpg
-
 
 Couch:
 
@@ -304,13 +273,9 @@ curl -X PUT http://user:pass@127.0.0.1:6212/_users
 curl -X PUT http://user:pass@127.0.0.1:6212/_replicator
 curl -X PUT http://user:pass@127.0.0.1:6212/_global_changes
 
-
-
-
 2019-03-02
 
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 
 
 
@@ -373,7 +338,7 @@ docker-compose stop postgres429 adminer429
 docker-compose up postgres429 adminer429
 
 docker rm  listo429c_postgres429_1
-docker rmi postgres 
+docker rmi postgres
 
 rm datasys/postgres429   # so init can run. If init was done, it will not redo it.
 
@@ -389,7 +354,7 @@ Title:  .
 -----------------------2018-12-14[Dec-Fri]12-35PM
 
 
-docker-compose up my429 adminer429 
+docker-compose up my429 adminer429
 docker-compose up  adminer429  my429
 
 
@@ -498,7 +463,7 @@ _____________
 
 works:
 
-select 
+select
        doc -> 'list' as list,
        doc -> 'title' as title,
        doc -> 'updatedAt' as updatedat
@@ -528,8 +493,8 @@ visit:    http://192.168.88.58:6218
 
 
 
-NEXTCLOUD_ADMIN_USER=dgleba 
-NEXTCLOUD_ADMIN_PASSWORD=abc 
+NEXTCLOUD_ADMIN_USER=dgleba
+NEXTCLOUD_ADMIN_PASSWORD=abc
 NEXTCLOUD_DATA_DIR=/var/www/html/dat
 NEXTCLOUD_TABLE_PREFIX=nxt_
 NEXTCLOUD_TRUSTED_DOMAINS=nc.dg24.tk
@@ -558,14 +523,14 @@ git pull --all
 
   git checkout -b settings-app-vue master
 
-  
+
 vfeat=settings-app-vue
   git branch --set-upstream-to=origin/$vfeat $vfeat
 
-    
+
 #https://coderwall.com/p/9idt5g/keep-your-feature-branch-up-to-date
   git checkout master && git pull && git checkout - && git rebase master
-  
+
 git cap 'moved setttings to app.vue'
 
 
@@ -576,7 +541,7 @@ git merge --no-ff $vfeat
 git psa
 
 
- 
+
 ----------------------------------------------------
 ----------------------------------------------------
 
@@ -593,15 +558,15 @@ git fetch --all
 git pull --all
 
   git checkout -b $vfeat
-  
+
   git branch --set-upstream-to=origin/$vfeat $vfeat
-    
+
 git b
-    
+
 #https://coderwall.com/p/9idt5g/keep-your-feature-branch-up-to-date
   git checkout master && git pull && git checkout - && git rebase master
 
-git cap 
+git cap
 git ldt
 
 echo $vfeat
@@ -660,7 +625,7 @@ pgcouch429_1   | poststbl: Checkpoint 0 is current next check in: 120 seconds
 
 Postgres:
 
-NOT - listodb.  
+NOT - listodb.
 Use: DB: postgres Schema: public
 I used adminer, go to postgres public and paste table creation sql from pginit.sh.
 
@@ -740,3 +705,4 @@ To update js file in client browsers, change the name in the `dist` folder by in
 End older instructions.
 
 ===================================================
+```
