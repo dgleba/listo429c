@@ -6,12 +6,12 @@ services:
     restart: always
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
-      - ./certs/acme:/etc/caddy/acme  # to save acme
-      - ./certs/ocsp:/etc/caddy/ocsp  # to save certificates
+      - ./certs/acme:/etc/caddy/acme # to save acme
+      - ./certs/ocsp:/etc/caddy/ocsp # to save certificates
       - ./backup:/root/.caddy
       - .:/crib
       # - ./backup:/root/.caddy
-      
+
     ports:
       - "80:80"
       - "443:443"
@@ -30,3 +30,4 @@ services:
       - "virtual.host=davidg.ml"
       - "virtual.port=80"
       - "virtual.tls-email=dgleba@gmail.com" # set to valid email to activate SSL
+      - "virtual.websockets" # enable websocket passthrough
