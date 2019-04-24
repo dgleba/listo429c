@@ -1,13 +1,13 @@
 <template>
-  <v-app> 
+  <v-app>
     <div class="atable">
       <div class="sm-vert-div">&nbsp;</div>
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-2">
           <router-link :to="{ name: 'create' }" class="btn btn-success">Create</router-link>
         </div>
         <div class="col-md-9">
-          <v-input></v-input>Search (text fields contains)
+          <v-input></v-input>Search:
           <input id="dginput" v-model="qsearch">
         </div>
       </div>
@@ -89,9 +89,10 @@ export default {
         selector: {
           rtype: "mlist",
           $or: [
-            { body: { $regex: this.qsearch } },
-            { title: { $regex: this.qsearch } },
-            { statusfld: { $regex: this.qsearch } }
+            { body: { $regex: RegExp(this.qsearch, "i") } },
+            { title: { $regex: RegExp(this.qsearch, "i") } },
+            { statusfld: { $regex: RegExp(this.qsearch, "i") } },
+            { _id: { $regex: this.qsearch } }
           ]
         },
         sort: [{ _id: "desc" }],
