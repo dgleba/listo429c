@@ -3,10 +3,9 @@
     <div class="atable">
       
       <div class="sm-vert-div">&nbsp;</div>
-
-      <div class="row">
-        <div class="col-xs-2 col-sm-1 col-md-3">
-            <div class="input-group">
+      <div class="row col-lg-12">
+        <div class=" col-lg-12">
+            <div class="input-group col-xs-11 col-sm-8 col-md-6 col-lg-4">
                     <span class="input-group-btn">
                 <router-link :to="{ name: 'create' }" class="btn btn-success">Create</router-link>
               </span>&nbsp;
@@ -14,6 +13,7 @@
             </div><!-- /input-group -->
         </div><!-- /.col-  -->
       </div>
+      <div class="sm-vert-div">&nbsp;</div>
 
       <table class="table table-hover">
 

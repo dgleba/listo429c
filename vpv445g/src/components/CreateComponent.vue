@@ -1,11 +1,11 @@
 <template>
   <div>
     <div class="svdiv"></div>
-    <h5>Create</h5>
+    
     <v-app id="inspire_cr">
       <form @submit.prevent="add_mrow">
         <div class="row">
-          <div class="col-md-11">
+          <div class="col-md-12">
             <div class="form-group">
               <label>Title:</label>
               <input type="text" class="form-control" v-model="mrow.title" />
