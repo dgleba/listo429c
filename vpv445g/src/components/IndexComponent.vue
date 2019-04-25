@@ -1,27 +1,22 @@
 <template>
   <v-app>
     <div class="atable">
+      
       <div class="sm-vert-div">&nbsp;</div>
+
       <div class="row">
-        <div class="col-md-2">
-          <router-link :to="{ name: 'create' }" class="btn btn-success">Create</router-link>
-        </div>
-        <div class="col-md-9">
-          <v-input></v-input>Search:
-          <input id="dginput" v-model="qsearch">
-        </div>
+        <div class="col-xs-2 col-sm-1 col-md-3">
+            <div class="input-group">
+                    <span class="input-group-btn">
+                <router-link :to="{ name: 'create' }" class="btn btn-success">Create</router-link>
+              </span>&nbsp;
+              <input type="text" class="form-control"  v-model="qsearch" placeholder="Search ..">
+            </div><!-- /input-group -->
+        </div><!-- /.col-  -->
       </div>
 
       <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>Actions</th>
-            <th>Title</th>
-            <th>Body</th>
-            <th>Statusfld</th>
-            <th>_id</th>
-          </tr>
-        </thead>
+
         <tbody>
           <tr v-for="mrow in atable" :key="mrow._id">
             <router-link
@@ -105,6 +100,13 @@ export default {
 </script>
 
 <style scoped>
+/* <!--  // small height div to create a small vertical spacing --> */
+.svdiv,
+.sm-vert-div {
+  height: 7px;
+  width: 50%;
+  /* background-color: powderblue; */
+}
 /* <!--  // make the input box more visible -->
 // background-color: hsl(192, 6%, 93%) ;
  */

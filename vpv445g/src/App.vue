@@ -117,7 +117,7 @@ var db = new PouchDB("maindb");
 export default {
   data() {
     return {
-      dgversion: "vpv445g. version 24 - 19/4/24",
+      dgversion: "vpv445g. version 26 - 19/4/25",
       settingshow: "",
       aset: "asetting",
       passwordFieldType: "password",
@@ -316,7 +316,7 @@ export default {
 /* <!--  // small height div to create a small vertical spacing --> */
 .svdiv,
 .sm-vert-div {
-  height: 7px;
+  height: 1px;
   width: 50%;
   /* background-color: powderblue; */
 }

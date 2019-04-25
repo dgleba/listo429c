@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.96a60eb36aad30b6bdc4de2881696cbf.js"
+  "/precache-manifest.3b81b8458f9600a65bf1513c3d8dddeb.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "vpv445g"});
