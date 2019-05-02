@@ -2,7 +2,7 @@
 node_modules
 # start.sh
 
-vpv445g/dist/
+dist/
 
 docker-compose.yml
 

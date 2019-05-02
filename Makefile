@@ -164,14 +164,15 @@ dps:
 #
 clean:   
 	# remove this one.. 
-	-docker rmi dkr382django2t_djangodev 
-	-docker rmi dkr382r-django_djangodev
+	-docker rmi dkr382django2t_djangodev2 
   # remove docker containers exited 
 	-docker rm $$(docker ps -qa --no-trunc --filter "status=exited") 
 	# remove tagged <none> 
 	-docker rmi $$(docker images | grep "^<none>" | awk '{ print $3 }') 
   #volumes
-	-docker volume rm $(docker volume ls -qf dangling=true)
+	-docker volume rm $$(docker volume ls -qf dangling=true)
+	# unused networks.
+	# - docker network rm $$(docker network ls | grep "bridge" | awk '/ / { print $1 }')
 	docker images
 	docker network ls
 	docker volume ls 
