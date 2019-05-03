@@ -103,7 +103,7 @@ export default {
 /* <!--  // small height div to create a small vertical spacing --> */
 .svdiv,
 .sm-vert-div {
-  height: 7px;
+  height: 14px;
   width: 50%;
   /* background-color: powderblue; */
 }
