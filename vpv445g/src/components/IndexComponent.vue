@@ -8,7 +8,7 @@
             <div class="input-group col-xs-11 col-sm-8 col-md-6 col-lg-4">
                     <span class="input-group-btn">
                 <router-link :to="{ name: 'create' }" class="btn btn-success">Create</router-link>
-              </span>&nbsp;
+              </span>&nbsp;&nbsp;&nbsp;&nbsp;
               <input type="text" class="form-control"  v-model="qsearch" placeholder="Search ..">
             </div><!-- /input-group -->
         </div><!-- /.col-  -->
