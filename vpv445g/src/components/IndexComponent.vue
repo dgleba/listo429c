@@ -15,17 +15,17 @@
       </div>
       <div class="sm-vert-div">&nbsp;</div>
 
-      <table class="table table-hover">
+      <table class="table table-hover table-condensed table-responsive" >
 
         <tbody>
           <tr v-for="mrow in atable" :key="mrow._id">
             <router-link
               :to="{ name: 'edit', params: { id: mrow._id } }"
-              class="btn btn-primary"
+              class="btn btn-primary "
             >Edit</router-link>
+            <td style="overflow: hidden;">{{ mrow.title  | truncate(50, ' ..') }} | {{ mrow.body | truncate(70, ' ..') }}</td>
 
-            <td>{{ mrow.title  | truncate(50, ' ..') }} || {{ mrow.body | truncate(90, ' ..') }}</td>
-            <td>{{ mrow.createdat | dateformat1() }}</td> 
+            <td >{{ mrow.createdat | dateformat2() }}</td> 
             <!-- <td>{{ mrow._id | truncate(6, '') }}</td> -->
           </tr>
         </tbody>
@@ -66,9 +66,9 @@ export default {
       return text.substring(0, length) + suffix;
     },
     // format date
-    dateformat1: function(input) {
+    dateformat2: function(input) {
       if (input) {
-         return  dayjs(String(input)).format('ddd YY-MMM-DD HH:mm:ss');
+         return  dayjs(String(input)).format('ddd_MMM_DD HH:mm');
       }
     }
   },
@@ -110,7 +110,14 @@ export default {
 /*    
 notes.
 
+1.
 <td>{{ mrow.statusfld }}</td>
+
+2.
+https://stackoverflow.com/questions/25385289/how-to-set-the-size-of-a-column-in-a-bootstrap-responsive-table
+
+            <td class="col-md-5-and-down" style="overflow: hidden;">{{ mrow.title  | truncate(50, ' ..') }} || {{ mrow.body | truncate(80, ' ..') }}</td>
+
 
 */
 

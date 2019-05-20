@@ -65,7 +65,7 @@ export default {
       mrow: {},
       statusflds: [],
       atable: {},
-      updatedatnice: date('2019-01-01'),
+     
     };
   },
 
