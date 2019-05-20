@@ -24,8 +24,9 @@ sudo crontab -u $USER -l  # list
 # pgcouch 
 sudo crontab -u $USER -l | grep -v 'restartpgcouch.sh'  | sudo crontab -u $USER - #remove
 mkdir -p /srv/dkr/log/
-sudo crontab -u $USER -l | { cat; echo " 5  5 * * 0-6 tail -n+10 ~/.bashrc | bash; sudo /srv/dkr/listo429c/restartpgcouch.sh "; } | sudo crontab -u $USER -  #add
+sudo crontab -u $USER -l | { cat; echo "5   5 * * 0-6 tail -n+10 ~/.bashrc | bash; sudo /srv/dkr/listo429c/restartpgcouch.sh "; } | sudo crontab -u $USER -  #add
 sudo crontab -u $USER -l | { cat; echo "49 20 * * 0-6 tail -n+10 ~/.bashrc | bash; sudo /srv/dkr/listo429c/restartpgcouch.sh "; } | sudo crontab -u $USER -  #add
+sudo crontab -u $USER -l | { cat; echo " 0 12 * * 0-6 tail -n+10 ~/.bashrc | bash; sudo /srv/dkr/listo429c/restartpgcouch.sh "; } | sudo crontab -u $USER -  #add
 
 
 sudo crontab -u $USER -l  # list

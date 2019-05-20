@@ -35,9 +35,13 @@
 
 
       <br />
-       <p class="text-sm-center">   _id: {{atable._id}} --  Updated: {{atable.updatedat}} </p>
-   
-
+       <p class="text-sm-center">  
+           Upd: {{ atable.updated | dateformat1() }} 
+         --  Updat: {{ atable.updatedat  }} 
+         --  Cre: {{ atable.createdat | dateformat1() }}  
+         --  _id: {{ atable._id }} 
+         </p>
+  
       <div class="form-group">
         <button class="btn btn-primary">Update</button>
         <button
@@ -53,13 +57,15 @@
 
 <script>
 var dghelper = require(".././helper.js");
+import dayjs from "dayjs";
 
 export default {
   data() {
     return {
       mrow: {},
       statusflds: [],
-      atable: {}
+      atable: {},
+      updatedatnice: date('2019-01-01'),
     };
   },
 
@@ -69,6 +75,14 @@ export default {
     // this.axios.get(uri).then(response => {
     //   this.post = response.data;
     // });
+  },
+  filters: {
+    // format date
+    dateformat1: function(input) {
+      if (input) {
+         return  dayjs(String(input)).format('ddd YY-MMM-DD HH:mm:ss');
+      }
+    }
   },
   methods: {
     updatePost_api() {
@@ -81,6 +95,8 @@ export default {
     update_mrow: function() {
       //console.log(this.atable);
       this.atable.updatedat=dghelper.updatedat();
+      this.atable.updated=new Date();
+ 
       this.$pouch
         .put(
           "maindb",

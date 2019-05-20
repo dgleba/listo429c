@@ -24,10 +24,9 @@
               class="btn btn-primary"
             >Edit</router-link>
 
-            <td>{{ mrow.title }}</td>
-            <td>{{ mrow.body | truncate(50, ' ..') }}</td>
-            <td>{{ mrow.statusfld }}</td>
-            <td>{{ mrow._id }}</td>
+            <td>{{ mrow.title  | truncate(50, ' ..') }} || {{ mrow.body | truncate(90, ' ..') }}</td>
+            <td>{{ mrow.createdat | dateformat1() }}</td> 
+            <!-- <td>{{ mrow._id | truncate(6, '') }}</td> -->
           </tr>
         </tbody>
       </table>
@@ -36,6 +35,9 @@
 </template>
 
 <script>
+import dayjs from "dayjs";
+
+
 export default {
   data() {
     return {
@@ -62,6 +64,12 @@ export default {
     truncate: function(text, length, suffix) {
       text = text || "."; // ref. https://github.com/imcvampire/vue-truncate-filter/issues/10 - fails on null
       return text.substring(0, length) + suffix;
+    },
+    // format date
+    dateformat1: function(input) {
+      if (input) {
+         return  dayjs(String(input)).format('ddd YY-MMM-DD HH:mm:ss');
+      }
     }
   },
 
@@ -88,6 +96,7 @@ export default {
             { title: { $regex: RegExp(this.qsearch, "i") } },
             { statusfld: { $regex: RegExp(this.qsearch, "i") } },
             { _id: { $regex: this.qsearch } }
+          
           ]
         },
         sort: [{ _id: "desc" }],
@@ -97,6 +106,14 @@ export default {
     }
   }
 };
+
+/*    
+notes.
+
+<td>{{ mrow.statusfld }}</td>
+
+*/
+
 </script>
 
 <style scoped>

@@ -98,6 +98,8 @@ export default {
 
     add_mrow: function() {
       var viuid = dghelper.iuid();
+      var updated = new Date();
+      var created = new Date();
 
       console.log("viuid= ", viuid);
       console.log(this.mrow);
@@ -107,6 +109,8 @@ export default {
           body: this.mrow.body,
           statusfld: this.mrow.statusfld,
           rtype: "mlist",
+          createdat: created,
+          updated: updated,
           _id: viuid
         })
         .then(() => {
