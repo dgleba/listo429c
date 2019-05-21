@@ -1,42 +1,48 @@
 <template>
   <v-app>
-    <div class="atable">
-      
-      <div class="sm-vert-div">&nbsp;</div>
-      <div class="row col-lg-12">
-        <div class=" col-lg-12">
-            <div class="input-group col-xs-11 col-sm-8 col-md-6 col-lg-4">
-                    <span class="input-group-btn">
-                <router-link :to="{ name: 'create' }" class="btn btn-success">Create</router-link>
-              </span>&nbsp;&nbsp;&nbsp;&nbsp;
-              <input type="text" class="form-control"  v-model="qsearch" placeholder="Search ..">
-            </div><!-- /input-group -->
-        </div><!-- /.col-  -->
-      </div>
-      <div class="sm-vert-div">&nbsp;</div>
+    <v-container fluid>
+    <v-layout row>
+      <v-flex > 
+     <span> <router-link :to="{ name: 'create' }" class="v-btn small primary "  >Create</router-link> </span>
+       </v-flex >
+     <v-flex >
+       <v-text-field
+        flat solo-inverted small
+        hide-details    prepend-inner-icon="search"
+        label="Search"  class="hidden-xs-and-down"
+        v-model="qsearch" 
+      ></v-text-field>
+    </v-flex >  
+    </v-layout >
 
-      <table class="table table-hover table-condensed table-responsive" >
+   <div class="atable"> 
 
-        <tbody>
-          <tr v-for="mrow in atable" :key="mrow._id">
-            <router-link
-              :to="{ name: 'edit', params: { id: mrow._id } }"
-              class="btn btn-primary "
-            >Edit</router-link>
-            <td style="overflow: hidden;">{{ mrow.title  | truncate(50, ' ..') }} | {{ mrow.body | truncate(70, ' ..') }}</td>
+    <v-layout row>
+      <v-flex >
+        <v-card>
+          <v-list two-line>        
+            <v-list-tile  v-for="mrow in atable" :key="mrow._id"    
+                :to="{ name: 'edit', params: { id: mrow._id } }"  >
 
-            <td >{{ mrow.createdat | dateformat2() }}</td> 
-            <!-- <td>{{ mrow._id | truncate(6, '') }}</td> -->
-          </tr>
-        </tbody>
-      </table>
+              <v-list-tile-content>
+                <v-list-tile-title> {{ mrow.title | truncate(410, '') }}         </v-list-tile-title>
+                <v-list-tile-sub-title > {{ mrow.body | truncate(410, ' ..') }} </v-list-tile-sub-title> 
+                <v-list-tile-sub-title class="text-xs-right" >{{ mrow.createdat | dateformat2() }} </v-list-tile-sub-title> 
+              </v-list-tile-content> 
+
+            </v-list-tile>
+          </v-list>
+        </v-card>
+      </v-flex>
+    </v-layout>
+            
     </div>
+  </v-container>
   </v-app>
 </template>
 
 <script>
 import dayjs from "dayjs";
-
 
 export default {
   data() {
@@ -118,6 +124,37 @@ https://stackoverflow.com/questions/25385289/how-to-set-the-size-of-a-column-in-
 
             <td class="col-md-5-and-down" style="overflow: hidden;">{{ mrow.title  | truncate(50, ' ..') }} || {{ mrow.body | truncate(80, ' ..') }}</td>
 
+3.
+https://stackoverflow.com/questions/47586022/router-link-with-vue-and-vuetify-confusion
+
+4.
+                <v-list-tile-sub-title class="text-xs-right" >{{ mrow.createdat | dateformat2() }} </v-list-tile-sub-title> 
+
+
+5.
+         <table class="table table-hover table-condensed table-borderd " >
+          <tr v-for="mrow in atable" :key="mrow._id">
+            <router-link
+              :to="{ name: 'edit', params: { id: mrow._id } }"
+              class="v-btn small"
+            >Edit</router-link>
+            <td style="overflow: hidden;">{{ mrow.title  | truncate(50, ' ..') }} | {{ mrow.body | truncate(70, ' ..') }}</td>
+
+            <td >{{ mrow.createdat | dateformat2() }}</td> 
+            <!-- <td>{{ mrow._id | truncate(6, '') }}</td> -->
+          </tr>
+       </table>
+
+6.
+
+   <v-divider > - </v-divider> 
+
+7.
+                <v-list-tile-action>
+                  <v-list-tile-action-text>{{ mrow.createdat | dateformat2() }}</v-list-tile-action-text>
+                </v-list-tile-action>
+
+8.
 
 */
 

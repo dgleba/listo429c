@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  
     <v-app id="inspire">
       <v-toolbar>
         <v-toolbar-title class="hidden-md-and-down">App&nbsp;</v-toolbar-title>
@@ -103,7 +103,7 @@
 
       <router-view></router-view>
     </v-app>
-  </div>
+
 </template>
 
 <script>
@@ -117,7 +117,7 @@ var db = new PouchDB("maindb");
 export default {
   data() {
     return {
-      dgversion: "vpv445g. ver 37 - 2019/5/20",
+      dgversion: "vpv445g. ver 39 - 2019/5/20",
       settingshow: "",
       aset: "asetting",
       passwordFieldType: "password",

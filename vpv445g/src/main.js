@@ -7,7 +7,9 @@ import "./registerServiceWorker";
 Vue.config.productionTip = false;
 
 // typeof module.exports !== 'undefined'
+
 import "bootstrap/dist/css/bootstrap.min.css";
+
 require("dotenv").config();
 
 import Vuetify from "vuetify";
