@@ -25,23 +25,26 @@
       <!-- <div class="atable"> -->
       <v-layout row class="atable">
         <v-flex>
-          <v-card>
-            <v-list two-line>
-              <v-list-tile
-                v-for="mrow in atable"
-                :key="mrow._id"
-                :to="{ name: 'edit', params: { id: mrow._id } }"
-              >
-                <v-list-tile-content>
-                  <v-list-tile-title>{{ mrow.title | truncate(410, '') }}</v-list-tile-title>
-                  <v-list-tile-sub-title>{{ mrow.body | truncate(410, ' ..') }}</v-list-tile-sub-title>
-                  <v-list-tile-sub-title
-                    class="text-xs-right"
-                  >Id: {{ mrow._id | truncate(11, '.. ') }} Cre: {{ mrow.createdat | dateformat2() }}</v-list-tile-sub-title>
-                </v-list-tile-content>
-              </v-list-tile>
-            </v-list>
-          </v-card>
+          <!-- <v-card> -->
+          <v-list two-line subheader v-for="mrow in atable" :key="mrow._id">
+            <!-- <template> -->
+            <!-- Moved the above v-for to the v-list so that the v-divider is inside the loop, Chris Strutton. -->
+            <!-- also see..  https://github.com/vuetifyjs/vuetify/issues/4089 -->
+            <v-list-tile :to="{ name: 'edit', params: { id: mrow._id } }">
+              <v-list-tile-content>
+                <v-list-tile-title>{{ mrow.title | truncate(410, '') }}</v-list-tile-title>
+                <v-list-tile-sub-title>{{ mrow.body | truncate(410, ' ..') }}</v-list-tile-sub-title>
+                <v-list-tile-sub-title class="text-xs-right">
+                  Id: {{ mrow._id | truncate(11, '.. ') }} Cre: {{ mrow.createdat | dateformat2() }}
+                  <!-- <hr> -->
+                </v-list-tile-sub-title>
+              </v-list-tile-content>
+            </v-list-tile>
+            <v-divider></v-divider>
+            <!-- </template> -->
+            <!-- <v-divider v-if="mrow + 1 < atable.length" :key="mrow"></v-divider> -->
+          </v-list>
+          <!-- </v-card> -->
         </v-flex>
       </v-layout>
       <!-- </div> -->
