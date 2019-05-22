@@ -1,10 +1,12 @@
 <template>
-  
+  <div id="app">
     <v-app id="inspire">
+      <!-- <v-container fluid> -->
       <v-toolbar>
         <v-toolbar-title class="hidden-md-and-down">App&nbsp;</v-toolbar-title>
 
-         <v-menu>  <!-- class="hidden-md-and-up" -->
+        <v-menu>
+          <!-- class="hidden-md-and-up" -->
           <v-toolbar-side-icon slot="activator"></v-toolbar-side-icon>
           <v-list>
             <v-list-tile
@@ -24,7 +26,13 @@
         </v-menu>
 
         <v-toolbar-items class="hidden-xs-and-down">
-          <v-btn v-for="item in menuhoriz" :key="item.icon" :to="item.link" flat @click="settingshow=''">
+          <v-btn
+            v-for="item in menuhoriz"
+            :key="item.icon"
+            :to="item.link"
+            flat
+            @click="settingshow=''"
+          >
             {{
             item.title
             }}
@@ -102,8 +110,9 @@
       </div>
 
       <router-view></router-view>
+      <!-- </v-container> -->
     </v-app>
-
+  </div>
 </template>
 
 <script>
@@ -117,7 +126,7 @@ var db = new PouchDB("maindb");
 export default {
   data() {
     return {
-      dgversion: "vpv445g. ver 39 - 2019/5/20",
+      dgversion: "vpv445g. ver 40 - 2019/5/21",
       settingshow: "",
       aset: "asetting",
       passwordFieldType: "password",
@@ -134,8 +143,8 @@ export default {
       ],
       menuhoriz: [
         { icon: "a", title: "Posts", link: "/" },
-        { title: "StatusTag", link: "/statusfield" },
-      ]    
+        { title: "StatusTag", link: "/statusfield" }
+      ]
     };
   },
   mounted: function() {

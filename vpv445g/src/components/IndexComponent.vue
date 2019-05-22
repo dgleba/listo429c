@@ -1,43 +1,51 @@
 <template>
   <v-app>
     <v-container fluid>
-    <v-layout row>
-      <v-flex > 
-     <span> <router-link :to="{ name: 'create' }" class="v-btn small primary "  >Create</router-link> </span>
-       </v-flex >
-     <v-flex >
-       <v-text-field
-        flat solo-inverted small
-        hide-details    prepend-inner-icon="search"
-        label="Search"  class="hidden-xs-and-down"
-        v-model="qsearch" 
-      ></v-text-field>
-    </v-flex >  
-    </v-layout >
+      <!-- <v-spacer></v-spacer> -->
+      <v-layout row>
+        <v-flex>
+          <span>
+            <router-link :to="{ name: 'create' }" class="v-btn small primary">Create</router-link>
+          </span>
+        </v-flex>
+        <v-flex>
+          <v-text-field
+            flat
+            solo-inverted
+            small
+            hide-details
+            prepend-inner-icon="search"
+            label="Search"
+            class="hidden-xs-and-down"
+            v-model="qsearch"
+          ></v-text-field>
+        </v-flex>
+      </v-layout>
 
-   <div class="atable"> 
-
-    <v-layout row>
-      <v-flex >
-        <v-card>
-          <v-list two-line>        
-            <v-list-tile  v-for="mrow in atable" :key="mrow._id"    
-                :to="{ name: 'edit', params: { id: mrow._id } }"  >
-
-              <v-list-tile-content>
-                <v-list-tile-title> {{ mrow.title | truncate(410, '') }}         </v-list-tile-title>
-                <v-list-tile-sub-title > {{ mrow.body | truncate(410, ' ..') }} </v-list-tile-sub-title> 
-                <v-list-tile-sub-title class="text-xs-right" >{{ mrow.createdat | dateformat2() }} </v-list-tile-sub-title> 
-              </v-list-tile-content> 
-
-            </v-list-tile>
-          </v-list>
-        </v-card>
-      </v-flex>
-    </v-layout>
-            
-    </div>
-  </v-container>
+      <!-- <div class="atable"> -->
+      <v-layout row class="atable">
+        <v-flex>
+          <v-card>
+            <v-list two-line>
+              <v-list-tile
+                v-for="mrow in atable"
+                :key="mrow._id"
+                :to="{ name: 'edit', params: { id: mrow._id } }"
+              >
+                <v-list-tile-content>
+                  <v-list-tile-title>{{ mrow.title | truncate(410, '') }}</v-list-tile-title>
+                  <v-list-tile-sub-title>{{ mrow.body | truncate(410, ' ..') }}</v-list-tile-sub-title>
+                  <v-list-tile-sub-title
+                    class="text-xs-right"
+                  >Id: {{ mrow._id | truncate(11, '.. ') }} Cre: {{ mrow.createdat | dateformat2() }}</v-list-tile-sub-title>
+                </v-list-tile-content>
+              </v-list-tile>
+            </v-list>
+          </v-card>
+        </v-flex>
+      </v-layout>
+      <!-- </div> -->
+    </v-container>
   </v-app>
 </template>
 
@@ -74,7 +82,7 @@ export default {
     // format date
     dateformat2: function(input) {
       if (input) {
-         return  dayjs(String(input)).format('ddd_MMM_DD HH:mm');
+        return dayjs(String(input)).format("ddd_MMM_DD HH:mm");
       }
     }
   },
@@ -102,7 +110,6 @@ export default {
             { title: { $regex: RegExp(this.qsearch, "i") } },
             { statusfld: { $regex: RegExp(this.qsearch, "i") } },
             { _id: { $regex: this.qsearch } }
-          
           ]
         },
         sort: [{ _id: "desc" }],
@@ -157,7 +164,6 @@ https://stackoverflow.com/questions/47586022/router-link-with-vue-and-vuetify-co
 8.
 
 */
-
 </script>
 
 <style scoped>
