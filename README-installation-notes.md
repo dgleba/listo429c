@@ -6,6 +6,16 @@ The idea is to use example files below as is. They have settings including usern
 The system should start using these example settings.
 Read the example files to see the passwords and settings needed to login and access urls.
 
+Comment out these stanzas in the `docker-compose.yml` file. You will edit them and uncomment them later.
+
+```
+    environment:
+      - VIRTUAL_HOST=couch-108-168-7-24.nip.io
+      - LETSENCRYPT_HOST=couch-108-168-7-24.nip.io
+      - VIRTUAL_PORT=5984
+      - LETSENCRYPT_EMAIL=dgleba@gmail.com
+```
+
 ## Requirements.
 
     - linux system with docker-ce 18 and docker compose installed (I use ubuntu)
@@ -79,7 +89,7 @@ docker-compose up adminer429  pgadmin
     copy env.example and edit to match your settings.
       eg path: sftp://david462.tk:46281/srv/dkr/listo429c/couch-to-postgres/.env.example
 
-    Todo: pginit.sh should run on first startup, but it's not working. Fix it.
+    Todo: Note to self. pginit.sh should run on first startup, but it's not working. Fix it.
 
     Picture shows working setup..
     ../docs/couchtopostgres,pgcouch,setupdb-listotbl-192.168.88.60_5433-Adminer.jpg
@@ -103,13 +113,13 @@ sign up to Create your own account.
 
 ## sqlpad settings
 
-see this file and others in the folder.
+see this file and others in the folders.
 
 ./docs/sqlpad,postgres,query-SQLPad-Connections.jpg
 
 ---
 
-sqlpad settings.
+sqlpad settings - edit to suit your situation.
 
       192.168.88.58
       5433
@@ -122,7 +132,7 @@ sqlpad settings.
 
 ---
 
-Query.
+Example Query.
 
     select
           doc -> 'title' as title,
@@ -173,13 +183,20 @@ I find that it helps to restart the system after initially setting up and gettin
 Up to now, we have been accessing urls in the/your local network.
 
 To enable HTTPS, edit docker-compose.yml.
-The labels: stanzas should have valid registered domain names, valid email, etc.
+The environment stanzas you commented out at the begininning should have valid registered domain names, valid email, etc.
 Edit the examples provided.
 
 then
 
-`docker-compose up caddy-gen`
+```
+cd ..
+git clone https://github.com/dgleba/proxy457.git
+cd proxy457
 
-This will make the system available to the outside internet.
+```
+
+`docker-compose up`
+
+This will make the system available to the outside internet by assigning yourname.nip.io domain names and getting ssl certs from let's encrypt.
 
 ---
