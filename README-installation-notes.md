@@ -61,7 +61,7 @@ curl -X PUT http://cuser:abc@192.168.88.58:6212/_global_changes
 
 visit: http://192.168.88.58:6212/_utils
 
-It should require user and password.
+It should require user and password. This is because //192.168.88.60/srv/dkr/listo429c/docker/couchdb/docker.ini added an admin user.
 
 `docker-compose up vpv445gb`
 

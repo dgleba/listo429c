@@ -35,7 +35,8 @@
                 <v-list-tile-title>{{ mrow.title | truncate(410, '') }}</v-list-tile-title>
                 <v-list-tile-sub-title>{{ mrow.body | truncate(410, ' ..') }}</v-list-tile-sub-title>
                 <v-list-tile-sub-title class="text-xs-right">
-                  Id: {{ mrow._id | truncate(11, '.. ') }} Cre: {{ mrow.createdat | dateformat2() }}
+                 {{ mrow.statusfld  }}  &nbsp; &nbsp; &nbsp;   Pwork: {{ mrow.pstatus | truncate(11, '.. ') }} 
+                       &nbsp; &nbsp;   Cre: {{ mrow.createdat | dateformat2() }}
                   <!-- <hr> -->
                 </v-list-tile-sub-title>
               </v-list-tile-content>
@@ -108,9 +109,12 @@ export default {
         // selector: { rtype: "mlist", _id: { $regex: this.qsearch } },
         selector: {
           rtype: "mlist",
+          statusfld: { $regex: "Work-order" },
           $or: [
             { body: { $regex: RegExp(this.qsearch, "i") } },
             { title: { $regex: RegExp(this.qsearch, "i") } },
+            { pstatus: { $regex: RegExp(this.qsearch, "i") } },
+            { pcomment: { $regex: RegExp(this.qsearch, "i") } },
             { statusfld: { $regex: RegExp(this.qsearch, "i") } },
             { _id: { $regex: this.qsearch } }
           ]
@@ -125,6 +129,8 @@ export default {
 
 /*    
 notes.
+
+body: { $regex: "Work-order" },
 
 1.
 <td>{{ mrow.statusfld }}</td>

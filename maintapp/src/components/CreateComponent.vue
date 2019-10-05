@@ -33,8 +33,25 @@
           >
           </v-autocomplete>
         </v-card>
-        <br />
 
+
+        <div class="row">
+          <div class="col-md-2">
+            <div class="form-group">
+              <label>Pwork Status:  (Codes: zx = open )</label>
+              <input type="text" class="form-control" v-model="mrow.pstatus" />
+            </div>
+          </div>
+          <div class="col-md-10">
+            <div class="form-group">
+              <label>Comments:</label>
+              <input type="text" class="form-control" v-model="mrow.pcomment" />
+            </div>
+          </div>          
+        </div>
+
+
+        <br />
         <div class="form-group">
           <button class="btn btn-primary">Create</button>
         </div>
@@ -46,6 +63,12 @@
 <script>
 var dghelper = require(".././helper.js");
 
+
+import Vue from "vue";
+import PouchDB from "pouchdb-browser";
+// this will be the PouchDB settings database
+var db = new PouchDB("maindb");
+
 // var statusflds = [{ name: "" }];
 
 export default {
@@ -55,10 +78,22 @@ export default {
       resultsPerPage: 25,
       currentPage: 1,
       qsearch: "190221_2046",
+      profilename: "",
       statusflds: [],
       statusnames: [],
       atable: {}
     };
+  },
+
+  mounted: function() {
+    // try to kick off sync 2019-04-01..
+    db.get("_local/user")
+      .then(data => {
+        // if we have settings, start syncing
+        this.profilename = data.profilename;
+        console.log(" Mounted got profilename. ", this.profilename);
+      })
+      .catch(e => {});
   },
 
   created: function() {
@@ -100,6 +135,11 @@ export default {
       var viuid = dghelper.iuid();
       var updated = new Date();
       var created = new Date();
+      var initialpstatus = 'zx, ';
+      
+      if (this.mrow.pstatus) {
+        var initialpstatus = '.opn'.concat(this.mrow.pstatus);
+      }
 
       console.log("viuid= ", viuid);
       console.log(this.mrow);
@@ -108,7 +148,10 @@ export default {
           title: this.mrow.title,
           body: this.mrow.body,
           statusfld: this.mrow.statusfld,
+          pstatus: initialpstatus,
+          pcomment: this.mrow.pcomment,
           rtype: "mlist",
+          profilename: this.profilename,
           createdat: created,
           updated: updated,
           _id: viuid

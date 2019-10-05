@@ -3,7 +3,7 @@
     <v-app id="inspire">
       <!-- <v-container fluid> -->
       <v-toolbar>
-        <v-toolbar-title class="hidden-md-and-down">App&nbsp;</v-toolbar-title>
+        <v-toolbar-title class="hidden-md-and-down">Maint&nbsp;</v-toolbar-title>
 
         <v-menu>
           <!-- class="hidden-md-and-up" -->
@@ -69,6 +69,7 @@
               <div>&nbsp;&nbsp;&nbsp;&nbsp; Last part. (host,port,database).. @couchdb.e29.com/listdb</div>-->
 
               <div>&nbsp;</div>
+
               <div>URL ('pw' will be replaced by the password you enter below)</div>
               <div>
                 <input id="dginput" type="url" v-model="syncpartA">
@@ -79,6 +80,9 @@
                 <input id="dginput" :type="passwordFieldType" v-model="syncpass">
                 <button type="password" @click="switchVisibility" id="dgbutton">Show/hide</button>
               </div>
+              <div>Profile-name  </div>
+              <div> <input id="dginput" type="url" v-model="profilename"> </div>
+
 
               <!-- <div>URL last part</div>
             <div>
@@ -126,7 +130,7 @@ var db = new PouchDB("maindb");
 export default {
   data() {
     return {
-      dgversion: "maintapp. ver 11 - 2019-10-03",
+      dgversion: "maintapp. ver 14 - 2019-10-04",
       settingshow: "",
       aset: "asetting",
       passwordFieldType: "password",
@@ -134,15 +138,16 @@ export default {
       syncURL: "",
       syncpartA: "",
       syncpass: "",
+      profilename: "",
       syncpartC: "xpartcx",
       syncStatus: "notsyncing",
       menu: [
-        { icon: "a", title: "Posts", link: "/" },
+        { icon: "a", title: "Log", link: "/" },
         { title: "StatusTag", link: "/statusfield" },
         { icon: "home", title: "Help", link: "/home" }
       ],
       menuhoriz: [
-        { icon: "a", title: "Posts", link: "/" },
+        { icon: "a", title: "Log", link: "/" },
         { title: "StatusTag", link: "/statusfield" }
       ]
     };
@@ -155,6 +160,7 @@ export default {
         this.syncpartA = data.syncpartA;
         this.syncpass = data.syncpass;
         this.syncpartC = data.syncpartC;
+        this.profilename = data.profilename;
         this.startSync();
         console.log(" Mounted startsync. ");
       })
@@ -169,6 +175,7 @@ export default {
         this.syncpartA = data.syncpartA;
         this.syncpass = data.syncpass;
         this.syncpartC = data.syncpartC;
+        this.profilename = data.profilename;
         // commented out 2019-04-08 11:31AM to see if mounted is adeqate to start sync on app open.
         //this.startSync();
       })
@@ -215,7 +222,8 @@ export default {
         _id: "_local/user",
         syncpartA: this.syncpartA,
         syncpass: this.syncpass,
-        syncpartC: this.syncpartC
+        syncpartC: this.syncpartC,
+        profilename: this.profilename
       };
       this.saveLocalDoc(obj).then(() => {
         this.startSync();

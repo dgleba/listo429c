@@ -33,6 +33,24 @@
           </v-autocomplete>
         </v-card>
 
+        <br />
+        <div class="row">
+          <div class="col-md-2">
+            <div class="form-group">
+              <label>PaprwrkStatus: </label>
+              <input type="text" class="form-control" v-model="atable.pstatus" />
+            </div>
+          </div>
+          <div class="col-md-10">
+            <div class="form-group">
+              <label>Comments:</label>
+              <input type="text" class="form-control" v-model="atable.pcomment" />
+            </div>
+          </div>          
+          </div>          
+          PaprwrkStatus:(Codes: zx = open )
+
+
 
       <br />
        <p class="text-sm-center">  
@@ -59,15 +77,31 @@
 var dghelper = require(".././helper.js");
 import dayjs from "dayjs";
 
+import Vue from "vue";
+import PouchDB from "pouchdb-browser";
+// this will be the PouchDB settings database
+var db = new PouchDB("maindb");
+
 export default {
   data() {
     return {
       mrow: {},
       statusflds: [],
       atable: {},
-     
+      profilename: "",
     };
   },
+
+  mounted: function() {
+    // try to kick off sync 2019-04-01..
+    db.get("_local/user")
+      .then(data => {
+        // if we have settings, start syncing
+        this.profilename = data.profilename;
+        console.log(" Mounted got profilename. ", this.profilename);
+      })
+      .catch(e => {});
+  },  
 
   created_api() {
     //
@@ -96,6 +130,7 @@ export default {
       //console.log(this.atable);
       this.atable.updatedat=dghelper.updatedat();
       this.atable.updated=new Date();
+      this.atable.profilename = this.profilename;
  
       this.$pouch
         .put(
