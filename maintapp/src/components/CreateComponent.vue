@@ -21,6 +21,8 @@
         v-model="mrow.body"
       ></v-textarea>
        
+
+        <h6> Tags MUST include `Work-order` or `PprWrk`. If not, the record will not be visible. </h6>
         <v-card>
           <v-autocomplete
             v-model="mrow.statusfld"
@@ -35,6 +37,7 @@
         </v-card>
 
 
+        <br />
         <div class="row">
           <div class="col-md-2">
             <div class="form-group">
@@ -79,7 +82,7 @@ export default {
       currentPage: 1,
       qsearch: "190221_2046",
       profilename: "",
-      statusflds: [],
+      statusflds: ["PprWrk"],
       statusnames: [],
       atable: {}
     };
@@ -136,11 +139,9 @@ export default {
       var updated = new Date();
       var created = new Date();
       var initialpstatus = 'zx, ';
-      
       if (this.mrow.pstatus) {
         var initialpstatus = '.opn'.concat(this.mrow.pstatus);
       }
-
       console.log("viuid= ", viuid);
       console.log(this.mrow);
       this.$pouch

@@ -109,7 +109,7 @@ export default {
         // selector: { rtype: "mlist", _id: { $regex: this.qsearch } },
         selector: {
           rtype: "mlist",
-          statusfld: { $regex: "Work-order" },
+          statusfld: { $regex: "Work-order|PprWrk"  } ,
           $or: [
             { body: { $regex: RegExp(this.qsearch, "i") } },
             { title: { $regex: RegExp(this.qsearch, "i") } },
@@ -130,9 +130,23 @@ export default {
 /*    
 notes.
 
-body: { $regex: "Work-order" },
+1a.
+        selector: {
+          rtype: "mlist",
+          $or: [ { statusfld: { $regex: "Work-order|PprWrk"  } } ],
+          $or: [ { pstatus: { $regex: "zx"  } } ],
+          $or: [
+            { body: { $regex: RegExp(this.qsearch, "i") } },
+            { title: { $regex: RegExp(this.qsearch, "i") } },
+            { pstatus: { $regex: RegExp(this.qsearch, "i") } },
+            { pcomment: { $regex: RegExp(this.qsearch, "i") } },
+            { statusfld: { $regex: RegExp(this.qsearch, "i") } },
+            { _id: { $regex: this.qsearch } }
+          ]
+        },
 
-1.
+
+1b.
 <td>{{ mrow.statusfld }}</td>
 
 2.

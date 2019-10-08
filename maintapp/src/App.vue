@@ -130,7 +130,7 @@ var db = new PouchDB("maindb");
 export default {
   data() {
     return {
-      dgversion: "maintapp. ver 14 - 2019-10-04",
+      dgversion: "maintapp. ver 16 - 2019-10-07",
       settingshow: "",
       aset: "asetting",
       passwordFieldType: "password",
