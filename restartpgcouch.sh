@@ -9,6 +9,8 @@ cd /srv/dkr/listo429c
 
 date >> /srv/dkr/log/pgcouchstart.log
 
+mv /srv/dkr/log/cron.pgcouchrestart.log  /srv/dkr/log/cron.pgcouchrestart_$(date +"%Y-%m-%d_%H.%M.%S").log
+
 # no..  mv /srv/dkr/log/pgcouch99.log  /srv/dkr/log/pgcouch99_$(date +" %Y-%m-%d_%H.%M.%S").log
 
 

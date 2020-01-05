@@ -5,6 +5,9 @@ echo "${BASH_SOURCE[@]}"  # echo full bashsource array
 set -vx
 date
 
+# Usage:     chmod +x /srv/dkr/listo429c/cron-listo.sh ; /srv/dkr/listo429c/cron-listo.sh
+
+
 
 # Cron jobs..
 
@@ -24,9 +27,8 @@ sudo crontab -u $USER -l  # list
 # pgcouch 
 sudo crontab -u $USER -l | grep -v 'restartpgcouch.sh'  | sudo crontab -u $USER - #remove
 mkdir -p /srv/dkr/log/
-sudo crontab -u $USER -l | { cat; echo "5   5 * * 0-6 tail -n+10 ~/.bashrc | bash; sudo /srv/dkr/listo429c/restartpgcouch.sh "; } | sudo crontab -u $USER -  #add
-sudo crontab -u $USER -l | { cat; echo "49 20 * * 0-6 tail -n+10 ~/.bashrc | bash; sudo /srv/dkr/listo429c/restartpgcouch.sh "; } | sudo crontab -u $USER -  #add
-sudo crontab -u $USER -l | { cat; echo " 0 12 * * 0-6 tail -n+10 ~/.bashrc | bash; sudo /srv/dkr/listo429c/restartpgcouch.sh "; } | sudo crontab -u $USER -  #add
+sudo crontab -u $USER -l | { cat; echo "05 05 * * 0-6 tail -n+10 ~/.bashrc | bash; sudo /srv/dkr/listo429c/restartpgcouch.sh 2>&1 | tee -a /srv/dkr/log/cron.pgcouchrestart.log"; } | sudo crontab -u $USER -  #add
+sudo crontab -u $USER -l | { cat; echo "16 12 * * 0-6 tail -n+10 ~/.bashrc | bash; sudo /srv/dkr/listo429c/restartpgcouch.sh 2>&1 | tee -a /srv/dkr/log/cron.pgcouchrestart.log"; } | sudo crontab -u $USER -  #add
 
 
 sudo crontab -u $USER -l  # list
