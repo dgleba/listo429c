@@ -51,6 +51,23 @@ pgclient = new pg.Client( jev_pgurl );
 //
 
 
+// David Gleba ref. https://www.sitepoint.com/delay-sleep-pause-wait/ 
+function sleep(milliseconds) {
+  const date = Date.now();
+  let currentDate = null;
+  do {
+    currentDate = Date.now();
+  } while (currentDate - date < milliseconds);
+}
+// test sleep
+console.log("prep.start.test.sleep8000.458");
+sleep(8000);
+console.log("after sleep 8000 458");
+// end. ref. https://www.sitepoint.com/delay-sleep-pause-wait/ 
+
+
+console.log("sleeping 30 sec. a");
+sleep(30123);
 
 pgclient.connect(function(err) {
             if (err) {
@@ -65,8 +82,13 @@ pgclient.connect(function(err) {
             }
         }) ;
 
-	
+console.log("sleeping 15 sec. b");
+sleep(15123);
+
 initial_since = get_initial_since(settings.couchdb.pgtable);
+
+console.log("sleeping 15 sec. c");
+sleep(15123);
 
 createImporter();
 
