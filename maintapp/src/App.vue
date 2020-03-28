@@ -3,7 +3,9 @@
     <v-app id="inspire">
       <!-- <v-container fluid> -->
       <v-toolbar>
-        <v-toolbar-title class="hidden-md-and-down">Maint&nbsp;</v-toolbar-title>
+        <v-toolbar-title class="hidden-md-and-down"
+          >Maint&nbsp;</v-toolbar-title
+        >
 
         <v-menu>
           <!-- class="hidden-md-and-up" -->
@@ -14,14 +16,16 @@
               :key="item.icon"
               :to="item.link"
               flat
-              @click="settingshow=''"
+              @click="settingshow = ''"
             >
               <v-list-tile-content>
                 <v-list-tile-title>{{ item.title }}</v-list-tile-title>
               </v-list-tile-content>
             </v-list-tile>
-            <v-btn @click="settingshow='on'">Settings</v-btn>
-            <v-btn v-show="settingshow" @click="settingshow=''">Close Settings</v-btn>
+            <v-btn @click="settingshow = 'on'">Settings</v-btn>
+            <v-btn v-show="settingshow" @click="settingshow = ''"
+              >Close Settings</v-btn
+            >
           </v-list>
         </v-menu>
 
@@ -31,15 +35,15 @@
             :key="item.icon"
             :to="item.link"
             flat
-            @click="settingshow=''"
+            @click="settingshow = ''"
           >
-            {{
-            item.title
-            }}
+            {{ item.title }}
           </v-btn>
 
-          <v-btn flat @click="settingshow='on'">Settings</v-btn>
-          <v-btn v-show="settingshow" @click="settingshow=''">Close Settings</v-btn>
+          <v-btn flat @click="settingshow = 'on'">Settings</v-btn>
+          <v-btn v-show="settingshow" @click="settingshow = ''"
+            >Close Settings</v-btn
+          >
         </v-toolbar-items>
       </v-toolbar>
 
@@ -47,21 +51,28 @@
       <div v-show="settingshow" class="panel panel-default">
         <div class="localaapp">
           <!-- settings -->
-          <div id="dgdivright" align="right">{{dgversion}}</div>
+          <div id="dgdivright" align="right">{{ dgversion }}</div>
           <v-card v-if="mode == 'settings'">
             <v-card-title>
               Settings
-              <v-btn v-show="settingshow" @click="settingshow=''">Close Settings</v-btn>
+              <v-btn v-show="settingshow" @click="settingshow = ''"
+                >Close Settings</v-btn
+              >
             </v-card-title>
             <v-card-text>
-              You can sync your data to a remote Apache CouchDB, IBM Cloudant or PouchDB server. Supply the URL, including
-              credentials and database name and click "Start Sync".
+              You can sync your data to a remote Apache CouchDB, IBM Cloudant or
+              PouchDB server. Supply the URL, including credentials and database
+              name and click "Start Sync".
               <!-- Cloudant URL -->
 
-              <div>&nbsp;</div>Example... http://user:pw@localhost:5984/listdb
-              <div class="sm-vert-div">&nbsp;</div>Example... https://user:pw@couch.dg.tk/posts-db
+              <div>&nbsp;</div>
+              Example... http://user:pw@localhost:5984/listdb
               <div class="sm-vert-div">&nbsp;</div>
-              <div>&nbsp;&nbsp;&nbsp;&nbsp; pw will be replaced with your password</div>
+              Example... https://user:pw@couch.dg.tk/posts-db
+              <div class="sm-vert-div">&nbsp;</div>
+              <div>
+                &nbsp;&nbsp;&nbsp;&nbsp; pw will be replaced with your password
+              </div>
               <div class="sm-vert-div">&nbsp;</div>
 
               <!-- <div>&nbsp;&nbsp;&nbsp;&nbsp; password... password</div>
@@ -70,19 +81,26 @@
 
               <div>&nbsp;</div>
 
-              <div>URL ('pw' will be replaced by the password you enter below)</div>
               <div>
-                <input id="dginput" type="url" v-model="syncpartA">
+                URL ('pw' will be replaced by the password you enter below)
+              </div>
+              <div>
+                <input id="dginput" type="url" v-model="syncpartA" />
               </div>
               <div class="sm-vert-div"></div>
               <div>Password</div>
               <div>
-                <input id="dginput" :type="passwordFieldType" v-model="syncpass">
-                <button type="password" @click="switchVisibility" id="dgbutton">Show/hide</button>
+                <input
+                  id="dginput"
+                  :type="passwordFieldType"
+                  v-model="syncpass"
+                />
+                <button type="password" @click="switchVisibility" id="dgbutton">
+                  Show/hide
+                </button>
               </div>
-              <div>Profile-name  </div>
-              <div> <input id="dginput" type="url" v-model="profilename"> </div>
-
+              <div>Profile-name</div>
+              <div><input id="dginput" type="url" v-model="profilename" /></div>
 
               <!-- <div>URL last part</div>
             <div>
@@ -94,8 +112,12 @@
 
               <!-- visualisation of sync status -->
               <v-chip v-if="syncStatus == 'notsyncing'">Not Syncing</v-chip>
-              <v-chip v-if="syncStatus == 'syncing'" color="info">Syncing</v-chip>
-              <v-chip v-if="syncStatus == 'syncerror'" color="error">Sync Error</v-chip>
+              <v-chip v-if="syncStatus == 'syncing'" color="info"
+                >Syncing</v-chip
+              >
+              <v-chip v-if="syncStatus == 'syncerror'" color="error"
+                >Sync Error</v-chip
+              >
               <!-- url:  {{ syncURL }} , Abc:  {{ syncpartA }}  _***_ {{ syncpartC }} -->
               You entered: {{ syncpartA }}
             </v-card-text>
@@ -103,7 +125,9 @@
             <v-card-actions>
               <!-- submit btn that saves the Cloudant URL -->
               <v-btn v-on:click="onClickStartSync">Start Sync</v-btn>
-              <v-btn v-show="settingshow" @click="settingshow=''">Close Settings</v-btn>
+              <v-btn v-show="settingshow" @click="settingshow = ''"
+                >Close Settings</v-btn
+              >
             </v-card-actions>
           </v-card>
           <!-- settings -->
@@ -130,7 +154,7 @@ var db = new PouchDB("maindb");
 export default {
   data() {
     return {
-      dgversion: "maintapp. ver 16 - 2019-10-07",
+      dgversion: "maintapp. ver 17 - 2020-01-04",
       settingshow: "",
       aset: "asetting",
       passwordFieldType: "password",

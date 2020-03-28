@@ -5,7 +5,9 @@
       <v-layout row>
         <v-flex>
           <span>
-            <router-link :to="{ name: 'create' }" class="v-btn small primary">Create</router-link>
+            <router-link :to="{ name: 'create' }" class="v-btn small primary"
+              >Create</router-link
+            >
           </span>
         </v-flex>
         <v-flex>
@@ -32,11 +34,16 @@
             <!-- also see..  https://github.com/vuetifyjs/vuetify/issues/4089 -->
             <v-list-tile :to="{ name: 'edit', params: { id: mrow._id } }">
               <v-list-tile-content>
-                <v-list-tile-title>{{ mrow.title | truncate(410, '') }}</v-list-tile-title>
-                <v-list-tile-sub-title>{{ mrow.body | truncate(410, ' ..') }}</v-list-tile-sub-title>
+                <v-list-tile-title>{{
+                  mrow.title | truncate(410, "")
+                }}</v-list-tile-title>
+                <v-list-tile-sub-title>{{
+                  mrow.body | truncate(410, " ..")
+                }}</v-list-tile-sub-title>
                 <v-list-tile-sub-title class="text-xs-right">
-                 {{ mrow.statusfld  }}  &nbsp; &nbsp; &nbsp;   Pwork: {{ mrow.pstatus | truncate(11, '.. ') }} 
-                       &nbsp; &nbsp;   Cre: {{ mrow.createdat | dateformat2() }}
+                  {{ mrow.statusfld }} &nbsp; &nbsp; &nbsp; Pwork:
+                  {{ mrow.pstatus | truncate(11, ".. ") }} &nbsp; &nbsp; Cre:
+                  {{ mrow.createdat | dateformat2() }}
                   <!-- <hr> -->
                 </v-list-tile-sub-title>
               </v-list-tile-content>
@@ -107,9 +114,15 @@ export default {
         //database: this.selectedDatabase, // you can pass a database string or a pouchdb instance
         database: "maindb",
         // selector: { rtype: "mlist", _id: { $regex: this.qsearch } },
+
+        //
+        // 2020-01-04_Sat_23.41-PM removed this from selector below.
+        // statusfld: { $regex: "Work-order|PprWrk"  } ,
+        //
+
         selector: {
           rtype: "mlist",
-          statusfld: { $regex: "Work-order|PprWrk"  } ,
+
           $or: [
             { body: { $regex: RegExp(this.qsearch, "i") } },
             { title: { $regex: RegExp(this.qsearch, "i") } },
