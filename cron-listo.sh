@@ -25,13 +25,15 @@ sudo crontab -u $USER -l  # list
 
 
 # pgcouch 
+#
+sudo crontab -u $USER -l  # list
 sudo crontab -u $USER -l | grep -v 'restartpgcouch.sh'  | sudo crontab -u $USER - #remove
 mkdir -p /srv/dkr/log/
-sudo crontab -u $USER -l | { cat; echo "05 05 * * 0-6 tail -n+10 ~/.bashrc | bash; sudo /srv/dkr/listo429c/restartpgcouch.sh 2>&1 | tee -a /srv/dkr/log/cron.pgcouchrestart.log"; } | sudo crontab -u $USER -  #add
-sudo crontab -u $USER -l | { cat; echo "16 12 * * 0-6 tail -n+10 ~/.bashrc | bash; sudo /srv/dkr/listo429c/restartpgcouch.sh 2>&1 | tee -a /srv/dkr/log/cron.pgcouchrestart.log"; } | sudo crontab -u $USER -  #add
-
-
+sudo crontab -u $USER -l | { cat; echo "25 05 * * 5 tail -n+10 ~/.bashrc | bash; sudo /srv/dkr/listo429c/restartpgcouch.sh 2>&1 | tee -a /srv/dkr/log/cron.pgcouchrestart.log"; } | sudo crontab -u $USER -  #add
+# sudo crontab -u $USER -l | { cat; echo "26 12 * * 0-6 tail -n+10 ~/.bashrc | bash; sudo /srv/dkr/listo429c/restartpgcouch.sh 2>&1 | tee -a /srv/dkr/log/cron.pgcouchrestart.log"; } | sudo crontab -u $USER -  #add
+#
 sudo crontab -u $USER -l  # list
+
 
 
 

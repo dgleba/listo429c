@@ -5,6 +5,10 @@ echo "${BASH_SOURCE[@]}"  # echo full bashsource array
 date ; set +vx  ; set -vx ; # echo off, then echo on
 #
 
+# cron..
+#   refer to sftp://192.168.88.60/srv/dkr/listo429c/cron-listo.sh
+
+
 cd /srv/dkr/listo429c
 
 date >> /srv/dkr/log/pgcouchstart.log
