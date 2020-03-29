@@ -57,7 +57,7 @@ function sleep(milliseconds) {
   let currentDate = null;
   do {
     currentDate = Date.now();
-    // setTimeout(Function.prototype, 500);
+    // This gave an error:  setTimeout(Function.prototype, 500);
   } while (currentDate - date < milliseconds);
 }
 // test sleep
