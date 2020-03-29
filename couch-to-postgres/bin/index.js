@@ -57,6 +57,7 @@ function sleep(milliseconds) {
   let currentDate = null;
   do {
     currentDate = Date.now();
+    // setTimeout(Function.prototype, 500);
   } while (currentDate - date < milliseconds);
 }
 // test sleep
@@ -87,8 +88,8 @@ sleep(15123);
 
 initial_since = get_initial_since(settings.couchdb.pgtable);
 
-console.log("sleeping 15 sec. c");
-sleep(15123);
+// console.log("sleeping 15 sec. c");
+// sleep(15123);
 
 createImporter();
 
