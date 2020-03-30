@@ -33,5 +33,5 @@ sleep 10
 
 >&2 echo "continuing..."
 # chain to wait-for-it..
-exec ./wait-for-it.sh couchdb:5984 -- ./bin/index.js
+exec ./wait-for-it.sh couchdb:5984 -t 32 -- ./bin/index.js
 

@@ -58,17 +58,19 @@ function sleep(milliseconds) {
   do {
     currentDate = Date.now();
     // This gave an error:  setTimeout(Function.prototype, 500);
+    // This gave an error:  setTimeout(function() { alert('..'); }, 100);
+    // This gave an error:  setTimeout(function() { currentDate = Date.now(); }, 100);
   } while (currentDate - date < milliseconds);
 }
 // test sleep
 console.log("prep.start.test.sleep8000.458");
 sleep(6000);
-console.log("after sleep 8000 458");
+console.log("after sleep 6000 458");
 // end. ref. https://www.sitepoint.com/delay-sleep-pause-wait/ 
 
 
-console.log("sleeping 15 sec. a");
-sleep(15123);
+console.log("sleeping 5 sec. a");
+sleep(5123);
 
 pgclient.connect(function(err) {
             if (err) {
@@ -83,13 +85,13 @@ pgclient.connect(function(err) {
             }
         }) ;
 
-console.log("sleeping 5 sec. b");
-sleep(5123);
+console.log("disabled sleeping 5 sec. b");
+// sleep(5123);
 
 initial_since = get_initial_since(settings.couchdb.pgtable);
 
-console.log("sleeping 5 sec. c");
-sleep(5123);
+console.log("disabled sleeping 5 sec. c");
+// sleep(5123);
 
 createImporter();
 
