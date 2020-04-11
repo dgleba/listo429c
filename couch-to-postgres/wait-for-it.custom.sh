@@ -28,8 +28,8 @@ echo "cmd var is:  $cmd"
 #   sleep 1
 # done
 
-echo sleeping 10.
-sleep 10
+echo sleeping 20.
+sleep 20
 
 >&2 echo "continuing..."
 # chain to wait-for-it..
