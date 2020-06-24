@@ -37,6 +37,8 @@ cd listo429c
 
 ```
 
+## Copy files
+
 - root .env file - copy from .env.example to .env
 
 - cp ./docs/docker/couchdb/docker.ini.example.in2 ./docker/couchdb/docker.ini
